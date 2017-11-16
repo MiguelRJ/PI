@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PI</string>
+    <string name="txvUser">User</string>
+    <string name="txvPassword">Password</string>
+    <string name="chkRemember">Remember me</string>
+    <string name="txvSignUp">Sign up</string>
+    <string name="btnLogIn">Sign in</string>
+    <string name="btnFacebook">Sign in with Facebook</string>
+    <string name="btnGoogle">Sign in with Google</string>
+</resources>

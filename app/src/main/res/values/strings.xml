@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PI</string>
+    <string name="txvUser">Usuario</string>
+    <string name="txvPassword">Contraseña</string>
+    <string name="chkRemember">Recuerdame</string>
+    <string name="txvSignUp">Registrate</string>
+    <string name="btnLogIn">Acceder</string>
+    <string name="btnFacebook">Acceder con Facebook</string>
+    <string name="btnGoogle">Acceder con Google</string>
 </resources>

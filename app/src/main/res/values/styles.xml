@@ -1,11 +1,59 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="ActionBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginEditText">
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/shape_loginedittext</item>
+    </style>
+
+    <style name="LoginTextView">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="LoginCheckBox">
+        <item name="android:textColor">@color/colorBackgroundGray</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginTextViewMoreOptions">
+        <item name="android:textColor">@color/colorBackgroundGray</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+
+    <style name="LoginButton">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="SocialButton">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="GoogleButton" parent="SocialButton">
+        <item name="android:drawableStart">@mipmap/ic_google</item>
+        <item name="android:background">@color/colorGoogle</item>
+        <item name="android:text">@string/btnGoogle</item>
+    </style>
+
+    <style name="FacebookButton" parent="SocialButton">
+        <item name="android:drawableStart">@mipmap/ic_facebook</item>
+        <item name="android:background">@color/colorFacebook</item>
+        <item name="android:text">@string/btnFacebook</item>
     </style>
 
 </resources>
