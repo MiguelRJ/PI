@@ -4,8 +4,10 @@ import android.support.annotation.NonNull;
 
 import java.sql.Time;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -19,6 +21,8 @@ import java.util.Date;
  *      - creationTime - Date has a constructor with hours minutes and seconds
  *      Comparable - creationDate
  *      Comparator - amount
+ *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
+ *      Attribute image wont be shown in toString()
  */
 
 public class Transaction implements Comparable {
@@ -29,13 +33,13 @@ public class Transaction implements Comparable {
     int idEstablishment;
     boolean payment; // type of transaction true = payment, false = entry
     double amount;
-    Date creationDate;
+    Calendar creationDate;
     String comment;
     double latitude;
     double longitude;
-    byte[] image;
+    byte[] image; // wont be shown in toString()
 
-    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, Date creationDate, String comment, double latitude, double longitude, byte[] image) {
+    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, Calendar creationDate, String comment, double latitude, double longitude, byte[] image) {
         this.id = id;
         this.idUser = idUser;
         this.idPiggyBank = idPiggyBank;
@@ -97,11 +101,11 @@ public class Transaction implements Comparable {
         this.amount = amount;
     }
 
-    public Date getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -150,7 +154,7 @@ public class Transaction implements Comparable {
                 ", comment='" + comment + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", image=" + Arrays.toString(image) +
+                /*", image=" + Arrays.toString(image) +*/
                 '}';
     }
 

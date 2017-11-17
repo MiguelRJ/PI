@@ -2,21 +2,25 @@ package com.example.pi.data.db.model;
 
 import android.support.annotation.NonNull;
 
+import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
  * @author Miguel Rodriguez Jimenez
  * @date 16/11/17
  *      Attributes
- *      Constructor
+ *      Constructor - with all attributes
  *      Getter and Setter
  * @date 17/11/17
  *      ToString
  *      Comparable - name - String.toLowerCase()
  *      Comparator - creationDate - Date
  *      Comparator - totalAmount - double
+ *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
+ *      Added a new constructor PiggyBank(int id, int idUser, String name)
+ *      Attribute totalAmount wont be able to add by a constructor
  */
 
 public class PiggyBank implements Comparable {
@@ -24,15 +28,24 @@ public class PiggyBank implements Comparable {
     int id;
     int idUser;
     String name;
-    double totalAmount;
-    Date creationDate;
+    double totalAmount; // wont be added by constructor
+    Calendar creationDate;
 
-    public PiggyBank(int id, int idUser, String name, double totalAmount, Date creationDate) {
+
+    public PiggyBank(int id, int idUser, String name, GregorianCalendar creationDate) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount = totalAmount;
+        this.totalAmount = 0;
         this.creationDate = creationDate;
+    }
+
+    public PiggyBank(int id, int idUser, String name) {
+        this.id = id;
+        this.idUser = idUser;
+        this.name = name;
+        this.totalAmount = 50;
+        this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
     }
 
     public int getId() {
@@ -67,11 +80,11 @@ public class PiggyBank implements Comparable {
         this.totalAmount = totalAmount;
     }
 
-    public Date getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
     }
 

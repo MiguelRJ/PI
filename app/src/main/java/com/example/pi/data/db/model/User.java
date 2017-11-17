@@ -1,6 +1,8 @@
 package com.example.pi.data.db.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -11,7 +13,8 @@ import java.util.Date;
  *      Getter and Setter
  * @date 17/11/17
  *      ToString
- *      dont need to do comparable or comparator of users
+ *      Dont need to do comparable or comparator of users
+ *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
  */
 
 public class User {
@@ -21,14 +24,14 @@ public class User {
     String email;
     String password;
     String name;
-    Date birthDate;
+    Calendar birthDate;
     String gender;
     int phoneNumber;
     String city;
     String socialMedia;
     boolean owner;
 
-    public User(int id, String user, String email, String password, String name, Date birthDate, String gender, int phoneNumber, String city, String socialMedia, boolean owner) {
+    public User(int id, String user, String email, String password, String name, GregorianCalendar birthDate, String gender, int phoneNumber, String city, String socialMedia, boolean owner) {
         this.id = id;
         this.user = user;
         this.email = email;
@@ -82,11 +85,11 @@ public class User {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public Calendar getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(Calendar birthDate) {
         this.birthDate = birthDate;
     }
 

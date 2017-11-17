@@ -2,7 +2,9 @@ package com.example.pi.data.db.model;
 
 import android.support.annotation.NonNull;
 
+import java.util.Calendar;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -15,6 +17,9 @@ import java.util.Comparator;
  *      ToString
  *      Comparable - name - String.toLowerCase()
  *      Comparator - nif - String.toLowerCase()
+ *      Added attribute creationAddDate
+ *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
+ *      Added a new constructor Establishment(int id, int idUser, String name, String nif, String address)
  */
 
 public class Establishment implements Comparable {
@@ -24,7 +29,17 @@ public class Establishment implements Comparable {
     String name;
     String nif;
     String address;
+    Calendar creationAddDate;
 
+
+    public Establishment(int id, int idUser, String name, String nif, String address, GregorianCalendar creationAddDate) {
+        this.id = id;
+        this.idUser = idUser;
+        this.name = name;
+        this.nif = nif;
+        this.address = address;
+        this.creationAddDate = creationAddDate;
+    }
 
     public Establishment(int id, int idUser, String name, String nif, String address) {
         this.id = id;
@@ -32,6 +47,7 @@ public class Establishment implements Comparable {
         this.name = name;
         this.nif = nif;
         this.address = address;
+        this.creationAddDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
     }
 
     public int getId() {
@@ -74,6 +90,10 @@ public class Establishment implements Comparable {
         this.address = address;
     }
 
+    public Calendar getCreationAddDate() {
+        return creationAddDate;
+    }
+
     @Override
     public String toString() {
         return "Establishment{" +
@@ -82,7 +102,12 @@ public class Establishment implements Comparable {
                 ", name='" + name + '\'' +
                 ", nif='" + nif + '\'' +
                 ", address='" + address + '\'' +
+                ", creationAddDate=" + creationAddDate +
                 '}';
+    }
+
+    public void setCreationAddDate(GregorianCalendar creationAddDate) {
+        this.creationAddDate = creationAddDate;
     }
 
     @Override
@@ -90,7 +115,7 @@ public class Establishment implements Comparable {
         return name.toLowerCase().compareTo(((Establishment)o).getName().toLowerCase());
     }
 
-    public class EstablishmentOrderByNif implements Comparator<Establishment> {
+    public static class EstablishmentOrderByNif implements Comparator<Establishment> {
 
         @Override
         public int compare(Establishment e1, Establishment e2) {
