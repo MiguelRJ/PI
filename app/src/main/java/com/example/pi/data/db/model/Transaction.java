@@ -1,6 +1,10 @@
 package com.example.pi.data.db.model;
 
+import android.support.annotation.NonNull;
+
 import java.sql.Time;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -10,9 +14,14 @@ import java.util.Date;
  *      Attributes
  *      Constructor
  *      Getter and Setter
+ * @date 17/11/17
+ *      ToString
+ *      - creationTime - Date has a constructor with hours minutes and seconds
+ *      Comparable - creationDate
+ *      Comparator - amount
  */
 
-public class Transaction {
+public class Transaction implements Comparable {
 
     int id;
     int idUser;
@@ -21,13 +30,12 @@ public class Transaction {
     boolean payment; // type of transaction true = payment, false = entry
     double amount;
     Date creationDate;
-    Time creationTime;
     String comment;
     double latitude;
     double longitude;
     byte[] image;
 
-    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, Date creationDate, Time creationTime, String comment, double latitude, double longitude, byte[] image) {
+    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, Date creationDate, String comment, double latitude, double longitude, byte[] image) {
         this.id = id;
         this.idUser = idUser;
         this.idPiggyBank = idPiggyBank;
@@ -35,7 +43,6 @@ public class Transaction {
         this.payment = payment;
         this.amount = amount;
         this.creationDate = creationDate;
-        this.creationTime = creationTime;
         this.comment = comment;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -98,14 +105,6 @@ public class Transaction {
         this.creationDate = creationDate;
     }
 
-    public Time getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Time creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -136,5 +135,35 @@ public class Transaction {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", idUser=" + idUser +
+                ", idPiggyBank=" + idPiggyBank +
+                ", idEstablishment=" + idEstablishment +
+                ", payment=" + payment +
+                ", amount=" + amount +
+                ", creationDate=" + creationDate +
+                ", comment='" + comment + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", image=" + Arrays.toString(image) +
+                '}';
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return creationDate.compareTo(((Transaction)o).getCreationDate());
+    }
+
+    public static class TransactionOrderByCreationDate implements Comparator<Transaction> {
+
+        @Override
+        public int compare(Transaction t1, Transaction t2) {
+            return Double.compare(t1.getAmount(),t2.getAmount());
+        }
     }
 }

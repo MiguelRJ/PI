@@ -9,6 +9,9 @@ import java.util.Date;
  *      Attributes
  *      Constructor
  *      Getter and Setter
+ * @date 17/11/17
+ *      ToString
+ *      dont need to do comparable or comparator of users
  */
 
 public class User {
@@ -125,5 +128,22 @@ public class User {
 
     public void setOwner(boolean owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", user='" + user + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", gender='" + gender + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", city='" + city + '\'' +
+                ", socialMedia='" + socialMedia + '\'' +
+                ", owner=" + owner +
+                '}';
     }
 }

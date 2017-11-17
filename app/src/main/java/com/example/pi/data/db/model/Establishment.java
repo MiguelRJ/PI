@@ -1,5 +1,9 @@
 package com.example.pi.data.db.model;
 
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
+
 /**
  * Created by
  * @author Miguel Rodriguez Jimenez
@@ -7,9 +11,13 @@ package com.example.pi.data.db.model;
  *      Attributes
  *      Constructor
  *      Getter and Setter
+ * @date 17/11/17
+ *      ToString
+ *      Comparable - name - String.toLowerCase()
+ *      Comparator - nif - String.toLowerCase()
  */
 
-public class Establishment {
+public class Establishment implements Comparable {
 
     int id;
     int idUser;
@@ -64,5 +72,29 @@ public class Establishment {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Establishment{" +
+                "id=" + id +
+                ", idUser=" + idUser +
+                ", name='" + name + '\'' +
+                ", nif='" + nif + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return name.toLowerCase().compareTo(((Establishment)o).getName().toLowerCase());
+    }
+
+    public class EstablishmentOrderByNif implements Comparator<Establishment> {
+
+        @Override
+        public int compare(Establishment e1, Establishment e2) {
+            return e1.getNif().toLowerCase().compareTo(e2.getNif().toLowerCase());
+        }
     }
 }

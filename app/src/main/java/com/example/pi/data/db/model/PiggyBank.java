@@ -1,5 +1,8 @@
 package com.example.pi.data.db.model;
 
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -9,22 +12,27 @@ import java.util.Date;
  *      Attributes
  *      Constructor
  *      Getter and Setter
+ * @date 17/11/17
+ *      ToString
+ *      Comparable - name - String.toLowerCase()
+ *      Comparator - creationDate - Date
+ *      Comparator - totalAmount - double
  */
 
-public class PiggyBank {
+public class PiggyBank implements Comparable {
 
     int id;
     int idUser;
     String name;
     double totalAmount;
-    Date creation;
+    Date creationDate;
 
-    public PiggyBank(int id, int idUser, String name, double totalAmount, Date creation) {
+    public PiggyBank(int id, int idUser, String name, double totalAmount, Date creationDate) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
         this.totalAmount = totalAmount;
-        this.creation = creation;
+        this.creationDate = creationDate;
     }
 
     public int getId() {
@@ -59,11 +67,45 @@ public class PiggyBank {
         this.totalAmount = totalAmount;
     }
 
-    public Date getCreation() {
-        return creation;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreation(Date creation) {
-        this.creation = creation;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
+
+    @Override
+    public String toString() {
+        return "PiggyBank{" +
+                "id=" + id +
+                ", idUser=" + idUser +
+                ", name='" + name + '\'' +
+                ", totalAmount=" + totalAmount +
+                ", creation=" + creationDate +
+                '}';
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return name.toLowerCase().compareTo(((PiggyBank)o).getName().toLowerCase());
+    }
+
+    public static class PiggyBankOrderByCreationDate implements Comparator<PiggyBank> {
+
+        @Override
+        public int compare(PiggyBank pb1, PiggyBank pb2) {
+            return pb1.getCreationDate().compareTo(pb2.getCreationDate());
+        }
+    }
+
+    public static class PiggyBankOrderByTotalAmount implements Comparator<PiggyBank> {
+
+        @Override
+        public int compare(PiggyBank pb1, PiggyBank pb2) {
+            return Double.compare(pb1.getTotalAmount(),pb2.getTotalAmount());
+        }
+    }
+
 }
