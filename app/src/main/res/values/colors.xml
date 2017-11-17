@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#537D10</color>
-    <color name="colorPrimaryLight">#83ac43</color>
-    <color name="colorPrimaryDark">#245000</color>
+    <!-- Colores usados por la APP -->
+    <color name="colorPrimary">@color/colorOriginalPrimary</color>
+    <color name="colorPrimaryLight">@color/colorOriginalPrimaryLight</color>
+    <color name="colorPrimaryDark">@color/colorOriginalPrimaryDark</color>
 
-    <color name="colorSecondary">#245000</color>
-    <color name="colorSecondaryLight">#527d2f</color>
-    <color name="colorSecondaryDark">#062700</color>
+    <color name="colorSecondary">@color/colorOriginalSecondary</color>
+    <color name="colorSecondaryLight">@color/colorOriginalSecondaryLight</color>
+    <color name="colorSecondaryDark">@color/colorOriginalSecondaryDark</color>
 
-    <color name="colorAccent">#EBB02D</color>
+    <color name="colorAccent">@color/colorDarkGoldenRod</color>
+    <!-- Colores usados por la APP -->
+
+    <!-- Colores Originales -->
+    <color name="colorOriginalPrimary">#537D10</color>
+    <color name="colorOriginalPrimaryLight">#83ac43</color>
+    <color name="colorOriginalPrimaryDark">#245000</color>
+    <color name="colorOriginalSecondary">#245000</color>
+    <color name="colorOriginalSecondaryLight">#527d2f</color>
+    <color name="colorOriginalSecondaryDark">#062700</color>
+    <color name="colorOriginalAccent">#EBB02D</color>
+    <!-- Colores Originales -->
+
+    <!-- Colores prueba 1 -->
+    <color name="colorDollarGreen">#85BB65</color>
+    <color name="colorDollarGreenLight">#B6EE94</color>
+    <color name="colorDollarGreenDark">#558B38</color>
+
+    <color name="colorDollarWhite">#D5CAB4</color>
+    <color name="colorDollarWhiteLight">#FFFDE6</color>
+    <color name="colorDollarWhiteDark">#A49984</color>
+    <!-- Colores prueba 1 -->
+
+    <!-- Otros colores -->
     <color name="colorGoogle">#dc4a38</color>
     <color name="colorFacebook">#3c5a99</color>
 
     <color name="colorBackgroundGray">#D6D6D6</color>
+    <color name="colorSilver">#C0C0C0</color>
 
     <color name="colorGold">#FFD700</color>
     <color name="colorGoldenRod">#B8860B</color>
     <color name="colorDarkGoldenRod">#DAA520</color>
-    <color name="colorSilver">#C0C0C0</color>
-
-    <color name="colorDollarGreen">#85BB65</color>
-    <color name="colorDollarWhite">#d5cab4</color>
+    <!-- Otros colores -->
 
 
 </resources>

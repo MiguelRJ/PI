@@ -23,13 +23,13 @@
     </style>
 
     <style name="LoginCheckBox">
-        <item name="android:textColor">@color/colorBackgroundGray</item>
+        <item name="android:textColor">@color/colorSilver</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
         <item name="android:textColorSecondary">@color/colorAccent</item>
     </style>
 
     <style name="LoginTextViewMoreOptions">
-        <item name="android:textColor">@color/colorBackgroundGray</item>
+        <item name="android:textColor">@color/colorSilver</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
         <item name="android:textColorSecondary">@color/colorAccent</item>
         <item name="android:textAlignment">textEnd</item>
