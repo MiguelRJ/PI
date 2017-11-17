@@ -11,15 +11,19 @@ import java.util.GregorianCalendar;
  * @author Miguel Rodriguez Jimenez
  * @date 16/11/17
  *      Attributes
- *      Constructor
+ *      Constructor - with all atributes
  *      Getter and Setter
  * @date 17/11/17
  *      ToString
  *      Comparable - name - String.toLowerCase()
  *      Comparator - nif - String.toLowerCase()
  *      Added attribute creationAddDate
+ *      Attribute creationAddDate wont be never added by constructor
  *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
- *      Added a new constructor Establishment(int id, int idUser, String name, String nif, String address)
+ *
+ *      Added new constructor: with no creationDate
+ *          this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
+ *      Establishment(int id, int idUser, String name, String nif, String address)
  */
 
 public class Establishment implements Comparable {
@@ -29,25 +33,30 @@ public class Establishment implements Comparable {
     String name;
     String nif;
     String address;
-    Calendar creationAddDate;
+    Calendar creationDate;
 
-
+    /**
+     * Complete constructor
+     */
     public Establishment(int id, int idUser, String name, String nif, String address, GregorianCalendar creationAddDate) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
         this.nif = nif;
         this.address = address;
-        this.creationAddDate = creationAddDate;
+        this.creationDate = creationAddDate;
     }
 
+    /**
+     * Constructor with no creationAddDate, it will be added automatic
+     */
     public Establishment(int id, int idUser, String name, String nif, String address) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
         this.nif = nif;
         this.address = address;
-        this.creationAddDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
+        this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
     }
 
     public int getId() {
@@ -90,8 +99,12 @@ public class Establishment implements Comparable {
         this.address = address;
     }
 
-    public Calendar getCreationAddDate() {
-        return creationAddDate;
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(GregorianCalendar creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
@@ -102,12 +115,8 @@ public class Establishment implements Comparable {
                 ", name='" + name + '\'' +
                 ", nif='" + nif + '\'' +
                 ", address='" + address + '\'' +
-                ", creationAddDate=" + creationAddDate +
+                ", creationAddDate=" + creationDate +
                 '}';
-    }
-
-    public void setCreationAddDate(GregorianCalendar creationAddDate) {
-        this.creationAddDate = creationAddDate;
     }
 
     @Override

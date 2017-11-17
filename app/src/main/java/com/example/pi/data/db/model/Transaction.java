@@ -14,15 +14,20 @@ import java.util.GregorianCalendar;
  * @author Miguel Rodriguez Jimenez
  * @date 16/11/17
  *      Attributes
- *      Constructor
+ *      Constructor - with all atributes
  *      Getter and Setter
  * @date 17/11/17
  *      ToString
- *      - creationTime - Date has a constructor with hours minutes and seconds
  *      Comparable - creationDate
  *      Comparator - amount
  *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
  *      Attribute image wont be shown in toString()
+ *      Attribute creationDate wont be never added by constructor
+ *
+ *      Added new constructor: with no creationDate
+ *          this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
+ *      Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, String comment, double latitude, double longitude, byte[] image)
+ *
  */
 
 public class Transaction implements Comparable {
@@ -39,7 +44,7 @@ public class Transaction implements Comparable {
     double longitude;
     byte[] image; // wont be shown in toString()
 
-    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, Calendar creationDate, String comment, double latitude, double longitude, byte[] image) {
+    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, GregorianCalendar creationDate, String comment, double latitude, double longitude, byte[] image) {
         this.id = id;
         this.idUser = idUser;
         this.idPiggyBank = idPiggyBank;
@@ -47,6 +52,20 @@ public class Transaction implements Comparable {
         this.payment = payment;
         this.amount = amount;
         this.creationDate = creationDate;
+        this.comment = comment;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.image = image;
+    }
+
+    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, String comment, double latitude, double longitude, byte[] image) {
+        this.id = id;
+        this.idUser = idUser;
+        this.idPiggyBank = idPiggyBank;
+        this.idEstablishment = idEstablishment;
+        this.payment = payment;
+        this.amount = amount;
+        this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
         this.comment = comment;
         this.latitude = latitude;
         this.longitude = longitude;

@@ -18,9 +18,13 @@ import java.util.GregorianCalendar;
  *      Comparable - name - String.toLowerCase()
  *      Comparator - creationDate - Date
  *      Comparator - totalAmount - double
+ *      Attribute creationDate wont be never added by constructor
  *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
- *      Added a new constructor PiggyBank(int id, int idUser, String name)
- *      Attribute totalAmount wont be able to add by a constructor
+ *      Attribute totalAmount wont be able to add by a constructor, its calculated by all Transactions in this PiggyBank
+ *
+ *      Added new constructor : with no creationDate
+ *              this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
+ *      PiggyBank(int id, int idUser, String name)
  */
 
 public class PiggyBank implements Comparable {
@@ -31,7 +35,9 @@ public class PiggyBank implements Comparable {
     double totalAmount; // wont be added by constructor
     Calendar creationDate;
 
-
+    /**
+     * Complete constructor
+     */
     public PiggyBank(int id, int idUser, String name, GregorianCalendar creationDate) {
         this.id = id;
         this.idUser = idUser;
@@ -40,11 +46,14 @@ public class PiggyBank implements Comparable {
         this.creationDate = creationDate;
     }
 
+    /**
+     * Constructor with no creationDate, it will be added automatic
+     */
     public PiggyBank(int id, int idUser, String name) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount = 50;
+        this.totalAmount = 0;
         this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
     }
 
