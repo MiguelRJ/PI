@@ -54,15 +54,16 @@
                     android:orientation="vertical">
 
                     <fragment
-                        android:id="@+id/fragmentPiggyBank"
-                        android:name="com.example.pi.ui.fragment.PiggyBankFragment"
+                        android:id="@+id/fragmentPiggyBankNoAppBar"
+                        android:name="com.example.pi.ui.fragment.PiggyBankNoAppBarFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:layout="@layout/fragment_piggybank" />
+                        tools:layout="@layout/fragment_piggybanknoappbar" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fabOpen"

@@ -19,5 +19,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_piggybank" />
 
-
 </android.support.constraint.ConstraintLayout>

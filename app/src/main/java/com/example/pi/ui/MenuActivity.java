@@ -19,6 +19,7 @@ import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.ui.fragment.FastPayFragment;
 import com.example.pi.ui.fragment.PiggyBankFragment;
+import com.example.pi.ui.fragment.PiggyBankNoAppBarFragment;
 import com.example.pi.ui.piggybank.PiggyBankActivity;
 
 /**
@@ -28,7 +29,7 @@ import com.example.pi.ui.piggybank.PiggyBankActivity;
  *
  */
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankFragment.PiggyBankFragmentListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener {
 
     TabHost tab;
     private FloatingActionButton fabOpen;
@@ -52,10 +53,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     public void tabHostInitialize() {
         tab.setup();
-        tab.addTab(tab.newTabSpec("tab0").setIndicator("PiggyBanks", null).setContent(R.id.fragmentPiggyBank));
+        tab.addTab(tab.newTabSpec("tab0").setIndicator("PiggyBanks", null).setContent(R.id.fragmentPiggyBankNoAppBar));
         tab.addTab(tab.newTabSpec("tab2").setIndicator("Transaction", null).setContent(R.id.llyTransaction));
     }
-
 
     @Override
     public void onFastPayFragment() {
@@ -63,7 +63,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onPiggyBankFragment() {
+    public void onPiggyBankNoAppBarFragment() {
 
     }
 }

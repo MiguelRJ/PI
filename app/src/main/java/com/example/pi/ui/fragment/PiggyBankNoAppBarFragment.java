@@ -18,7 +18,6 @@ import android.widget.ListView;
 
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
-import com.example.pi.data.db.model.PiggyBank;
 
 /**
  * Created by
@@ -34,40 +33,33 @@ import com.example.pi.data.db.model.PiggyBank;
  *      onOptionsItemSelected()
  */
 
-public class PiggyBankFragment extends Fragment {
+public class PiggyBankNoAppBarFragment extends Fragment {
 
-    private PiggyBankFragmentListener mCallBack;
+    private PiggyBankNoAppBarFragmentListener mCallBack;
     private PiggyBankAdapter adapter;
-    private Toolbar toolbar;
     private ListView listView;
     private FloatingActionButton fab;
 
-    public interface PiggyBankFragmentListener {
-        void onPiggyBankFragment();
+    public interface PiggyBankNoAppBarFragmentListener {
+        void onPiggyBankNoAppBarFragment();
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try{
-            mCallBack = (PiggyBankFragmentListener) activity;
+            mCallBack = (PiggyBankNoAppBarFragmentListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement FastPayFragmentListener");
+            throw new ClassCastException(activity.toString() + " must implement PiggyBankNoAppBarFragmentListener");
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_piggybank,container,false);
+        View view = inflater.inflate(R.layout.fragment_piggybanknoappbar,container,false);
         listView = view.findViewById(R.id.listView);
         fab = view.findViewById(R.id.fab);
-        toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        setHasOptionsMenu(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            listView.setNestedScrollingEnabled(true);
-        }
         adapter = new PiggyBankAdapter(getActivity().getApplicationContext());
         listView.setAdapter(adapter);
         return view;
@@ -90,27 +82,4 @@ public class PiggyBankFragment extends Fragment {
         mCallBack = null;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_activity_piggybank,menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_order_by_name:
-                adapter = new PiggyBankAdapter(getActivity());
-                listView.setAdapter(adapter);
-                return true;
-            case R.id.action_order_by_totalAmount:
-                listView.setAdapter(adapter.orderByTotalAmount());
-                return true;
-            case R.id.action_order_by_creationDate:
-                listView.setAdapter(adapter.orderByCreationDate());
-                return true;
-            default:
-                break;
-        }
-        return false;
-    }
 }
