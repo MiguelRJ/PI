@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.db.repository.TransactionRepository;
@@ -21,13 +22,14 @@ import java.util.Comparator;
 
 /**
  * Created by
+ *
  * @author Miguel Rodriguez Jimenez
  * @date 18/11/17
- *      Constructor
- *      getView()
- *      orderByTotalAmount()
- *      orderByCreationDate()
- *      TransactionHolder{}
+ * Constructor
+ * getView()
+ * orderByTotalAmount()
+ * orderByCreationDate()
+ * TransactionHolder{}
  */
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
@@ -35,26 +37,17 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     private ArrayList<Transaction> transactions;
     private static Context context;
 
-    public TransactionAdapter(){
+    public TransactionAdapter() {
         transactions = TransactionRepository.getInstance().getTransactions();
 
     }
 
-    public TransactionAdapter orderByAmount(){
-        Collections.sort(transactions,new Transaction.TransactionOrderByAmount());
+    public TransactionAdapter orderByAmount() {
+        Collections.sort(transactions, new Transaction.TransactionOrderByAmount());
         return this;
     }
 
-    public void orderByAmount2(){
-        Collections.sort(transactions, new Comparator<Transaction>() {
-            @Override
-            public int compare(Transaction t1, Transaction t2) {
-                return Double.compare(t1.getAmount(),t2.getAmount());
-            }
-        });
-    }
-
-    public TransactionAdapter orderByCreationDate(){
+    public TransactionAdapter orderByCreationDate() {
         //Collections.sort(transactions, Transaction.);
         return this;
     }
@@ -67,18 +60,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // 2.
-        View view = inflater.inflate(R.layout.item_transaction,null);
+        View view = inflater.inflate(R.layout.item_transaction, null);
 
         // 3.
         TransactionViewHolder transactionViewHolder = new TransactionViewHolder(view);
         return transactionViewHolder;
     }
 
-    public byte[] image(){
+    public byte[] image() {
         Bitmap bitmap;
-        bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_transaction_default));
+        bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_transaction_default));
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] bitmapdata = stream.toByteArray();
         return bitmapdata;
     }
@@ -86,24 +79,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(TransactionViewHolder transactionViewHolder, int position) {
         byte[] bytes = transactions.get(position).getImage();
-        if (bytes == null){
+        if (bytes == null) {
             bytes = image();
         }
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         transactionViewHolder.imageView.setImageBitmap(bitmap);
 
         transactionViewHolder.txvAmount.setText((String.valueOf(transactions.get(position).getAmount())));
 
-        if(transactions.get(position).isPayment()){
-            transactionViewHolder.txvPayment.setText("pago");
+        if (transactions.get(position).isPayment()) {
+            transactionViewHolder.txvPayment.setText("payment");
         } else {
-            transactionViewHolder.txvPayment.setText("ingreso");
+            transactionViewHolder.txvPayment.setText("deposit");
         }
 
         transactionViewHolder.txvAmount.setText(String.valueOf(transactions.get(position).getAmount()));
 
-        Calendar calendar =  transactions.get(position).getCreationDate();
-        String date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+ calendar.get(Calendar.MONTH)+"/"+ calendar.get(Calendar.YEAR);
+        Calendar calendar = transactions.get(position).getCreationDate();
+        String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
         transactionViewHolder.txvCreationDate.setText(date);
 
         transactionViewHolder.txvComment.setText(transactions.get(position).getComment());
@@ -116,7 +109,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return transactions.size();
     }
 
-    public static class TransactionViewHolder extends  RecyclerView.ViewHolder {
+    public static class TransactionViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView txvPayment;

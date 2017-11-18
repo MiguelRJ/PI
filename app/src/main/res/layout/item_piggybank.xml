@@ -26,11 +26,12 @@
         android:layout_marginStart="8dp"
         android:textColor="@android:color/primary_text_light"
         android:textSize="@dimen/primary_text"
+        android:lines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="@+id/icon"
-        tools:text="Cartera" />
+        tools:text="CarteraCarteraCarteraCarteraCarteraCarteraCartera" />
 
     <TextView
         android:id="@+id/txvAmount"
@@ -42,6 +43,7 @@
         android:layout_weight="0.7"
         android:textColor="@android:color/secondary_text_light"
         android:textSize="@dimen/secondary_text"
+        android:textAlignment="viewEnd"
         app:layout_constraintEnd_toStartOf="@+id/txvCreationDate"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toBottomOf="@+id/txvName"
