@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/menuPiggyBankOrderName"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_name"/>
+    <item android:title="@string/menuPiggyBankOrderTotalAmount"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_totalAmount"/>
+    <item android:title="@string/menuPiggyBankOrderCreationDate"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_creationDate"/>
+</menu>

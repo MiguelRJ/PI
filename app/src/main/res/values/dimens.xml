@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_top_padding">8dp</dimen>
+    <dimen name="letter_icon_size">48dp</dimen>
+    <dimen name="primary_text">16sp</dimen>
+    <dimen name="secondary_text">14sp</dimen>
+    <dimen name="translationZ">12dp</dimen>
+    <dimen name="margin_fab">16dp</dimen>
+</resources>

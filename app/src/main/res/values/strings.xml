@@ -7,4 +7,12 @@
     <string name="btnLogIn">Acceder</string>
     <string name="btnFacebook">Acceder con Facebook</string>
     <string name="btnGoogle">Acceder con Google</string>
+    <string name="menuPiggyBankOrderName">Ordenar por nombre</string>
+    <string name="menuPiggyBankOrderTotalAmount">Ordenar por cantidad</string>
+    <string name="menuPiggyBankOrderCreationDate">Ordenar por fecha</string>
+    <string name="tilCommentHint">Añade un comentario</string>
+    <string name="tilAmountHint">Cantidad</string>
+    <string name="btnFastPay">Pago rapido</string>
+    <string name="chkImage">Imagen</string>
+    <string name="chkLocation">Ubicacion</string>
 </resources>

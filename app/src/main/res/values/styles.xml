@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="ActionBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -38,6 +38,11 @@
     <style name="LoginButton">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="LoginButtonOnDark">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="SocialButton">

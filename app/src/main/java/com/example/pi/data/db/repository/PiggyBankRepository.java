@@ -39,6 +39,10 @@ public class PiggyBankRepository {
         addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11,17,15,30,00)));
         addPiggyBank(new PiggyBank(0,1,"Piedra"));
         addPiggyBank(new PiggyBank(1,1,"FundaMovil",new GregorianCalendar(2017,11,17,15,30,00)));
+        addPiggyBank(new PiggyBank(0,0,"Cartera"));
+        addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11,17,15,30,00)));
+        addPiggyBank(new PiggyBank(0,1,"Piedra"));
+        addPiggyBank(new PiggyBank(1,1,"FundaMovil",new GregorianCalendar(2017,11,17,15,30,00)));
     }
 
     /* GET INSTANCE OF REPOSITORY */

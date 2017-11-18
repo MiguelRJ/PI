@@ -2,6 +2,9 @@ package com.example.pi.data.db.model;
 
 import android.support.annotation.NonNull;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
@@ -42,7 +45,7 @@ public class PiggyBank implements Comparable {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount = 0;
+        this.totalAmount = Math.random()*100;
         this.creationDate = creationDate;
     }
 
@@ -53,8 +56,13 @@ public class PiggyBank implements Comparable {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount = 0;
-        this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
+        this.totalAmount = Math.random()*100;
+        this.creationDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
+                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                Calendar.getInstance().get(Calendar.MINUTE),
+                Calendar.getInstance().get(Calendar.SECOND));
     }
 
     public int getId() {

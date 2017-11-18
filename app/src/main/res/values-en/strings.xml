@@ -8,4 +8,12 @@
     <string name="btnLogIn">Sign in</string>
     <string name="btnFacebook">Sign in with Facebook</string>
     <string name="btnGoogle">Sign in with Google</string>
+    <string name="menuPiggyBankOrderName">Order by name</string>
+    <string name="menuPiggyBankOrderTotalAmount">Order by amount</string>
+    <string name="menuPiggyBankOrderCreationDate">Order by date</string>
+    <string name="tilAmountHint">Amount</string>
+    <string name="tilCommentHint">Add a comment</string>
+    <string name="btnFastPay">Fast pay</string>
+    <string name="chkImage">Image</string>
+    <string name="chkLocation">Locatiuon</string>
 </resources>
