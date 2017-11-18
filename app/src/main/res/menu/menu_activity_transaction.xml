@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/menuPiggyBankOrderCreationDate"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_creationDate"/>
+    <item android:title="@string/menuPiggyBankOrderTotalAmount"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_totalAmount"/>
+</menu>

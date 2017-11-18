@@ -66,36 +66,60 @@
                         tools:layout="@layout/fragment_piggybanknoappbar" />
 
                     <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fabOpen"
+                        android:id="@+id/fabOpenPiggyBank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|start"
                         android:layout_margin="@dimen/margin_fab"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/llyPiggyBank"
+                        app:layout_constraintEnd_toEndOf="@id/llyPiggyBank"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@id/llyPiggyBank"
                         app:pressedTranslationZ="@dimen/translationZ"
                         app:srcCompat="@drawable/ic_action_opennew" />
 
                 </android.support.constraint.ConstraintLayout>
 
-                <LinearLayout
+                <android.support.constraint.ConstraintLayout
                     android:id="@+id/llyTransaction"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/btnPiggiBank"
+                    <fragment
+                        android:id="@+id/fragmentTransaction"
+                        android:name="com.example.pi.ui.fragment.TransactionFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Button" />
-                </LinearLayout>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout="@layout/fragment_transaction" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fabOpenTransaction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|start"
+                        android:layout_margin="@dimen/margin_fab"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="@id/llyTransaction"
+                        app:layout_constraintEnd_toEndOf="@id/llyTransaction"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@id/llyTransaction"
+                        app:pressedTranslationZ="@dimen/translationZ"
+                        app:srcCompat="@drawable/ic_action_opennew" />
+
+                </android.support.constraint.ConstraintLayout>
 
             </FrameLayout>
         </LinearLayout>

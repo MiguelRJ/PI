@@ -1,12 +1,12 @@
 package com.example.pi.ui.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,17 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
 import com.example.pi.R;
-import com.example.pi.adapter.PiggyBankAdapter;
-import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.adapter.TransactionAdapter;
 
 /**
  * Created by
  * @author Miguel Rodriguez Jimenez
  * @date 18/11/17
- *      PiggyBankFragmentListener{}
+ *      TransactionFragmentListener{}
  *      onAttach()
  *      onCreateView()
  *      onViewCreated()
@@ -34,42 +31,37 @@ import com.example.pi.data.db.model.PiggyBank;
  *      onOptionsItemSelected()
  */
 
-public class PiggyBankFragment extends Fragment {
+public class TransactionFragment extends Fragment {
 
-    private PiggyBankFragmentListener mCallBack;
-    private PiggyBankAdapter adapter;
+    private TransactionFragmentListener mCallBack;
+    private RecyclerView recyclerView;
+    private TransactionAdapter adapter;
     private Toolbar toolbar;
-    private ListView listView;
     private FloatingActionButton fab;
 
-    public interface PiggyBankFragmentListener {
-        void onPiggyBankFragment();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try{
-            mCallBack = (PiggyBankFragmentListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement FastPayFragmentListener");
-        }
+    public interface TransactionFragmentListener {
+        void onTransactionFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_piggybank,container,false);
-        listView = view.findViewById(R.id.listView);
+        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_transaction,container,false);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         fab = view.findViewById(R.id.fab);
         toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            listView.setNestedScrollingEnabled(true);
+
+        if (savedInstanceState != null){
+            adapter = new TransactionAdapter();
+        } else {
+            adapter = new TransactionAdapter();
         }
-        adapter = new PiggyBankAdapter(getActivity().getApplicationContext());
-        listView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
         return view;
     }
 
@@ -92,25 +84,23 @@ public class PiggyBankFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_activity_piggybank,menu);
+        inflater.inflate(R.menu.menu_activity_transaction,menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_order_by_name:
-                adapter = new PiggyBankAdapter(getActivity());
-                listView.setAdapter(adapter);
-                return true;
-            case R.id.action_order_by_totalAmount:
-                listView.setAdapter(adapter.orderByTotalAmount());
+                adapter = new TransactionAdapter();
+                recyclerView.setAdapter(adapter);
                 return true;
             case R.id.action_order_by_creationDate:
-                listView.setAdapter(adapter.orderByCreationDate());
+                recyclerView.setAdapter(adapter.orderByAmount());
                 return true;
             default:
                 break;
         }
         return false;
     }
+
 }

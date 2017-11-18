@@ -1,7 +1,18 @@
 package com.example.pi.data.db.model;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 
+import com.example.pi.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.sql.Time;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -57,6 +68,8 @@ public class Transaction implements Comparable {
         this.longitude = longitude;
         this.image = image;
     }
+
+
 
     public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, String comment, double latitude, double longitude, byte[] image) {
         this.id = id;
@@ -182,7 +195,7 @@ public class Transaction implements Comparable {
         return creationDate.compareTo(((Transaction)o).getCreationDate());
     }
 
-    public static class TransactionOrderByCreationDate implements Comparator<Transaction> {
+    public static class TransactionOrderByAmount implements Comparator<Transaction> {
 
         @Override
         public int compare(Transaction t1, Transaction t2) {

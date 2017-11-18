@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
     android:orientation="vertical"
-    tools:context="com.example.pi.ui.piggybank.PiggyBankActivity">
+    tools:context="com.example.pi.ui.transaction.TransactionActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -25,8 +25,8 @@
             app:titleTextColor="@android:color/white" />
     </android.support.design.widget.AppBarLayout>
 
-    <ListView
-        android:id="@+id/listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"

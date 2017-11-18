@@ -15,4 +15,7 @@
     <string name="btnFastPay">Pago rapido</string>
     <string name="chkImage">Imagen</string>
     <string name="chkLocation">Ubicacion</string>
+    <string name="imgImageDescription">Imagen de transaccion</string>
+    <string name="isPayment">Pago</string>
+    <string name="isDeposit">Ingreso</string>
 </resources>

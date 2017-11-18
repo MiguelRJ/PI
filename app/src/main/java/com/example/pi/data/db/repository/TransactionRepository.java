@@ -1,7 +1,12 @@
 package com.example.pi.data.db.repository;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
-
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -36,9 +41,9 @@ public class TransactionRepository {
     }
 
     private void initialize() {
-        addTransaction(new Transaction(0,0,0,0,true,50,new GregorianCalendar(2017,11,15,17,30,00),"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
-        addTransaction(new Transaction(1,0,0,0,true,75,"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
-        addTransaction(new Transaction(2,0,1,0,false,100,new GregorianCalendar(2017,11,16,17,30,00),"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
+        addTransaction(new Transaction(0,0,0,0,true,50,new GregorianCalendar(2017,11,15,17,30,00),"100 del suelo",36.719116, -4.453754,null));
+        addTransaction(new Transaction(1,0,0,0,true,75,"100 del suelo",36.719116, -4.453754,null));
+        addTransaction(new Transaction(2,0,1,0,false,100,new GregorianCalendar(2017,11,16,17,30,00),"100 del suelo",36.719116, -4.453754,null));
         addTransaction(new Transaction(3,0,1,0,true,25,"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
         addTransaction(new Transaction(4,0,0,0,false,150,new GregorianCalendar(2017,11,17,17,30,00),"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
         addTransaction(new Transaction(5,0,1,0,false,125,"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
@@ -53,7 +58,7 @@ public class TransactionRepository {
     }
 
     /* GET INSTANCE OF REPOSITORY */
-    public TransactionRepository getInstance(){
+    public static TransactionRepository getInstance(){
         return transactionRepository;
     }
 
@@ -68,8 +73,8 @@ public class TransactionRepository {
         return  transactions;
     }
 
-    public ArrayList<Transaction> getTransactionsOrderByCreationDate(){
-        Collections.sort(transactions, new Transaction.TransactionOrderByCreationDate());
+    public ArrayList<Transaction> getTransactionsOrderByAmount(){
+        Collections.sort(transactions, new Transaction.TransactionOrderByAmount());
         return  transactions;
     }
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgImage"
+        android:layout_width="@dimen/letter_icon_size"
+        android:layout_height="@dimen/letter_icon_size"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground"
+        android:contentDescription="@string/imgImageDescription" />
+
+    <TextView
+        android:id="@+id/txvPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/txvAmount"
+        app:layout_constraintStart_toEndOf="@+id/imgImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Payment" />
+
+    <TextView
+        android:id="@+id/txvAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@+id/txvCreationDate"
+        app:layout_constraintStart_toEndOf="@+id/txvPayment"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="111111500.64" />
+
+    <TextView
+        android:id="@+id/txvCreationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txvAmount"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="18/11/17 15:30" />
+
+    <TextView
+        android:id="@+id/txvComment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="@+id/txvAmount"
+        app:layout_constraintStart_toEndOf="@+id/imgImage"
+        app:layout_constraintTop_toBottomOf="@+id/txvPayment"
+        tools:text="0123456789 0123456789 01234567890123456789 0123456789 0123456789" />
+
+    <TextView
+        android:id="@+id/txvEstablishment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="@+id/txvCreationDate"
+        app:layout_constraintStart_toStartOf="@+id/txvCreationDate"
+        app:layout_constraintTop_toBottomOf="@+id/txvCreationDate"
+        tools:text="FarmaciaFarmaciaFarmaciaFarmaciaFarmacia" />
+
+</android.support.constraint.ConstraintLayout>

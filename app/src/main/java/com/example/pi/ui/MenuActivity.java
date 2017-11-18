@@ -20,7 +20,9 @@ import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.ui.fragment.FastPayFragment;
 import com.example.pi.ui.fragment.PiggyBankFragment;
 import com.example.pi.ui.fragment.PiggyBankNoAppBarFragment;
+import com.example.pi.ui.fragment.TransactionFragment;
 import com.example.pi.ui.piggybank.PiggyBankActivity;
+import com.example.pi.ui.transaction.TransactionActivity;
 
 /**
  * Created by
@@ -29,31 +31,37 @@ import com.example.pi.ui.piggybank.PiggyBankActivity;
  *
  */
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener,TransactionFragment.TransactionFragmentListener {
 
     TabHost tab;
-    private FloatingActionButton fabOpen;
+    private FloatingActionButton fabOpenPiggyBank;
+    private FloatingActionButton fabOpenTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         tab = findViewById(R.id.tabHost);
-        fabOpen = findViewById(R.id.fabOpen);
-        fabOpen.setOnClickListener(this);
+        fabOpenPiggyBank = findViewById(R.id.fabOpenPiggyBank);
+        fabOpenPiggyBank.setOnClickListener(this);
+        fabOpenTransaction = findViewById(R.id.fabOpenTransaction);
+        fabOpenTransaction.setOnClickListener(this);
         tabHostInitialize();
     }
 
     @Override
     public void onClick(View v) {
-        if (v == fabOpen){
+        if (v == fabOpenPiggyBank){
             startActivity( new Intent(MenuActivity.this, PiggyBankActivity.class));
+        }
+        if (v == fabOpenTransaction){
+            startActivity( new Intent(MenuActivity.this, TransactionActivity.class));
         }
     }
 
     public void tabHostInitialize() {
         tab.setup();
-        tab.addTab(tab.newTabSpec("tab0").setIndicator("PiggyBanks", null).setContent(R.id.fragmentPiggyBankNoAppBar));
+        tab.addTab(tab.newTabSpec("tab0").setIndicator("PiggyBanks", null).setContent(R.id.llyPiggyBank));
         tab.addTab(tab.newTabSpec("tab2").setIndicator("Transaction", null).setContent(R.id.llyTransaction));
     }
 
@@ -64,6 +72,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPiggyBankNoAppBarFragment() {
+
+    }
+
+    @Override
+    public void onTransactionFragment() {
 
     }
 }

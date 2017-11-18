@@ -16,4 +16,7 @@
     <string name="btnFastPay">Fast pay</string>
     <string name="chkImage">Image</string>
     <string name="chkLocation">Locatiuon</string>
+    <string name="imgImageDescription">Transaction image</string>
+    <string name="isPayment">Payment</string>
+    <string name="isDeposit">Deposit</string>
 </resources>
