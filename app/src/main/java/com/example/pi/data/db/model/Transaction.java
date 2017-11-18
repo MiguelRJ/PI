@@ -69,8 +69,6 @@ public class Transaction implements Comparable {
         this.image = image;
     }
 
-
-
     public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, String comment, double latitude, double longitude, byte[] image) {
         this.id = id;
         this.idUser = idUser;

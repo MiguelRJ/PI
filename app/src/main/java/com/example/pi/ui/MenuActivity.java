@@ -1,26 +1,15 @@
 package com.example.pi.ui;
 
-import android.app.ActivityGroup;
 import android.content.Intent;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
-
 import com.example.pi.R;
-import com.example.pi.adapter.PiggyBankAdapter;
-import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.ui.fragment.FastPayFragment;
-import com.example.pi.ui.fragment.PiggyBankFragment;
 import com.example.pi.ui.fragment.PiggyBankNoAppBarFragment;
-import com.example.pi.ui.fragment.TransactionFragment;
+import com.example.pi.ui.fragment.TransactionNoAppBarFragment;
 import com.example.pi.ui.piggybank.PiggyBankActivity;
 import com.example.pi.ui.transaction.TransactionActivity;
 
@@ -31,7 +20,7 @@ import com.example.pi.ui.transaction.TransactionActivity;
  *
  */
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener,TransactionFragment.TransactionFragmentListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener,TransactionNoAppBarFragment.TransactionNoAppBarFragmentListener {
 
     TabHost tab;
     private FloatingActionButton fabOpenPiggyBank;

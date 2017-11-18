@@ -92,7 +92,7 @@
 
                     <fragment
                         android:id="@+id/fragmentTransaction"
-                        android:name="com.example.pi.ui.fragment.TransactionFragment"
+                        android:name="com.example.pi.ui.fragment.TransactionNoAppBarFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -100,7 +100,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:layout="@layout/fragment_transaction" />
+                        tools:layout="@layout/fragment_transactionnoappbar" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fabOpenTransaction"

@@ -1,18 +1,12 @@
 package com.example.pi.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.pi.R;
@@ -20,10 +14,10 @@ import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.db.repository.TransactionRepository;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by
@@ -51,6 +45,20 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return this;
     }
 
+    public void orderByAmount2(){
+        Collections.sort(transactions, new Comparator<Transaction>() {
+            @Override
+            public int compare(Transaction t1, Transaction t2) {
+                return Double.compare(t1.getAmount(),t2.getAmount());
+            }
+        });
+    }
+
+    public TransactionAdapter orderByCreationDate(){
+        //Collections.sort(transactions, Transaction.);
+        return this;
+    }
+
     @Override
     public TransactionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
@@ -68,18 +76,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     public byte[] image(){
         Bitmap bitmap;
-        //Drawable drawable = ContextCompat.getDrawable(context,R.drawable.ic_launcher_background);
-        //Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.outHeight = 48;
-        o.outWidth = 48;
-        //Bitmap bitmap = BitmapFactory.decodeFile(context.getResources().getResourceName(R.drawable.ic_launcher_background));
-        //Bitmap bitmap = BitmapFactory.decodeResource(Resources.getSystem(),R.drawable.ic_launcher_background,o);
-
-        //int id = R.drawable.ic_launcher_background;
-        //Bitmap b = BitmapFactory.decodeResource(Resources.getSystem(),R.drawable.ic_launcher_background,o);
-        //Drawable is = ContextCompat.getDrawable(context,R.drawable.ic_launcher_background);
-        //is.setFilterBitmap(true);
         bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_transaction_default));
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
@@ -139,4 +135,5 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             txvEstablishment = view.findViewById(R.id.txvEstablishment);
         }
     }
+
 }
