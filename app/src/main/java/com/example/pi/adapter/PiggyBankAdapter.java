@@ -14,6 +14,8 @@ import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.data.db.repository.PiggyBankRepository;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -41,6 +43,7 @@ public class PiggyBankAdapter extends ArrayAdapter<PiggyBank> {
         View view = convertView;
         String date;
         Calendar calendar;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,8 +64,8 @@ public class PiggyBankAdapter extends ArrayAdapter<PiggyBank> {
         piggyBankHolder.txvName.setText(getItem(position).getName());
         piggyBankHolder.txvAmount.setText((String.valueOf(getItem(position).getTotalAmount())));
         calendar =  getItem(position).getCreationDate();
-        date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+ calendar.get(Calendar.MONTH)+"/"+ calendar.get(Calendar.YEAR);
-        piggyBankHolder.txvCreationDate.setText(date);
+        //date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+ calendar.get(Calendar.MONTH)+"/"+ calendar.get(Calendar.YEAR);
+        piggyBankHolder.txvCreationDate.setText(df.format(Calendar.getInstance().getTime()));
         return view;
     }
 

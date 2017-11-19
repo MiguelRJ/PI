@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
@@ -45,7 +46,11 @@ public class PiggyBank implements Comparable {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount = Math.random()*100;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(2);
+        nf.setMaximumFractionDigits(2);
+        // problem if double is 1.1 dont format to 1.10
+        this.totalAmount =  Double.parseDouble(nf.format(Math.random()*100).toString().replace(",","."));
         this.creationDate = creationDate;
     }
 
@@ -53,10 +58,15 @@ public class PiggyBank implements Comparable {
      * Constructor with no creationDate, it will be added automatic
      */
     public PiggyBank(int id, int idUser, String name) {
+        DecimalFormat mFormat= new DecimalFormat("00");
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount = Math.random()*100;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMinimumFractionDigits(2);
+        nf.setMaximumFractionDigits(2);
+        // problem if double is 1.1 dont format to 1.10
+        this.totalAmount =  Double.parseDouble(nf.format(Math.random()*100).toString().replace(",","."));
         this.creationDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH),

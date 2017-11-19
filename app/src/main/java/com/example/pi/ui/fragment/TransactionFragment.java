@@ -90,11 +90,11 @@ public class TransactionFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_order_by_name:
+            case R.id.action_order_by_creationDate:
                 adapter = new TransactionAdapter();
                 recyclerView.setAdapter(adapter);
                 return true;
-            case R.id.action_order_by_creationDate:
+            case R.id.action_order_by_totalAmount:
                 recyclerView.setAdapter(adapter.orderByAmount());
                 return true;
             default:

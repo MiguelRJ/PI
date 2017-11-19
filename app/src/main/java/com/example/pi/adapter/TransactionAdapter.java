@@ -15,6 +15,8 @@ import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.db.repository.TransactionRepository;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -38,17 +40,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     private static Context context;
 
     public TransactionAdapter() {
-        transactions = TransactionRepository.getInstance().getTransactions();
-
+        transactions = TransactionRepository.getInstance().getTransactionsOrderByCreationDate();
     }
 
     public TransactionAdapter orderByAmount() {
         Collections.sort(transactions, new Transaction.TransactionOrderByAmount());
-        return this;
-    }
-
-    public TransactionAdapter orderByCreationDate() {
-        //Collections.sort(transactions, Transaction.);
         return this;
     }
 
@@ -96,8 +92,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transactionViewHolder.txvAmount.setText(String.valueOf(transactions.get(position).getAmount()));
 
         Calendar calendar = transactions.get(position).getCreationDate();
-        String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
-        transactionViewHolder.txvCreationDate.setText(date);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        //String formattedDate = df.format(Calendar.getInstance().getTime());
+        //String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
+        transactionViewHolder.txvCreationDate.setText(df.format(Calendar.getInstance().getTime()));
 
         transactionViewHolder.txvComment.setText(transactions.get(position).getComment());
 
