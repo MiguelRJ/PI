@@ -185,4 +185,30 @@ public class PiggyBank implements Comparable, Parcelable {
         }
     };
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PiggyBank)) return false;
+
+        PiggyBank piggyBank = (PiggyBank) o;
+
+        if (getId() != piggyBank.getId()) return false;
+        if (getIdUser() != piggyBank.getIdUser()) return false;
+        if (Double.compare(piggyBank.getTotalAmount(), getTotalAmount()) != 0) return false;
+        if (!getName().equals(piggyBank.getName())) return false;
+        return getCreationDate().equals(piggyBank.getCreationDate());
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getId();
+        result = 31 * result + getIdUser();
+        result = 31 * result + getName().hashCode();
+        temp = Double.doubleToLongBits(getTotalAmount());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getCreationDate().hashCode();
+        return result;
+    }
 }

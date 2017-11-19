@@ -25,11 +25,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     TabHost tab;
     private FloatingActionButton fabOpenPiggyBank;
     private FloatingActionButton fabOpenTransaction;
+    String TAB_1_TAG;
+    String TAB_2_TAG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        TAB_1_TAG = getApplicationContext().getResources().getString(R.string.tabPiggyBank);
+        TAB_2_TAG = getApplicationContext().getResources().getString(R.string.tabTransaction);
         tab = findViewById(R.id.tabHost);
         fabOpenPiggyBank = findViewById(R.id.fabOpenPiggyBank);
         fabOpenPiggyBank.setOnClickListener(this);
@@ -50,8 +54,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     public void tabHostInitialize() {
         tab.setup();
-        tab.addTab(tab.newTabSpec("tab0").setIndicator("PiggyBanks", null).setContent(R.id.llyPiggyBank));
-        tab.addTab(tab.newTabSpec("tab2").setIndicator("Transaction", null).setContent(R.id.llyTransaction));
+        tab.addTab(tab.newTabSpec("tab0").setIndicator(TAB_1_TAG, null).setContent(R.id.llyPiggyBank));
+        tab.addTab(tab.newTabSpec("tab2").setIndicator(TAB_2_TAG, null).setContent(R.id.llyTransaction));
     }
 
     @Override

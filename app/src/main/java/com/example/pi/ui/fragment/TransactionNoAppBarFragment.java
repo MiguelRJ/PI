@@ -1,6 +1,7 @@
 package com.example.pi.ui.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.pi.R;
 import com.example.pi.adapter.TransactionAdapter;
+import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 
 /**
  * Created by
@@ -66,7 +68,7 @@ public class TransactionNoAppBarFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent());
+                //startActivity(new Intent(getActivity().getApplicationContext(), AddPiggyBankActivity.class));
             }
         });
     }

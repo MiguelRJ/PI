@@ -65,7 +65,7 @@ public class PiggyBankAdapter extends ArrayAdapter<PiggyBank> {
         piggyBankHolder.txvAmount.setText((String.valueOf(getItem(position).getTotalAmount())));
         calendar =  getItem(position).getCreationDate();
         //date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+ calendar.get(Calendar.MONTH)+"/"+ calendar.get(Calendar.YEAR);
-        piggyBankHolder.txvCreationDate.setText(df.format(Calendar.getInstance().getTime()));
+        piggyBankHolder.txvCreationDate.setText(df.format(getItem(position).getCreationDate().getTime()));
         return view;
     }
 

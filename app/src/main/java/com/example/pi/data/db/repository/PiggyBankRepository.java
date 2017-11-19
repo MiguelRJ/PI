@@ -36,13 +36,13 @@ public class PiggyBankRepository {
 
     private void initialize(){
         addPiggyBank(new PiggyBank(0,0,"Cartera"));
-        addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11,17,15,30,00)));
+        addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
         addPiggyBank(new PiggyBank(0,1,"Piedra"));
-        addPiggyBank(new PiggyBank(1,1,"FundaMovil",new GregorianCalendar(2017,11,17,15,30,00)));
-        addPiggyBank(new PiggyBank(0,0,"Cartera"));
-        addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11,17,15,30,00)));
-        addPiggyBank(new PiggyBank(0,1,"Piedra"));
-        addPiggyBank(new PiggyBank(1,1,"FundaMovil",new GregorianCalendar(2017,11,17,15,30,00)));
+        addPiggyBank(new PiggyBank(1,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(2,0,"Cartera"));
+        addPiggyBank(new PiggyBank(3,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(2,1,"Piedra"));
+        addPiggyBank(new PiggyBank(3,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
     }
 
     /* GET INSTANCE OF REPOSITORY */
@@ -53,6 +53,18 @@ public class PiggyBankRepository {
     /* ADD PIGGY BANK */
     public void addPiggyBank(PiggyBank piggyBank){
         piggybanks.add(piggyBank);
+    }
+
+    public PiggyBank getPiggyBank(int id){
+        return getPiggybanks().get(id);
+    }
+
+    public int getLastId(){
+        return piggybanks.get(piggybanks.size()-1).getId()+1;
+    }
+
+    public void deletePiggyBank(int id){
+        piggybanks.remove(id);
     }
 
     /* GET PIGGY BANKS ORDER BY */

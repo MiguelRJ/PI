@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
+import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.fragment.PiggyBankFragment;
 
 /**
@@ -48,6 +49,9 @@ public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFra
                 return false;
             case R.id.action_order_by_creationDate:
                 return false;
+            case R.id.action_aboutus:
+                startActivity(new Intent(this, AboutUsActivity.class));
+                break;
             default:
                 break;
         }

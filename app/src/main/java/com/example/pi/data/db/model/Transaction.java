@@ -76,7 +76,12 @@ public class Transaction implements Comparable {
         this.idEstablishment = idEstablishment;
         this.payment = payment;
         this.amount = amount;
-        this.creationDate = new GregorianCalendar();
+        this.creationDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
+                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                Calendar.getInstance().get(Calendar.MINUTE),
+                Calendar.getInstance().get(Calendar.SECOND));
         this.comment = comment;
         this.latitude = latitude;
         this.longitude = longitude;

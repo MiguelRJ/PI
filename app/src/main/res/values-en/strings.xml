@@ -15,8 +15,16 @@
     <string name="tilCommentHint">Add a comment</string>
     <string name="btnFastPay">Fast pay</string>
     <string name="chkImage">Image</string>
-    <string name="chkLocation">Locatiuon</string>
+    <string name="chkLocation">Location</string>
+    <string name="tabPiggyBank">Piggy Banks</string>
+    <string name="tabTransaction">Transaction</string>
     <string name="imgImageDescription">Transaction image</string>
     <string name="isPayment">Payment</string>
     <string name="isDeposit">Deposit</string>
+    <string name="action_save">Save</string>
+    <string name="addPiggyBank">Piggy bank has been created</string>
+    <string name="modPiggyBank">Piggy bank has been modified</string>
+    <string name="delPiggyBank">Piggy bank has been deleted</string>
+    <string name="action_delete">Delete</string>
+    <string name="aboutus">About us...</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.pi.ui.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
+import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 
 /**
  * Created by
@@ -71,7 +73,7 @@ public class PiggyBankNoAppBarFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(PiggyBankActivity.this,AddPiggiBankActivity.class));
+                startActivity(new Intent(getActivity().getApplicationContext(), AddPiggyBankActivity.class));
             }
         });
     }

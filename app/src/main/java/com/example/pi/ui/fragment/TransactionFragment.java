@@ -1,6 +1,7 @@
 package com.example.pi.ui.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.pi.R;
 import com.example.pi.adapter.TransactionAdapter;
+import com.example.pi.ui.about.AboutUsActivity;
+import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 
 /**
  * Created by
@@ -51,7 +54,7 @@ public class TransactionFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),1));
-        fab = view.findViewById(R.id.fab);
+        fab = view.findViewById(R.id.fabTransaction);
         toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
@@ -71,7 +74,7 @@ public class TransactionFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent());
+                //startActivity(new Intent(getActivity().getApplicationContext(), AddPiggyBankActivity.class));
             }
         });
     }
@@ -97,6 +100,9 @@ public class TransactionFragment extends Fragment {
             case R.id.action_order_by_totalAmount:
                 recyclerView.setAdapter(adapter.orderByAmount());
                 return true;
+            case R.id.action_aboutus:
+                startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
+                break;
             default:
                 break;
         }
