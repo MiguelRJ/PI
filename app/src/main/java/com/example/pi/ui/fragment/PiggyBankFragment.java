@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,10 @@ import android.widget.ListView;
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 import com.example.pi.ui.piggybank.ViewPiggyBankActivity;
+import com.example.pi.ui.prefs.AccountSettingActivity;
 
 /**
  * Created by
@@ -124,6 +127,12 @@ public class PiggyBankFragment extends Fragment {
             case R.id.action_order_by_creationDate:
                 listView.setAdapter(adapter.orderByCreationDate());
                 return true;
+            case R.id.action_aboutus:
+                startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
+                break;
+            case R.id.action_preferences:
+                startActivity(new Intent(getActivity().getApplicationContext(), AccountSettingActivity.class));
+                break;
             default:
                 break;
         }

@@ -27,4 +27,10 @@
     <string name="delPiggyBank">Piggy bank has been deleted</string>
     <string name="action_delete">Delete</string>
     <string name="aboutus">About us...</string>
+    <string name="pref_login">Login preferences</string>
+    <string name="pref_remember_password">Remember password</string>
+    <string name="pref_remember_password_off">Don\'t remember</string>
+    <string name="pref_remember_password_on">Yes, remember</string>
+    <string name="pref_title_remember_password">Remember Password</string>
+    <string name="preferences">Preferences</string>
 </resources>

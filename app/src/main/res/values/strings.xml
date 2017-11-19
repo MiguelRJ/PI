@@ -25,5 +25,11 @@
     <string name="modPiggyBank">Hucha ha sido modificada</string>
     <string name="delPiggyBank">Hucha ha sido eliminada</string>
     <string name="action_delete">Eliminar</string>
-    <string name="aboutus">About us...</string>
+    <string name="aboutus">Sobre ...</string>
+    <string name="pref_login">Preferencias logeo</string>
+    <string name="pref_remember_password">Recordar contraseña</string>
+    <string name="pref_remember_password_off">No recordar</string>
+    <string name="pref_remember_password_on">Si recordar</string>
+    <string name="pref_title_remember_password">Recordar contraseña</string>
+    <string name="preferences">Preferences</string>
 </resources>

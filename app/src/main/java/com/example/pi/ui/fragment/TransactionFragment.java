@@ -15,23 +15,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.pi.R;
 import com.example.pi.adapter.TransactionAdapter;
 import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.piggybank.AddPiggyBankActivity;
+import com.example.pi.ui.prefs.AccountSettingActivity;
 
 /**
  * Created by
+ *
  * @author Miguel Rodriguez Jimenez
  * @date 18/11/17
- *      TransactionFragmentListener{}
- *      onAttach()
- *      onCreateView()
- *      onViewCreated()
- *          onClick(View v)
- *      onDetach()
- *      onCreateOptionsMenu()
- *      onOptionsItemSelected()
+ * TransactionFragmentListener{}
+ * onAttach()
+ * onCreateView()
+ * onViewCreated()
+ * onClick(View v)
+ * onDetach()
+ * onCreateOptionsMenu()
+ * onOptionsItemSelected()
  */
 
 public class TransactionFragment extends Fragment {
@@ -50,16 +53,16 @@ public class TransactionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_transaction,container,false);
+        View view = inflater.inflate(R.layout.fragment_transaction, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),1));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 1));
         fab = view.findViewById(R.id.fabTransaction);
         toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             adapter = new TransactionAdapter();
         } else {
             adapter = new TransactionAdapter();
@@ -87,12 +90,12 @@ public class TransactionFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_activity_transaction,menu);
+        inflater.inflate(R.menu.menu_activity_transaction, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_order_by_creationDate:
                 adapter = new TransactionAdapter();
                 recyclerView.setAdapter(adapter);
@@ -102,6 +105,9 @@ public class TransactionFragment extends Fragment {
                 return true;
             case R.id.action_aboutus:
                 startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
+                break;
+            case R.id.action_preferences:
+                startActivity(new Intent(getActivity().getApplicationContext(), AccountSettingActivity.class));
                 break;
             default:
                 break;
