@@ -73,8 +73,7 @@ public class FastPayFragment extends Fragment {
         btnFastPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transactionRepository.addTransaction(
-                        new Transaction(5,1,0,-1,true,Double.parseDouble(edtAmount.getText().toString()),edtComment.getText().toString(),-1, -1,new byte[]{}));
+                //transactionRepository.addTransaction(new Transaction(5,1,0,-1,true,Double.parseDouble(edtAmount.getText().toString()),edtComment.getText().toString(),-1, -1,new byte[]{}));
             }
         });
     }
