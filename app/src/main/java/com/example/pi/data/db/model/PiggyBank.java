@@ -1,5 +1,7 @@
 package com.example.pi.data.db.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import java.math.BigDecimal;
@@ -31,7 +33,7 @@ import java.util.GregorianCalendar;
  *      PiggyBank(int id, int idUser, String name)
  */
 
-public class PiggyBank implements Comparable {
+public class PiggyBank implements Comparable, Parcelable {
 
     int id;
     int idUser;
@@ -147,5 +149,40 @@ public class PiggyBank implements Comparable {
             return Double.compare(pb1.getTotalAmount(),pb2.getTotalAmount());
         }
     }
+
+    protected PiggyBank(Parcel in) {
+        id = in.readInt();
+        idUser = in.readInt();
+        name = in.readString();
+        totalAmount = in.readDouble();
+        creationDate = (Calendar) in.readValue(Calendar.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(idUser);
+        dest.writeString(name);
+        dest.writeDouble(totalAmount);
+        dest.writeValue(creationDate);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<PiggyBank> CREATOR = new Parcelable.Creator<PiggyBank>() {
+        @Override
+        public PiggyBank createFromParcel(Parcel in) {
+            return new PiggyBank(in);
+        }
+
+        @Override
+        public PiggyBank[] newArray(int size) {
+            return new PiggyBank[size];
+        }
+    };
 
 }

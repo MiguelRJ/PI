@@ -2,23 +2,30 @@ package com.example.pi.ui.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 
 /**
  * Created by
@@ -70,6 +77,18 @@ public class PiggyBankFragment extends Fragment {
         }
         adapter = new PiggyBankAdapter(getActivity().getApplicationContext());
         listView.setAdapter(adapter);
+        listView.setClickable(true);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object listItem = listView.getItemAtPosition(position);
+                PiggyBank pb = (PiggyBank) listItem;
+                //Toast.makeText(getActivity().getApplicationContext(),pb.getName(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), AddPiggyBankActivity.class);
+                intent.putExtra("piggybank",pb);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -113,4 +132,6 @@ public class PiggyBankFragment extends Fragment {
         }
         return false;
     }
+
+
 }
