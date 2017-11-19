@@ -35,28 +35,7 @@ public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFra
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_order_by_name:
-                return false;
-            case R.id.action_order_by_totalAmount:
-                return false;
-            case R.id.action_order_by_creationDate:
-                return false;
-            case R.id.action_aboutus:
-                startActivity(new Intent(this, AboutUsActivity.class));
-                break;
-            default:
-                break;
-        }
-        return false;
-    }
 
     @Override
     public void onPiggyBankFragment() {
