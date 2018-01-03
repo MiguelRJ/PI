@@ -1,9 +1,13 @@
 package com.example.pi.data.db.repository;
 
+import android.widget.Toast;
+
 import com.example.pi.data.db.model.PiggyBank;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 /**
  * Created by
@@ -37,12 +41,12 @@ public class PiggyBankRepository {
     private void initialize(){
         addPiggyBank(new PiggyBank(0,0,"Cartera"));
         addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(0,1,"Piedra"));
-        addPiggyBank(new PiggyBank(1,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(2,0,"Cartera"));
-        addPiggyBank(new PiggyBank(3,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
         addPiggyBank(new PiggyBank(2,1,"Piedra"));
         addPiggyBank(new PiggyBank(3,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(4,0,"Cartera"));
+        addPiggyBank(new PiggyBank(5,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(6,1,"Piedra"));
+        addPiggyBank(new PiggyBank(7,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
     }
 
     /* GET INSTANCE OF REPOSITORY */
@@ -59,12 +63,53 @@ public class PiggyBankRepository {
         return getPiggybanks().get(id);
     }
 
-    public int getLastId(){
-        return piggybanks.get(piggybanks.size()-1).getId()+1;
+    public int getList(){
+        int id = 0;
+        for (int i=0; i < piggybanks.size(); i++) {
+            if (piggybanks.get(i).getId() > id){
+                id = piggybanks.get(i).getId();
+            }
+        }
+        return id;
     }
 
-    public void deletePiggyBank(int id){
-        piggybanks.remove(id);
+    public String getLastId(){
+        String mensaje = "";
+        for (int i=0; i < piggybanks.size(); i++) {
+            mensaje += String.valueOf(piggybanks.get(i).getId()+" ");
+        }
+        return mensaje;
+    }
+
+    /**
+     * Modifica una PiggyBank
+     * @param p
+     * @param name
+     * @param calendar
+     */
+    public void modPiggyBank(PiggyBank p, String name, Calendar calendar){
+        Iterator<PiggyBank> iterator = piggybanks.iterator();
+        PiggyBank piggyBank;
+        while (iterator.hasNext()){
+            piggyBank = iterator.next();
+            if ( (piggyBank.getId() == p.getId()) && piggyBank.getIdUser() == p.getIdUser() ){
+                piggyBank.setName(name);
+                piggyBank.setCreationDate(calendar);
+                break;
+            }
+        }
+    }
+
+    public void deletePiggyBankIterator(PiggyBank p){
+        Iterator<PiggyBank> iterator = piggybanks.iterator();
+        PiggyBank piggyBank;
+        while (iterator.hasNext()){
+            piggyBank = iterator.next();
+            if ( (piggyBank.getId() == p.getId()) && piggyBank.getIdUser() == p.getIdUser() ){
+                iterator.remove();
+                break;
+            }
+        }
     }
 
     /* GET PIGGY BANKS ORDER BY */
@@ -80,6 +125,11 @@ public class PiggyBankRepository {
 
     public ArrayList<PiggyBank> getPiggybanksOrderByTotalAmount(){
         Collections.sort(piggybanks, new PiggyBank.PiggyBankOrderByTotalAmount());
+        return piggybanks;
+    }
+
+    public ArrayList<PiggyBank> getPiggybanksOrderById(){
+        Collections.sort(piggybanks, new PiggyBank.PiggyBankOrderById());
         return piggybanks;
     }
 }

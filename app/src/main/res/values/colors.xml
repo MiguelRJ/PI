@@ -32,6 +32,16 @@
     <color name="colorDollarWhiteDark">#A49984</color>
     <!-- Colores prueba 1 -->
 
+    <!-- Colores prueba 2 https://html-color-codes.info/colors-from-image/ -->
+    <color name="colorRealDollarGreen">#a0b17b</color>
+    <color name="colorRealDollarGreenLight">#B6EE94</color>
+    <color name="colorRealDollarGreenDark">#556E46</color>
+
+    <color name="colorRealDollarWhite">#efecc3</color>
+    <color name="colorRealDollarWhiteLight">#FFFDE6</color>
+    <color name="colorRealDollarWhiteDark">#A49984</color>
+    <!-- Colores prueba 2 -->
+
     <!-- Otros colores -->
     <color name="colorGoogle">#dc4a38</color>
     <color name="colorFacebook">#3c5a99</color>

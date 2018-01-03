@@ -150,6 +150,14 @@ public class PiggyBank implements Comparable, Parcelable {
         }
     }
 
+    public static class PiggyBankOrderById implements Comparator<PiggyBank> {
+
+        @Override
+        public int compare(PiggyBank pb1, PiggyBank pb2) {
+            return Double.compare(pb1.getId(),pb2.getId());
+        }
+    }
+
     protected PiggyBank(Parcel in) {
         id = in.readInt();
         idUser = in.readInt();
