@@ -15,10 +15,13 @@ import java.util.GregorianCalendar;
  *      ToString
  *      Dont need to do comparable or comparator of users
  *      Change creationDate type from "Date" to "Calendar" https://developer.android.com/reference/java/util/Calendar.html
- *
+ * @date 03/01/18
+ *      Tag
  */
 
 public class User {
+
+    public static String TAG = "User";
 
     int id;
     String user;

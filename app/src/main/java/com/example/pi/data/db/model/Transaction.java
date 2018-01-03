@@ -38,10 +38,13 @@ import java.util.GregorianCalendar;
  *      Added new constructor: with no creationDate
  *          this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
  *      Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, String comment, double latitude, double longitude, byte[] image)
- *
+ * @date 03/01/18
+ *      Tag
  */
 
 public class Transaction implements Comparable {
+
+    public static String TAG = "Transaction";
 
     int id;
     int idUser;

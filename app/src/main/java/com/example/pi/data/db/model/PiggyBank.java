@@ -31,9 +31,13 @@ import java.util.GregorianCalendar;
  *      Added new constructor : with no creationDate
  *              this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
  *      PiggyBank(int id, int idUser, String name)
+ * @date 03/01/18
+ *      Tag
  */
 
 public class PiggyBank implements Comparable, Parcelable {
+
+    public static String TAG = "PiggyBank";
 
     int id;
     int idUser;

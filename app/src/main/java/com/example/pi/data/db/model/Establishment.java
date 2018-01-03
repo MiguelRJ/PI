@@ -24,9 +24,13 @@ import java.util.GregorianCalendar;
  *      Added new constructor: with no creationDate
  *          this.creationDate = new GregorianCalendar(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH,Calendar.HOUR,Calendar.MINUTE,Calendar.SECOND);
  *      Establishment(int id, int idUser, String name, String nif, String address)
+ * @date 03/01/18
+ *      Tag
  */
 
 public class Establishment implements Comparable {
+
+    public static String TAG = "Establishment";
 
     int id;
     int idUser;
