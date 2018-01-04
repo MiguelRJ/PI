@@ -2,20 +2,9 @@ package com.example.pi.ui.piggybank;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.Toolbar;
 import com.example.pi.R;
-import com.example.pi.adapter.PiggyBankAdapter;
-import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.fragment.PiggyBankFragment;
 import com.example.pi.ui.piggybank.fragment.ListPiggyBankView;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
@@ -62,6 +51,8 @@ public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFra
 
     @Override
     public void addNewPiggyBank(Bundle bundle) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
     }
 }
