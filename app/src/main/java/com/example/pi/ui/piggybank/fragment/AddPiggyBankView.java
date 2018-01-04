@@ -23,6 +23,7 @@ import com.example.pi.ui.piggybank.contract.AddPiggyBankContract;
 import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.utils.ModeAdd;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -44,6 +45,8 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     private AddPiggyBankContract.Presenter presenter;
 
     private PiggyBank piggyBankActual;
+    private int id;
+    private int idUser;
     private TextInputLayout tilName;
     private DatePicker dpDate;
     private Toolbar toolbar;
@@ -97,9 +100,14 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
 
         if (getArguments() != null){
             piggyBankActual = getArguments().getParcelable(PiggyBank.TAG);
+            id = piggyBankActual.getId();
+            idUser = piggyBankActual.getIdUser();
             tilName.getEditText().setText(piggyBankActual.getName().toString());
             Calendar c = piggyBankActual.getCreationDate();
             dpDate.updateDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+        } else {
+            id = -1;
+            idUser = -1;
         }
 
         return rootView;
@@ -114,7 +122,8 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_save:
-                presenter.validatePiggyBank(piggyBankActual.getId(),piggyBankActual.getIdUser(),piggyBankActual.getName());
+                GregorianCalendar calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth()-1,dpDate.getDayOfMonth());
+                presenter.validatePiggyBank(id,idUser,tilName.getEditText().getText().toString(), calendar);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -143,4 +152,10 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
         tilName.setError(getString(R.string.DuplicatedName));
     }
     /* implements AddPiggyBankContract.View */
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.OnDestroy();
+    }
 }

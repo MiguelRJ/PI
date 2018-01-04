@@ -4,6 +4,7 @@ import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.base.BaseView;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -21,6 +22,6 @@ public interface AddPiggyBankContract {
         void showDuplicatedName();
     }
     interface Presenter extends BasePresenter{
-        void validatePiggyBank(int id, int idUser, String name);
+        void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar);
     }
 }

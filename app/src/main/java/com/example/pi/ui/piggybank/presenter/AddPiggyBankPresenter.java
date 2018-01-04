@@ -4,6 +4,9 @@ import com.example.pi.ui.piggybank.contract.AddPiggyBankContract;
 import com.example.pi.ui.piggybank.interactor.AddPiggyBankInteractor;
 import com.example.pi.ui.piggybank.interactor.AddPiggyBankInteractorInterface;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * Created by
  * @author Miguel Rodriguez Jimenez
@@ -41,8 +44,8 @@ public class AddPiggyBankPresenter implements AddPiggyBankContract.Presenter,Add
 
     /* implements AddPiggyBankContract.Presenter */
     @Override
-    public void validatePiggyBank(int id, int idUser, String name) {
-        interactor.validatePiggyBank(id,idUser,name,this);
+    public void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar) {
+        interactor.validatePiggyBank(id,idUser,name,calendar,this);
     }
 
     @Override

@@ -181,4 +181,17 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
         return adapter.getItem(position);
     }
     /* implements ListPiggyBankContract.View */
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.OnDestroy();
+        adapter = null;
+    }
 }

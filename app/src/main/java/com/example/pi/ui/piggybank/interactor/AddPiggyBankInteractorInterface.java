@@ -1,5 +1,8 @@
 package com.example.pi.ui.piggybank.interactor;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * Created by
  * @author Miguel Rodriguez Jimenez
@@ -20,5 +23,5 @@ public interface AddPiggyBankInteractorInterface {
         void onDuplicatedName();
 
     }
-    void validatePiggyBank(int id, int idUser, String name, AddPiggyBankInteractorInterface.OnAddPiggyBankListener listener);
+    void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar, AddPiggyBankInteractorInterface.OnAddPiggyBankListener listener);
 }

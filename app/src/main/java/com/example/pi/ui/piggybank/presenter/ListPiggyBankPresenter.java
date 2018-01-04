@@ -49,7 +49,7 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
     /* ListPiggyBankInteractorInterface.OnLoadFinishedListener */
     @Override
     public void onSucces(List<PiggyBank> list) {
-
+        view.showPiggyBank(list);
     }
     /* ListPiggyBankInteractorInterface.OnLoadFinishedListener */
 }

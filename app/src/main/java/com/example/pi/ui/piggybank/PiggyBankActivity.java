@@ -5,7 +5,6 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.pi.R;
-import com.example.pi.ui.fragment.PiggyBankFragment;
 import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
 import com.example.pi.ui.piggybank.fragment.ListPiggyBankView;
 import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
@@ -21,7 +20,7 @@ import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
  *      onOptionsItemSelected()
  */
 
-public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFragment.PiggyBankFragmentListener,ListPiggyBankView.ListPiggyBankListener {
+public class PiggyBankActivity extends AppCompatActivity implements ListPiggyBankView.ListPiggyBankListener {
 
     private ListPiggyBankView listView;
     private ListPiggyBankPresenter listPresenter;
@@ -44,13 +43,6 @@ public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFra
         listPresenter = new ListPiggyBankPresenter(listView);
 
         listView.setPresenter(listPresenter);
-    }
-
-
-
-    @Override
-    public void onPiggyBankFragment() {
-
     }
 
     @Override
