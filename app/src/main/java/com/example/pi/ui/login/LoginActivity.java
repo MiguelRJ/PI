@@ -57,7 +57,6 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
         }
     }
 
-
     @Override
     public void onSuccess() {
         startActivity(new Intent(LoginActivity.this, MenuActivity.class));
@@ -65,22 +64,22 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
 
     @Override
     public void onUserEmptyError() {
-        onError("UserEmptyError");
+        onError(R.string.errorUserEmpty);
     }
 
     @Override
     public void onPasswordEmptyError() {
-        onError("PasswordEmptyError");
+        onError(R.string.errorPasswordEmpty);
     }
 
     @Override
     public void onPasswordError() {
-        onError("PasswordError");
+        onError(R.string.errorPassword);
     }
 
     @Override
     public void onCredentialsFail() {
-        onError("CredentialsFail");
+        onError(R.string.errorCredentialsFail);
     }
 
     @Override

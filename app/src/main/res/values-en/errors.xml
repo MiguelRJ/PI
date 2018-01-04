@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="errorUserEmpty">You must enter a username</string>
+    <string name="errorPasswordEmpty">You must enter a password</string>
+    <string name="errorPassword">Wrong session credential</string>
+    <string name="errorCredentialsFail">Wrong session credentials</string>
+</resources>
