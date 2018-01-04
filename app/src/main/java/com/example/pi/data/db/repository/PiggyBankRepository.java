@@ -125,7 +125,7 @@ public class PiggyBankRepository {
         PiggyBank piggyBank;
         while (iterator.hasNext()){
             piggyBank = iterator.next();
-            if (piggyBank.getName().equals(name) && piggyBank.getCreationDate().equals(calendar)){
+            if (piggyBank.getName().toLowerCase().equals(name.toLowerCase()) && piggyBank.getCreationDate().equals(calendar)){
                 return true;
             }
         }
