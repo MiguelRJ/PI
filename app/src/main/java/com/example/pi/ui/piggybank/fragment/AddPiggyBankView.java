@@ -1,19 +1,26 @@
 package com.example.pi.ui.piggybank.fragment;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.example.pi.R;
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.ui.MenuActivity;
 import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.piggybank.contract.AddPiggyBankContract;
@@ -21,6 +28,7 @@ import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.utils.ModeAdd;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -41,8 +49,9 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public static final String TAG = "AddPiggyBankView";
     private AddPiggyBankContract.Presenter presenter;
 
+    private PiggyBank piggyBankActual;
     private TextInputLayout tilName;
-    private DatePicker dpCreationDate;
+    private DatePicker dpDate;
     private FloatingActionButton fab;
 
     static ModeAdd mode;
@@ -69,6 +78,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_add_piggybank,container,false);
 
+        dpDate = rootView.findViewById(R.id.dpDate);
         tilName = rootView.findViewById(R.id.tilName);
         tilName.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -88,11 +98,28 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
         });
 
         if (getArguments() != null){
-            tilName.getEditText().setText(((PiggyBank)getArguments().getParcelable(PiggyBank.TAG)).getName().toString());
-            Calendar c = ((PiggyBank)getArguments().getParcelable(PiggyBank.TAG)).getCreationDate();
-            dpCreationDate.updateDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
+            piggyBankActual = getArguments().getParcelable(PiggyBank.TAG);
+            tilName.getEditText().setText(piggyBankActual.getName().toString());
+            Calendar c = piggyBankActual.getCreationDate();
+            dpDate.updateDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
         }
+
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_activity_add_piggybank,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_save:
+                presenter.validatePiggyBank(piggyBankActual.getId(),piggyBankActual.getIdUser(),piggyBankActual.getName());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /* implements AddPiggyBankContract.View */
@@ -103,7 +130,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
 
     @Override
     public void showOnSucces() {
-        showMessage("Guardado");
+        showMessage(getString(R.string.PiggyBankSaved));
         FragmentManager fm = getFragmentManager();
         fm.popBackStack();
     }

@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.pi.R;
 import com.example.pi.ui.fragment.PiggyBankFragment;
+import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
 import com.example.pi.ui.piggybank.fragment.ListPiggyBankView;
+import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
 
 /**
@@ -23,6 +25,8 @@ public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFra
 
     private ListPiggyBankView listView;
     private ListPiggyBankPresenter listPresenter;
+    private AddPiggyBankView addView;
+    private AddPiggyBankPresenter addPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,19 @@ public class PiggyBankActivity extends AppCompatActivity implements PiggyBankFra
     public void addNewPiggyBank(Bundle bundle) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        addView = (AddPiggyBankView) fragmentManager.findFragmentByTag(AddPiggyBankView.TAG);
+        if (addView == null){
+            if (bundle != null){
+                addView = AddPiggyBankView.newInstance(bundle);
+            } else {
+                addView = AddPiggyBankView.newInstance(null);
+            }
+            fragmentTransaction.replace(android.R.id.content,addView,AddPiggyBankView.TAG);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        addPresenter = new AddPiggyBankPresenter(addView);
 
+        addView.setPresenter(addPresenter);
     }
 }
