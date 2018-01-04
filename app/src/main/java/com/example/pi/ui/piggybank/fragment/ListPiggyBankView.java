@@ -3,6 +3,7 @@ package com.example.pi.ui.piggybank.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,9 +23,11 @@ import android.widget.ListView;
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
+import com.example.pi.ui.prefs.AccountSettingActivity;
 
 import java.util.List;
 
@@ -39,6 +45,10 @@ import java.util.List;
  *          setRetainInstance(true);
  *      public void onAttach(Activity activity)
  *      public static Fragment newInstance(Bundle bundle)
+ *      public View onCreateView()
+ *      public void onViewCreated()
+ *      public void onCreateOptionsMenu()
+ *      public boolean onOptionsItemSelected()
  */
 
 public class ListPiggyBankView extends ListFragment implements ListPiggyBankContract.View {
@@ -122,6 +132,36 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
                 callback.addNewPiggyBank(bundle);
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_activity_piggybank,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_order_by_name:
+                adapter = new PiggyBankAdapter(getActivity());
+                listView.setAdapter(adapter);
+                return true;
+            case R.id.action_order_by_totalAmount:
+                listView.setAdapter(adapter.orderByTotalAmount());
+                return true;
+            case R.id.action_order_by_creationDate:
+                listView.setAdapter(adapter.orderByCreationDate());
+                return true;
+            case R.id.action_aboutus:
+                startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
+                break;
+            case R.id.action_preferences:
+                startActivity(new Intent(getActivity().getApplicationContext(), AccountSettingActivity.class));
+                break;
+            default:
+                break;
+        }
+        return false;
     }
 
     /* implements ListPiggyBankContract.View */
