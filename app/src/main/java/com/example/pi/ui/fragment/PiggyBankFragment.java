@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -66,7 +65,7 @@ public class PiggyBankFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_piggybank,container,false);
+        View view = inflater.inflate(R.layout.view_list_piggybank,container,false);
         listView = view.findViewById(R.id.listView);
         fab = view.findViewById(R.id.fabPiggyBank);
         toolbar = view.findViewById(R.id.toolbar);

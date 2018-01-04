@@ -3,7 +3,6 @@ package com.example.pi.ui.piggybank.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +20,6 @@ import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.ui.base.BasePresenter;
-import com.example.pi.ui.piggybank.ViewPiggyBankActivity;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
 
@@ -87,7 +85,7 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_piggybank,container,false);
+        View rootView = inflater.inflate(R.layout.view_list_piggybank,container,false);
 
         listView = rootView.findViewById(android.R.id.list);
         toolbar = rootView.findViewById(R.id.toolbar);
