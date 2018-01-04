@@ -19,18 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btnFacebook"
-                style="@style/FacebookButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
-
             <TextView
                 android:id="@+id/txvUser"
                 style="@style/LoginTextView"
@@ -45,6 +33,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:id="@+id/edtUser"
+                style="@style/LoginEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvUser" />
+
+            <TextView
+                android:id="@+id/txvPassword"
+                style="@style/LoginTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/txvPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtUser" />
+
+            <EditText
                 android:id="@+id/edtPassword"
                 style="@style/LoginEditText"
                 android:layout_width="0dp"
@@ -56,31 +70,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txvPassword" />
-
-            <Button
-                android:id="@+id/btnGoogle"
-                style="@style/GoogleButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
-
-            <Button
-                android:id="@+id/btnLogIn"
-                style="@style/LoginButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/btnLogIn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llySignOptions" />
 
             <LinearLayout
                 android:id="@+id/llySignOptions"
@@ -110,34 +99,54 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:text="@string/txvSignUp" />
+
+
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/edtUser"
-                style="@style/LoginEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txvUser" />
-
-            <TextView
-                android:id="@+id/txvPassword"
-                style="@style/LoginTextView"
+            <Button
+                android:id="@+id/btnLogIn"
+                style="@style/LoginButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/txvPassword"
+                android:text="@string/btnLogIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtUser" />
+                app:layout_constraintTop_toBottomOf="@+id/llySignOptions" />
+
+            <Button
+                android:id="@+id/btnGoogle"
+                style="@style/GoogleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+
+            <Button
+                android:id="@+id/btnFacebook"
+                style="@style/FacebookButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
+
         </android.support.constraint.ConstraintLayout>
+
+
+
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

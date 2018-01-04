@@ -68,7 +68,7 @@ public class AddPiggyBankActivity extends AppCompatActivity{
                 //Toast.makeText(getApplicationContext(), piggyBankRepository.getList(), Toast.LENGTH_SHORT).show();
                 if (piggyBank == null){
                     Log.d("menu save","piggybank es null");
-                    piggyBankRepository.addPiggyBank(new PiggyBank(piggyBankRepository.getList(),1,edtName.getText().toString(),new GregorianCalendar(dpDate.getYear(),dpDate.getMonth()-1,dpDate.getDayOfMonth())));
+                    piggyBankRepository.addPiggyBank(new PiggyBank(piggyBankRepository.getLastId(),1,edtName.getText().toString(),new GregorianCalendar(dpDate.getYear(),dpDate.getMonth()-1,dpDate.getDayOfMonth())));
                     Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.addPiggyBank), Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("menu save","piggybank no es null");
