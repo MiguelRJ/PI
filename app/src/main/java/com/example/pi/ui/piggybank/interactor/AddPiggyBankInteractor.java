@@ -23,7 +23,7 @@ public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
             listener.onNameEmptyError();
         } else if (true){ // UserRepository validate credentials User Pass
             int lastId = PiggyBankRepository.getInstance().getList();
-            if (!PiggyBankRepository.getInstance().existsPiggyBankBy(name)) {
+            if (!PiggyBankRepository.getInstance().existsPiggyBankBy(name,calendar)) {
                 if (id < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
                     PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId++, 0, name, calendar));
                 } else {

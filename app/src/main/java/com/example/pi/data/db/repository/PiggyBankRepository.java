@@ -114,12 +114,18 @@ public class PiggyBankRepository {
         }
     }
 
-    public boolean existsPiggyBankBy(String name) {
+    /**
+     * Metodo para comprobar si ya existe una piggybank con los mismos datos
+     * @param name
+     * @param calendar
+     * @return
+     */
+    public boolean existsPiggyBankBy(String name, GregorianCalendar calendar) {
         Iterator<PiggyBank> iterator = piggybanks.iterator();
         PiggyBank piggyBank;
         while (iterator.hasNext()){
             piggyBank = iterator.next();
-            if (piggyBank.getName().equals(name)){
+            if (piggyBank.getName().equals(name) && piggyBank.getCreationDate().equals(calendar)){
                 return true;
             }
         }
