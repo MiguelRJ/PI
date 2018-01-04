@@ -63,7 +63,7 @@ public class PiggyBankRepository {
         return getPiggybanks().get(id);
     }
 
-    public int getList(){
+    public int getLastId(){
         int id = 0;
         for (int i=0; i < piggybanks.size(); i++) {
             if (piggybanks.get(i).getId() > id){
@@ -73,7 +73,7 @@ public class PiggyBankRepository {
         return id;
     }
 
-    public String getLastId(){
+    public String getList(){
         String mensaje = "";
         for (int i=0; i < piggybanks.size(); i++) {
             mensaje += String.valueOf(piggybanks.get(i).getId()+" ");
