@@ -3,7 +3,12 @@ package com.example.pi.ui.piggybank.interactor;
 import com.example.pi.data.db.repository.PiggyBankRepository;
 
 /**
- * Created by Miguel on 04/01/2018.
+ * Created by
+ * @author Miguel Rodriguez Jimenez
+ * @date 04/01/18
+ *      private ListPiggyBankInteractorInterface.OnLoadFinishedListener listener;
+ *      public ListPiggyBankInteractor()
+ *      loadPiggyBank()
  */
 
 public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface {

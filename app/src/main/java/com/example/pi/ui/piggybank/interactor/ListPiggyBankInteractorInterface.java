@@ -9,6 +9,7 @@ import java.util.List;
  * @date 04/01/18
  *      interface OnLoadFinishedListener
  *          onSucces(List<PiggyBank> list)
+ *      loadPiggyBank()
  */
 
 public interface ListPiggyBankInteractorInterface {
