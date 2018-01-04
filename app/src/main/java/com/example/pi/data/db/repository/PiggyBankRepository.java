@@ -82,17 +82,19 @@ public class PiggyBankRepository {
     }
 
     /**
-     * Modifica una PiggyBank
-     * @param p
+     * modifica una piggybank por su id e idUser
+     * modificando el nombre y la fecha
+     * @param id
+     * @param idUser
      * @param name
      * @param calendar
      */
-    public void modPiggyBank(PiggyBank p, String name, Calendar calendar){
+    public void modPiggyBank(int id, int idUser, String name, GregorianCalendar calendar){
         Iterator<PiggyBank> iterator = piggybanks.iterator();
         PiggyBank piggyBank;
         while (iterator.hasNext()){
             piggyBank = iterator.next();
-            if ( (piggyBank.getId() == p.getId()) && piggyBank.getIdUser() == p.getIdUser() ){
+            if ( (piggyBank.getId() == id) && piggyBank.getIdUser() == idUser ){
                 piggyBank.setName(name);
                 piggyBank.setCreationDate(calendar);
                 break;
@@ -110,6 +112,18 @@ public class PiggyBankRepository {
                 break;
             }
         }
+    }
+
+    public boolean existsPiggyBankBy(String name) {
+        Iterator<PiggyBank> iterator = piggybanks.iterator();
+        PiggyBank piggyBank;
+        while (iterator.hasNext()){
+            piggyBank = iterator.next();
+            if (piggyBank.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /* GET PIGGY BANKS ORDER BY */
@@ -132,4 +146,7 @@ public class PiggyBankRepository {
         Collections.sort(piggybanks, new PiggyBank.PiggyBankOrderById());
         return piggybanks;
     }
+
+
+
 }

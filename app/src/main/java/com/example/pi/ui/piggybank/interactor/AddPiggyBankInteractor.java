@@ -8,7 +8,11 @@ import com.example.pi.data.db.repository.PiggyBankRepository;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Miguel on 04/01/2018.
+ * Created by
+ * @author Miguel Rodriguez Jimenez
+ * @date 04/01/18
+ *
+ *
  */
 
 public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
@@ -18,12 +22,16 @@ public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
         if (TextUtils.isEmpty(name)){
             listener.onNameEmptyError();
         } else if (true){ // UserRepository validate credentials User Pass
-            Log.e("Editando ",String.valueOf(id));
-            if (id < 0){ //si es menor de 0 entonces esque es una Piggybank nueva
-                int lastId = PiggyBankRepository.getInstance().getList();
-                Log.e("Error",String.valueOf(lastId));
-                PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId++,0,name,calendar));
+            int lastId = PiggyBankRepository.getInstance().getList();
+            if (!PiggyBankRepository.getInstance().existsPiggyBankBy(name)) {
+                if (id < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
+                    PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId++, 0, name, calendar));
+                } else {
+                    PiggyBankRepository.getInstance().modPiggyBank(id,idUser,name,calendar);
+                }
                 listener.onSucces();
+            } else {
+                listener.onDuplicatedName();
             }
 
         }
