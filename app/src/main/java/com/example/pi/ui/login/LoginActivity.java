@@ -1,18 +1,16 @@
 package com.example.pi.ui.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.pi.R;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.MenuActivity;
+import com.example.pi.ui.base.BaseAppCompatActivity;
 import com.example.pi.ui.pi.PIApplication;
 
 /**
@@ -25,7 +23,9 @@ import com.example.pi.ui.pi.PIApplication;
  *      AppPreferencesHelper
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseAppCompatActivity implements View.OnClickListener,LoginContract.View {
+
+    private LoginPresenter presenter;
 
     private EditText edtUser, edtPassvword;
     private TextView txvSignUp;
@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
+        presenter = new LoginPresenter(this);
 
         edtUser = findViewById(R.id.edtUser);
         edtPassvword = findViewById(R.id.edtPassword);
@@ -45,16 +47,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnLogIn = findViewById(R.id.btnLogIn);
         btnLogIn.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
         if (view == btnLogIn){
-            AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
-            app.setCurrentUserName(edtUser.getText().toString());
-            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+            presenter.validateCredentials(edtUser.getText().toString(),edtPassvword.getText().toString());
         }
     }
 
 
+    @Override
+    public void onSuccess() {
+        startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+    }
+
+    @Override
+    public void onUserEmptyError() {
+        onError("UserEmptyError");
+    }
+
+    @Override
+    public void onPasswordEmptyError() {
+        onError("PasswordEmptyError");
+    }
+
+    @Override
+    public void onPasswordError() {
+        onError("PasswordError");
+    }
+
+    @Override
+    public void onCredentialsFail() {
+        onError("CredentialsFail");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
 }

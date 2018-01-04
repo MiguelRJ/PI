@@ -1,5 +1,7 @@
 package com.example.pi.data.db.repository;
 
+import android.util.Log;
+
 import com.example.pi.data.db.model.User;
 
 import java.util.ArrayList;
@@ -35,6 +37,24 @@ public class UserRepository {
     }
 
     /**
+     * validar si un usuario existe o no
+     * @param username
+     * @param password
+     * @return
+     */
+    public boolean validateCredentials(String username, String password){
+        Iterator<User> iterator = users.iterator();
+        User user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if (user.getUser().toLowerCase().equals(username.toLowerCase()) && user.getPassword().equals(password)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Existe un usuario con X nombre
      * @param name
      * @return
@@ -53,15 +73,15 @@ public class UserRepository {
 
     /**
      * Devuelve el id de un usuario con nombre X
-     * @param name
+     * @param username
      * @return
      */
-    public int getUserIdBy(String name){
+    public int getUserIdBy(String username){
         Iterator<User> iterator = users.iterator();
         User user;
         while (iterator.hasNext()){
             user = iterator.next();
-            if (user.getName().equals(name)){
+            if (user.getUser().toLowerCase().equals(username.toLowerCase())){
                 return user.getId();
             }
         }

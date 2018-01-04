@@ -45,7 +45,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         fabOpenTransaction.setOnClickListener(this);
         tabHostInitialize();
         AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
-        String message = "Tu usuario de sesion es "+ app.getCurrentUserName();
+        String message = app.getCurrentUserId()+". Tu usuario de sesion es "+ app.getCurrentUserName();
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
