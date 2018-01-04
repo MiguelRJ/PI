@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.Toast;
+
 import com.example.pi.R;
+import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.fragment.FastPayFragment;
 import com.example.pi.ui.fragment.PiggyBankNoAppBarFragment;
 import com.example.pi.ui.fragment.TransactionNoAppBarFragment;
+import com.example.pi.ui.pi.PIApplication;
 import com.example.pi.ui.piggybank.PiggyBankActivity;
 import com.example.pi.ui.transaction.TransactionActivity;
 
@@ -40,6 +44,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         fabOpenTransaction = findViewById(R.id.fabOpenTransaction);
         fabOpenTransaction.setOnClickListener(this);
         tabHostInitialize();
+        AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
+        String message = "Tu usuario de sesion es "+ app.getCurrentUserName();
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
     @Override
