@@ -53,7 +53,7 @@ import java.util.List;
 
 public class ListPiggyBankView extends ListFragment implements ListPiggyBankContract.View {
 
-    public static String TAG = "ListPiggyBankView";
+    public static final String TAG = "ListPiggyBankView";
 
     public interface ListPiggyBankListener {
         void addNewPiggyBank(Bundle bundle);

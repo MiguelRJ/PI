@@ -16,7 +16,9 @@ import java.util.Calendar;
 
 public interface AddPiggyBankContract {
     interface View extends BaseView{
-
+        void showOnSucces();
+        void showNameEmptyError();
+        void showDuplicatedName();
     }
     interface Presenter extends BasePresenter{
         void validatePiggyBank(int id, int idUser, String name);

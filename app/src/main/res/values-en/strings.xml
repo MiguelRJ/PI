@@ -33,4 +33,8 @@
     <string name="pref_remember_password_on">Yes, remember</string>
     <string name="pref_title_remember_password">Remember Password</string>
     <string name="preferences">Preferences</string>
+    <string name="tilAddPiggyBank">Write a name</string>
+    <string name="txvChooseDate">Choose a date:</string>
+    <string name="NameEmptyError">Name empty</string>
+    <string name="DuplicatedName">Name already exists</string>
 </resources>
