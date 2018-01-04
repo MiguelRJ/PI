@@ -4,6 +4,7 @@ import com.example.pi.data.db.model.User;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 /**
  * Created by
@@ -32,6 +33,41 @@ public class UserRepository {
         addUser(new User(0,"Miguel","miguel.rj96@gmail.com","Miguel1", "Miguel Rodriguez Jimenez",new GregorianCalendar(1996,9,7),"Hombre",600000000,"Malaga","@migue.rj",true));
         addUser(new User(1,"Alberto","Alberto.rj96@gmail.com","Alberto1", "Alberto Rodriguez Jimenez",new GregorianCalendar(1996,9,7),"Hombre",600000001,"Malaga","@Alberto.rj",false));
     }
+
+    /**
+     * Existe un usuario con X nombre
+     * @param name
+     * @return
+     */
+    public boolean existsUserBy(String name){
+        Iterator<User> iterator = users.iterator();
+        User user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if (user.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Devuelve el id de un usuario con nombre X
+     * @param name
+     * @return
+     */
+    public int getUserIdBy(String name){
+        Iterator<User> iterator = users.iterator();
+        User user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if (user.getName().equals(name)){
+                return user.getId();
+            }
+        }
+        return -1;
+    }
+
 
     /* GET INSTANCE OF REPOSITORY */
     public static UserRepository getInstance(){
