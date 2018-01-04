@@ -65,7 +65,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     public byte[] image() {
         Bitmap bitmap;
-        bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_transaction_default));
+        bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_transaction_default_diss));
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] bitmapdata = stream.toByteArray();

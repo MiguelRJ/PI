@@ -37,4 +37,5 @@
     <string name="NameEmptyError">Nombre vacio</string>
     <string name="DuplicatedName">Nombre ya esta siendo usado</string>
     <string name="PiggyBankSaved">Hucha guardada</string>
+
 </resources>

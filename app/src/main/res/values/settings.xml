@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_category_account">Configuracion cuenta</string>
+    <string name="pref_title_swtRemember">Recordar usuario</string>
+    <string name="pref_summary_swtRemember">Indicar si se quiere recordar el usuario</string>
+    <string name="pref_title_edtRememberUser">Usuario</string>
+    <string name="pref_summary_edtRememberUser">Nombre de usuario de la aplicacion</string>
+    <string name="pref_title_edtRememberPass">Contraseña</string>
+    <string name="pref_summary_edtRememberPass">Contraseña del usuario en la aplicacion</string>
+    <string name="pref_category_general">Preferencias generales</string>
+    <string name="pref_title_aboutus">Sobre nosotros</string>
+    <string name="pref_title_showimage">Mostrar imagen</string>
+    <string name="pref_description_viewicon">Mostrar imagenes en los listados de la aplicacion</string>
+    <string name="pref_summary_icon">Icono predefinido en los listados</string>
+    <string name="pref_title_numcolum">Icono predefinido</string>
+    <string-array name="pref_transaction_default_icon_name">
+        <item>Insatisfecho</item>
+        <item>Neutral</item>
+        <item>Satisfecho</item>
+    </string-array>
+    <string-array name="pref_transaction_default_icon_value">
+        <item>@drawable/ic_transaction_default_diss</item>
+        <item>@drawable/ic_transaction_default_neutral</item>
+        <item>@drawable/ic_transaction_default_sati</item>
+    </string-array>
+</resources>
