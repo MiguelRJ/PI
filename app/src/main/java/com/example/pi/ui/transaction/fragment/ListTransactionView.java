@@ -33,7 +33,7 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
 
     public static final String TAG = "ListTransactionView";
     public interface ListTransactionListener {
-        void addNewSector(Bundle bundle);
+        void addNewTransaction(Bundle bundle);
     }
     private ListTransactionView.ListTransactionListener callback;
     private TransactionAdapter adapter;
@@ -51,7 +51,7 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
             public void OnItemClick(Transaction transaction) {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Transaction.TAG,transaction);
-                callback.addNewSector(bundle);
+                callback.addNewTransaction(bundle);
             }
 
             @Override
@@ -97,7 +97,7 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.addNewSector(null);
+                callback.addNewTransaction(null);
             }
         });
         presenter.loadTransaction();
