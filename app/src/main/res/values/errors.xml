@@ -6,5 +6,5 @@
     <string name="errorCredentialsFail">Credenciales de sesion erroneos</string>
     <string name="errorUserDuplicated">Usuario ya registrado</string>
     <string name="errorEmailDuplicated">Email ya registrado</string>
-    <string name="errorPasswordText">Contraseña no valida, longitud minima 6, minimo 1 digito, minimo 1 mayuscula </string>
+    <string name="errorPasswordText">Contraseña no valida, minimo 6 caracteres, 1 mayuscula, 1 digito</string>
 </resources>
