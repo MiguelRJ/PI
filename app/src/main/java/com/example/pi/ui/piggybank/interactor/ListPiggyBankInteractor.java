@@ -1,5 +1,6 @@
 package com.example.pi.ui.piggybank.interactor;
 
+import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.data.db.repository.PiggyBankRepository;
 
 /**
@@ -24,8 +25,11 @@ public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface
      */
     @Override
     public void loadPiggyBank() {
-
         listener.onSucces(PiggyBankRepository.getInstance().getPiggybanks());
+    }
 
+    @Override
+    public void deletePiggyBank(PiggyBank piggyBank) {
+        PiggyBankRepository.getInstance().deletePiggyBank(piggyBank);
     }
 }

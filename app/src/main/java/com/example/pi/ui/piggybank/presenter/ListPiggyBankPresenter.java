@@ -1,10 +1,13 @@
 package com.example.pi.ui.piggybank.presenter;
 
+import android.text.BoringLayout;
+
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.interactor.ListPiggyBankInteractor;
 import com.example.pi.ui.piggybank.interactor.ListPiggyBankInteractorInterface;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -52,4 +55,35 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
         view.showPiggyBank(list);
     }
     /* ListPiggyBankInteractorInterface.OnLoadFinishedListener */
+
+    /* Gestion del multichoicelistener */
+    HashMap<Integer,Boolean> selection = new HashMap<>();
+
+    @Override
+    public void setNewSelection(int position) {
+        selection.put(position,true);
+    }
+
+    @Override
+    public void removeSelection(int position) {
+        selection.remove(position);
+    }
+
+    @Override
+    public void deleteSelection() {
+        for (Integer position : selection.keySet()){
+            interactor.deletePiggyBank(view.getPiggyBank(position));
+        }
+    }
+
+    @Override
+    public void clearSelection() {
+        selection.clear();
+    }
+
+    @Override
+    public boolean isPositionChecked(int position) {
+        return selection.get(position)==null?false:true; // Si es null falso, si no true;
+    }
+    /* Gestion del multichoicelistener */
 }

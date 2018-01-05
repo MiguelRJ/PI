@@ -15,10 +15,9 @@ import java.util.List;
 public interface ListPiggyBankInteractorInterface {
 
     interface OnLoadFinishedListener{
-
         void onSucces(List<PiggyBank> list);
-
     }
 
     void loadPiggyBank(); // Get the list of pojos
+    void deletePiggyBank(PiggyBank piggyBank);
 }

@@ -45,14 +45,20 @@ public class PiggyBankRepository {
     }
 
     public void initialize(){
-            addPiggyBank(new PiggyBank(0,0,"Cartera0"));
-            addPiggyBank(new PiggyBank(1,0,"Almohada0",new GregorianCalendar(2017,11-1,17,15,30,00)));
-            addPiggyBank(new PiggyBank(2,0,"Piedra0"));
-            addPiggyBank(new PiggyBank(3,0,"FundaMovil0",new GregorianCalendar(2017,11-1,17,15,30,00)));
-            addPiggyBank(new PiggyBank(4,1,"Cartera1"));
-            addPiggyBank(new PiggyBank(5,1,"Almohada1",new GregorianCalendar(2017,11-1,17,15,30,00)));
-            addPiggyBank(new PiggyBank(6,1,"Piedra1"));
-            addPiggyBank(new PiggyBank(7,1,"FundaMovil1",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(0,0,"Cartera0"));
+        addPiggyBank(new PiggyBank(1,0,"Almohada0",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(2,0,"Piedra0"));
+        addPiggyBank(new PiggyBank(3,0,"FundaMovil0",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(4,0,"Casa0"));
+        addPiggyBank(new PiggyBank(5,0,"Viaje0"));
+        addPiggyBank(new PiggyBank(6,0,"1"));
+        addPiggyBank(new PiggyBank(7,0,"2"));
+        addPiggyBank(new PiggyBank(8,0,"3"));
+        addPiggyBank(new PiggyBank(9,0,"4"));
+        addPiggyBank(new PiggyBank(4,1,"Cartera1"));
+        addPiggyBank(new PiggyBank(5,1,"Almohada1",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(6,1,"Piedra1"));
+        addPiggyBank(new PiggyBank(7,1,"FundaMovil1",new GregorianCalendar(2017,11-1,17,15,30,00)));
     }
 
     /* GET INSTANCE OF REPOSITORY */
@@ -110,7 +116,11 @@ public class PiggyBankRepository {
         }
     }
 
-    public void deletePiggyBankIterator(PiggyBank p){
+    /**
+     * Eliminar una piggybank con un iterator
+     * @param p
+     */
+    public void deletePiggyBank(PiggyBank p){
         Iterator<PiggyBank> iterator = piggybanks.iterator();
         PiggyBank piggyBank;
         while (iterator.hasNext()){

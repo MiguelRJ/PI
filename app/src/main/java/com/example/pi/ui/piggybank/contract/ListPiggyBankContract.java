@@ -29,9 +29,12 @@ public interface ListPiggyBankContract {
     }
 
     interface Presenter extends BasePresenter {
-
         void loadPiggyBank();
-
+        void setNewSelection(int position);
+        void removeSelection(int position);
+        void deleteSelection();
+        void clearSelection();
+        boolean isPositionChecked(int position);
     }
 
 }

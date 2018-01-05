@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,18 +19,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
-import com.example.pi.data.db.repository.PiggyBankRepository;
 import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.base.BasePresenter;
+import com.example.pi.ui.piggybank.PiggyBankMultiChoiceModeListener;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
 import com.example.pi.ui.prefs.AccountSettingActivity;
-
 import java.util.List;
 
 /**
@@ -112,6 +110,7 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
                 callback.addNewPiggyBank(null);
             }
         });
@@ -133,6 +132,23 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
                 callback.addNewPiggyBank(bundle);
             }
         });
+
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);// modal mantiene la seleccion
+        getListView().setMultiChoiceModeListener(new PiggyBankMultiChoiceModeListener(presenter));
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                getListView().setItemChecked(position,!presenter.isPositionChecked(position));
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Seleccion multiple");
+        getActivity().getMenuInflater().inflate(R.menu.menu_piggybank_longclick,menu);
     }
 
     @Override

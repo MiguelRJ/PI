@@ -82,7 +82,7 @@ public class AddPiggyBankActivity extends AppCompatActivity{
                 if (piggyBank == null){
                     edtName.setText("");
                 } else {
-                    piggyBankRepository.deletePiggyBankIterator(piggyBank);
+                    piggyBankRepository.deletePiggyBank(piggyBank);
                     Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.delPiggyBank), Toast.LENGTH_SHORT).show();
                 }
         }
