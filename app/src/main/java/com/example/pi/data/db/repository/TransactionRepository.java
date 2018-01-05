@@ -69,6 +69,11 @@ public class TransactionRepository {
     }
 
     /* GET TRANSACTIONS ORDER BY */
+    public ArrayList<Transaction> getTransactions(){
+        Collections.sort(transactions);
+        return  transactions;
+    }
+
     public ArrayList<Transaction> getTransactionsOrderByCreationDate(){
         Collections.sort(transactions);
         return  transactions;
