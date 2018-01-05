@@ -3,7 +3,7 @@
     package="com.example.pi">
 
     <application
-        android:name="com.example.pi.ui.pi.PIApplication"
+        android:name=".ui.pi.PIApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,8 +24,9 @@
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.piggybank.ViewPiggyBankActivity" />
         <activity android:name=".ui.piggybank.AddPiggyBankActivity" />
-        <activity android:name=".ui.about.AboutUsActivity"/>
-        <activity android:name=".ui.prefs.AccountSettingActivity"/>
+        <activity android:name=".ui.about.AboutUsActivity" />
+        <activity android:name=".ui.prefs.AccountSettingActivity" />
+        <activity android:name=".ui.signin.SigninActivity"></activity>
     </application>
 
 </manifest>

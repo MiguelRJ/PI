@@ -55,6 +55,40 @@ public class UserRepository {
     }
 
     /**
+     * Comprueba si un usuario ya esta registrado
+     * @param username
+     * @return
+     */
+    public boolean isUserAlreadySignIn(String username) {
+        Iterator<User> iterator = users.iterator();
+        User user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if (user.getUser().toLowerCase().equals(username.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Comprueba si un email ya esta registrado
+     * @param email
+     * @return
+     */
+    public boolean isEmailAlreadySignIn(String email) {
+        Iterator<User> iterator = users.iterator();
+        User user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if (user.getEmail().toLowerCase().equals(email.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Existe un usuario con X nombre
      * @param name
      * @return
@@ -88,6 +122,21 @@ public class UserRepository {
         return -1;
     }
 
+    /**
+     * Obtiene el mayor Id
+     * @return
+     */
+    public int getLastId(){
+        int id = 0;
+        for (int i=0; i < users.size(); i++) {
+            Log.e("id",String.valueOf(users.get(i).getId()));
+            if (users.get(i).getId() > id){
+                id = users.get(i).getId();
+            }
+        }
+        return id;
+    }
+
 
     /* GET INSTANCE OF REPOSITORY */
     public static UserRepository getInstance(){
@@ -98,7 +147,7 @@ public class UserRepository {
     }
 
     /* ADD USER */
-    private void addUser(User user){
+    public void addUser(User user){
         users.add(user);
     }
 
@@ -106,5 +155,7 @@ public class UserRepository {
     public ArrayList<User> getUsers(){
         return users;
     }
+
+
 
 }

@@ -27,7 +27,7 @@ public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
             } else {
                 if (id < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
                     int lastId = PiggyBankRepository.getInstance().getLastId();
-                    PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId++, 0, name, calendar));
+                    PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId+1, 0, name, calendar));
                 } else {
                     PiggyBankRepository.getInstance().modPiggyBank(id,idUser,name,calendar);
                 }

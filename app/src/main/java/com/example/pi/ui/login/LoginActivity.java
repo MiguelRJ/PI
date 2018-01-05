@@ -12,6 +12,7 @@ import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.MenuActivity;
 import com.example.pi.ui.base.BaseAppCompatActivity;
 import com.example.pi.ui.pi.PIApplication;
+import com.example.pi.ui.signin.SigninActivity;
 
 /**
  * Created by
@@ -44,7 +45,12 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
         edtPassvword = findViewById(R.id.edtPassword);
         txvSignUp = findViewById(R.id.txvSignUp);
         chkRemember = findViewById(R.id.chkRemember);
-
+        txvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SigninActivity.class));
+            }
+        });
         btnLogIn = findViewById(R.id.btnLogIn);
         btnLogIn.setOnClickListener(this);
 

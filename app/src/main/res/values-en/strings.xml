@@ -5,7 +5,7 @@
     <string name="txvPassword">Password</string>
     <string name="chkRemember">Remember me</string>
     <string name="txvSignUp"><u>Sign up</u></string>
-    <string name="btnLogIn">Sign in</string>
+    <string name="btnLogIn">Log In</string>
     <string name="btnFacebook">Sign in with Facebook</string>
     <string name="btnGoogle">Sign in with Google</string>
     <string name="menuPiggyBankOrderName">Order by name</string>
@@ -37,4 +37,8 @@
     <string name="txvChooseDate">Choose a date:</string>
     <string name="NameEmptyError">Name empty</string>
     <string name="DuplicatedName">Name already exists</string>
+    <string name="PiggyBankSaved">PiggyBank saved</string>
+    <string name="txvEmail">Email</string>
+    <string name="txvName">Full name</string>
+    <string name="btnSignIn">Sign In</string>
 </resources>

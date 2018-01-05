@@ -4,4 +4,7 @@
     <string name="errorPasswordEmpty">Debe introducir una contraseña</string>
     <string name="errorPassword">Contraseña erronea</string>
     <string name="errorCredentialsFail">Credenciales de sesion erroneos</string>
+    <string name="errorUserDuplicated">Usuario ya registrado</string>
+    <string name="errorEmailDuplicated">Email ya registrado</string>
+    <string name="errorPasswordText">Contraseña no valida, longitud minima 6, minimo 1 digito, minimo 1 mayuscula </string>
 </resources>
