@@ -39,7 +39,7 @@ public class AddPiggyBankActivity extends AppCompatActivity{
         setContentView(R.layout.activity_add_piggybank);
         edtName = findViewById(R.id.edtName);
         dpDate = findViewById(R.id.dpDate);
-        tbToolBar = findViewById(R.id.tbToolBar);
+        tbToolBar = findViewById(R.id.toolBar);
         setSupportActionBar(tbToolBar);
         //DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         if (getIntent().hasExtra("piggybank")) {

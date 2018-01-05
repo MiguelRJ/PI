@@ -75,7 +75,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_add_piggybank,container,false);
 
-        toolbar = rootView.findViewById(R.id.tbToolBar);
+        toolbar = rootView.findViewById(R.id.toolBar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
