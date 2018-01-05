@@ -3,6 +3,8 @@ package com.example.pi.data.db.repository;
 import android.widget.Toast;
 
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.prefs.AppPreferencesHelper;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -39,14 +41,14 @@ public class PiggyBankRepository {
     }
 
     private void initialize(){
-        addPiggyBank(new PiggyBank(0,0,"Cartera"));
-        addPiggyBank(new PiggyBank(1,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(2,1,"Piedra"));
-        addPiggyBank(new PiggyBank(3,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(4,0,"Cartera"));
-        addPiggyBank(new PiggyBank(5,0,"Almohada",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(6,1,"Piedra"));
-        addPiggyBank(new PiggyBank(7,1,"FundaMovil",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(0,0,"Cartera0"));
+        addPiggyBank(new PiggyBank(1,0,"Almohada0",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(2,0,"Piedra0"));
+        addPiggyBank(new PiggyBank(3,0,"FundaMovil0",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(4,1,"Cartera1"));
+        addPiggyBank(new PiggyBank(5,1,"Almohada1",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        addPiggyBank(new PiggyBank(6,1,"Piedra1"));
+        addPiggyBank(new PiggyBank(7,1,"FundaMovil1",new GregorianCalendar(2017,11-1,17,15,30,00)));
     }
 
     /* GET INSTANCE OF REPOSITORY */
@@ -134,8 +136,17 @@ public class PiggyBankRepository {
 
     /* GET PIGGY BANKS ORDER BY */
     public ArrayList<PiggyBank> getPiggybanks(){
-        Collections.sort(piggybanks);
-        return piggybanks;
+        ArrayList<PiggyBank> piggyBanksById = new ArrayList<>();
+        Iterator<PiggyBank> iterator = piggybanks.iterator();
+        PiggyBank piggyBank;
+        while (iterator.hasNext()){
+            piggyBank = iterator.next();
+            if (piggyBank.getIdUser() == AppPreferencesHelper.getInstance().getCurrentUserId()){
+                piggyBanksById.add(piggyBank);
+            }
+        }
+        Collections.sort(piggyBanksById);
+        return piggyBanksById;
     }
 
     public ArrayList<PiggyBank> getPiggybanksOrderByCreationDate(){
