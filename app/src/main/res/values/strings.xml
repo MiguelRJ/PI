@@ -10,7 +10,7 @@
     <string name="menuPiggyBankOrderName">Ordenar por nombre</string>
     <string name="menuPiggyBankOrderTotalAmount">Ordenar por cantidad</string>
     <string name="menuPiggyBankOrderCreationDate">Ordenar por fecha</string>
-    <string name="tilCommentHint">Añade un comentario</string>
+    <string name="tilCommentHint">Escribe un comentario</string>
     <string name="tilAmountHint">Cantidad</string>
     <string name="btnFastPay">Pago rapido</string>
     <string name="chkImage">Imagen</string>
@@ -42,5 +42,10 @@
     <string name="btnSignIn">Registrate</string>
     <string name="selecteds">Seleccionados</string>
     <string name="action_list_piggybank_delete">Borrar</string>
+    <string name="rbPayment">Pago</string>
+    <string name="rbDeposit">Deposito</string>
+    <string name="txvTypePayment">Tipo de transaccion:</string>
+    <string name="txvAmount">Cantidad:</string>
+    <string name="txvChooseTime">Elige una hora:</string>
 
 </resources>
