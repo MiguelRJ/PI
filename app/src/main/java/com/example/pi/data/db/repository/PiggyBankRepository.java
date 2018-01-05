@@ -40,15 +40,23 @@ public class PiggyBankRepository {
         initialize();
     }
 
-    private void initialize(){
-        addPiggyBank(new PiggyBank(0,0,"Cartera0"));
-        addPiggyBank(new PiggyBank(1,0,"Almohada0",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(2,0,"Piedra0"));
-        addPiggyBank(new PiggyBank(3,0,"FundaMovil0",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(4,1,"Cartera1"));
-        addPiggyBank(new PiggyBank(5,1,"Almohada1",new GregorianCalendar(2017,11-1,17,15,30,00)));
-        addPiggyBank(new PiggyBank(6,1,"Piedra1"));
-        addPiggyBank(new PiggyBank(7,1,"FundaMovil1",new GregorianCalendar(2017,11-1,17,15,30,00)));
+    public void resetArray(){
+        piggybanks = new ArrayList<>();
+    }
+
+    public void initialize(){
+        if (AppPreferencesHelper.getInstance().getCurrentUserId() == 0){
+            addPiggyBank(new PiggyBank(0,0,"Cartera0"));
+            addPiggyBank(new PiggyBank(1,0,"Almohada0",new GregorianCalendar(2017,11-1,17,15,30,00)));
+            addPiggyBank(new PiggyBank(2,0,"Piedra0"));
+            addPiggyBank(new PiggyBank(3,0,"FundaMovil0",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        }
+        if (AppPreferencesHelper.getInstance().getCurrentUserId() == 1) {
+            addPiggyBank(new PiggyBank(4,1,"Cartera1"));
+            addPiggyBank(new PiggyBank(5,1,"Almohada1",new GregorianCalendar(2017,11-1,17,15,30,00)));
+            addPiggyBank(new PiggyBank(6,1,"Piedra1"));
+            addPiggyBank(new PiggyBank(7,1,"FundaMovil1",new GregorianCalendar(2017,11-1,17,15,30,00)));
+        }
     }
 
     /* GET INSTANCE OF REPOSITORY */
@@ -136,7 +144,7 @@ public class PiggyBankRepository {
 
     /* GET PIGGY BANKS ORDER BY */
     public ArrayList<PiggyBank> getPiggybanks(){
-        ArrayList<PiggyBank> piggyBanksById = new ArrayList<>();
+        /*ArrayList<PiggyBank> piggyBanksById = new ArrayList<>();
         Iterator<PiggyBank> iterator = piggybanks.iterator();
         PiggyBank piggyBank;
         while (iterator.hasNext()){
@@ -146,7 +154,9 @@ public class PiggyBankRepository {
             }
         }
         Collections.sort(piggyBanksById);
-        return piggyBanksById;
+        return piggyBanksById;*/
+        Collections.sort(piggybanks);
+        return piggybanks;
     }
 
     public ArrayList<PiggyBank> getPiggybanksOrderByCreationDate(){
@@ -163,7 +173,5 @@ public class PiggyBankRepository {
         Collections.sort(piggybanks, new PiggyBank.PiggyBankOrderById());
         return piggybanks;
     }
-
-
 
 }

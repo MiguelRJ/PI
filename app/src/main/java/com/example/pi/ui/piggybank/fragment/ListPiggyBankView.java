@@ -23,6 +23,7 @@ import android.widget.ListView;
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.db.repository.PiggyBankRepository;
 import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
