@@ -122,7 +122,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_save:
-                GregorianCalendar calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth()-1,dpDate.getDayOfMonth());
+                GregorianCalendar calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth(),dpDate.getDayOfMonth());
                 presenter.validatePiggyBank(id,idUser,tilName.getEditText().getText().toString(), calendar);
                 break;
         }
