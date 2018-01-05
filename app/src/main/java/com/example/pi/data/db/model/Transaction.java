@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
@@ -40,9 +41,11 @@ import java.util.GregorianCalendar;
  *      Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, String comment, double latitude, double longitude, byte[] image)
  * @date 03/01/18
  *      Tag
+ * @date 05/01/18
+ *      implement parcelable
  */
 
-public class Transaction implements Comparable {
+public class Transaction implements Comparable,Parcelable {
 
     public static String TAG = "Transaction";
 
@@ -90,6 +93,31 @@ public class Transaction implements Comparable {
         this.longitude = longitude;
         this.image = image;
     }
+
+    protected Transaction(Parcel in) {
+        id = in.readInt();
+        idUser = in.readInt();
+        idPiggyBank = in.readInt();
+        idEstablishment = in.readInt();
+        payment = in.readByte() != 0;
+        amount = in.readDouble();
+        comment = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+        image = in.createByteArray();
+    }
+
+    public static final Creator<Transaction> CREATOR = new Creator<Transaction>() {
+        @Override
+        public Transaction createFromParcel(Parcel in) {
+            return new Transaction(in);
+        }
+
+        @Override
+        public Transaction[] newArray(int size) {
+            return new Transaction[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -199,6 +227,25 @@ public class Transaction implements Comparable {
     @Override
     public int compareTo(@NonNull Object o) {
         return creationDate.compareTo(((Transaction)o).getCreationDate());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(idUser);
+        dest.writeInt(idPiggyBank);
+        dest.writeInt(idEstablishment);
+        dest.writeByte((byte) (payment ? 1 : 0));
+        dest.writeDouble(amount);
+        dest.writeString(comment);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+        dest.writeByteArray(image);
     }
 
     public static class TransactionOrderByAmount implements Comparator<Transaction> {
