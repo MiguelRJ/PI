@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.example.pi.R;
 import com.example.pi.adapter.TransactionAdapter;
 import com.example.pi.data.db.model.Transaction;
-import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 
 /**
  * Created by
@@ -40,7 +39,6 @@ public class TransactionNoAppBarFragment extends Fragment {
     private RecyclerView recyclerView;
     private TransactionAdapter adapter;
     private TransactionAdapter.OnItemClickListener listener;
-    private FloatingActionButton fab;
 
     public interface TransactionNoAppBarFragmentListener {
         void onTransactionFragment();
@@ -54,7 +52,6 @@ public class TransactionNoAppBarFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),1));
-        fab = view.findViewById(R.id.fab);
         setHasOptionsMenu(true);
         listener = new TransactionAdapter.OnItemClickListener() {
             @Override
@@ -80,12 +77,6 @@ public class TransactionNoAppBarFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(getActivity().getApplicationContext(), AddPiggyBankActivity.class));
-            }
-        });
     }
 
     @Override

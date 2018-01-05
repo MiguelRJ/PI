@@ -23,7 +23,6 @@
         <activity android:name=".ui.MenuActivity" />
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.piggybank.ViewPiggyBankActivity" />
-        <activity android:name=".ui.piggybank.AddPiggyBankActivity" />
         <activity android:name=".ui.about.AboutUsActivity" />
         <activity android:name=".ui.prefs.AccountSettingActivity" />
         <activity android:name=".ui.signin.SigninActivity"></activity>

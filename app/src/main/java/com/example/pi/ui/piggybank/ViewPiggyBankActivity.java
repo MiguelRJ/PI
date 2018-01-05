@@ -47,9 +47,7 @@ public class ViewPiggyBankActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if (v == fab){
-            Intent intent = new Intent(this, AddPiggyBankActivity.class);
-            intent.putExtra("piggybank",piggyBank);
-            startActivity(intent);
+
         }
     }
 }
