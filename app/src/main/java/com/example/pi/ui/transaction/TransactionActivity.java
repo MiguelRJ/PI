@@ -45,6 +45,6 @@ public class TransactionActivity extends BaseAppCompatActivity implements ListTr
 
     @Override
     public void addNewTransaction(Bundle bundle) {
-        
+
     }
 }

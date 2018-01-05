@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -90,8 +91,9 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
         toolbar = rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        recyclerView = rootView.findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
+        recyclerView = rootView.findViewById(android.R.id.list);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
         setHasOptionsMenu(true);
         fab.setOnClickListener(new View.OnClickListener() {
