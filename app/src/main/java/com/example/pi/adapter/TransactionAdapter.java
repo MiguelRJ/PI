@@ -36,11 +36,17 @@ import java.util.Comparator;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
+    public interface OnItemClickListener{
+        void OnItemClick(Transaction transaction);
+        void OnItemLongClick(Transaction transaction);
+    }
     private ArrayList<Transaction> transactions;
-    private static Context context;
+    private static Context context; // necesito el contecto para tener acceso a los resources
+    private OnItemClickListener listener;
 
-    public TransactionAdapter() {
+    public TransactionAdapter(OnItemClickListener listener) {
         transactions = TransactionRepository.getInstance().getTransactionsOrderByCreationDate();
+        this.listener = listener;
     }
 
     public TransactionAdapter orderByAmount() {
@@ -63,6 +69,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return transactionViewHolder;
     }
 
+    /**
+     * Si la transaccion no tiene imagen sele asignara una en el momento de mostrar la lista
+     * @return
+     */
     public byte[] image() {
         Bitmap bitmap;
         bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_transaction_default_diss));
@@ -80,26 +90,21 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         transactionViewHolder.imageView.setImageBitmap(bitmap);
-
         transactionViewHolder.txvAmount.setText((String.valueOf(transactions.get(position).getAmount())));
-
         if (transactions.get(position).isPayment()) {
             transactionViewHolder.txvPayment.setText("payment");
         } else {
             transactionViewHolder.txvPayment.setText("deposit");
         }
-
         transactionViewHolder.txvAmount.setText(String.valueOf(transactions.get(position).getAmount()));
-
         Calendar calendar = transactions.get(position).getCreationDate();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         //String formattedDate = df.format(Calendar.getInstance().getTime());
         //String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
         transactionViewHolder.txvCreationDate.setText(df.format(calendar.getTime()));
-
         transactionViewHolder.txvComment.setText(transactions.get(position).getComment());
-
         transactionViewHolder.txvEstablishment.setText(String.valueOf(transactions.get(position).getIdEstablishment()));
+        transactionViewHolder.bind(transactions.get(position),listener);
     }
 
     @Override
@@ -124,6 +129,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             txvCreationDate = view.findViewById(R.id.txvCreationDate);
             txvComment = view.findViewById(R.id.txvComment);
             txvEstablishment = view.findViewById(R.id.txvEstablishment);
+        }
+
+        public void bind (final Transaction transaction, final OnItemClickListener listener){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.OnItemClick(transaction);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.OnItemLongClick(transaction);
+                    return true;
+                }
+            });
         }
     }
 
