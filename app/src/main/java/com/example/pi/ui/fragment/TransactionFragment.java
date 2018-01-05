@@ -15,9 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.pi.R;
 import com.example.pi.adapter.TransactionAdapter;
+import com.example.pi.data.db.model.Transaction;
 import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 import com.example.pi.ui.prefs.AccountSettingActivity;
@@ -42,6 +44,7 @@ public class TransactionFragment extends Fragment {
     private TransactionFragmentListener mCallBack;
     private RecyclerView recyclerView;
     private TransactionAdapter adapter;
+    private TransactionAdapter.OnItemClickListener listener;
     private Toolbar toolbar;
     private FloatingActionButton fab;
 
@@ -62,10 +65,22 @@ public class TransactionFragment extends Fragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
+        listener = new TransactionAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(Transaction transaction) {
+                Toast.makeText(getActivity(),String.valueOf(transaction.getAmount()),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnItemLongClick(Transaction transaction) {
+                Toast.makeText(getActivity(),transaction.getComment(),Toast.LENGTH_SHORT).show();
+            }
+        };
+
         if (savedInstanceState != null) {
-            adapter = new TransactionAdapter();
+            adapter = new TransactionAdapter(listener);
         } else {
-            adapter = new TransactionAdapter();
+            adapter = new TransactionAdapter(listener);
         }
         recyclerView.setAdapter(adapter);
         return view;
@@ -97,7 +112,7 @@ public class TransactionFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_order_by_creationDate:
-                adapter = new TransactionAdapter();
+                adapter = new TransactionAdapter(listener);
                 recyclerView.setAdapter(adapter);
                 return true;
             case R.id.action_order_by_totalAmount:

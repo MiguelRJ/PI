@@ -13,9 +13,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.pi.R;
 import com.example.pi.adapter.TransactionAdapter;
+import com.example.pi.data.db.model.Transaction;
 import com.example.pi.ui.piggybank.AddPiggyBankActivity;
 
 /**
@@ -37,6 +39,7 @@ public class TransactionNoAppBarFragment extends Fragment {
     private TransactionNoAppBarFragmentListener mCallBack;
     private RecyclerView recyclerView;
     private TransactionAdapter adapter;
+    private TransactionAdapter.OnItemClickListener listener;
     private FloatingActionButton fab;
 
     public interface TransactionNoAppBarFragmentListener {
@@ -53,10 +56,22 @@ public class TransactionNoAppBarFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),1));
         fab = view.findViewById(R.id.fab);
         setHasOptionsMenu(true);
-        if (savedInstanceState != null){
-            adapter = new TransactionAdapter();
+        listener = new TransactionAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(Transaction transaction) {
+                Toast.makeText(getActivity(),String.valueOf(transaction.getAmount()),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnItemLongClick(Transaction transaction) {
+                Toast.makeText(getActivity(),transaction.getComment(),Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        if (savedInstanceState != null) {
+            adapter = new TransactionAdapter(listener);
         } else {
-            adapter = new TransactionAdapter();
+            adapter = new TransactionAdapter(listener);
         }
         recyclerView.setAdapter(adapter);
         return view;
