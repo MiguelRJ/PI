@@ -77,7 +77,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_add_transaction,container,false);
 
-        toolbar = rootView.findViewById(R.id.toolbar);
+        toolbar = rootView.findViewById(R.id.toolBar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
