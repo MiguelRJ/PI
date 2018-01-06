@@ -1,5 +1,7 @@
 package com.example.pi.ui.transaction.fragment;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.support.v4.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,9 +29,9 @@ import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.transaction.contract.AddTransactionContract;
 import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
 import com.example.pi.ui.utils.AppConstants;
+import com.example.pi.ui.utils.CommonDatePicker;
+import com.example.pi.ui.utils.CommonTimePicker;
 import com.example.pi.ui.utils.ModeAdd;
-
-import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -53,9 +55,9 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     private RadioButton rbPayment, rbDeposit;
     private EditText edtAmount;
     private TextInputLayout tilComment;
-    private DatePicker dpDate;
-    private TimePicker tmTime;
+    private EditText edtDate, edtTime;
     private Toolbar toolbar;
+    private Calendar calendar;
 
     static ModeAdd mode;
 
@@ -129,8 +131,22 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
                 }
             }
         });
-        dpDate = rootView.findViewById(R.id.dpDate);
-        tmTime = rootView.findViewById(R.id.tmTime);
+
+        edtDate = rootView.findViewById(R.id.edtDate);
+        edtDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+
+        edtTime = rootView.findViewById(R.id.edtTime);
+        edtTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePicker();
+            }
+        });
 
         if (getArguments() != null){
             transactionActual = getArguments().getParcelable(Transaction.TAG);
@@ -145,13 +161,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             }
             edtAmount.setText(AppConstants.decimalformat.format(transactionActual.getAmount()).replace(",","."));
             tilComment.getEditText().setText(transactionActual.getComment());
-            Calendar c = transactionActual.getCreationDate();
-            dpDate.updateDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                tmTime.setHour(c.get(Calendar.HOUR));
-                tmTime.setMinute(c.get(Calendar.MINUTE));
-            }
-
+            calendar = transactionActual.getCreationDate();
         } else {
             id = -1; // se cambiara al buscar el mayor
             idUser = Integer.parseInt(String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId()));
@@ -161,7 +171,11 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
                     id,idUser,idPiggyBank,idEstablishment,
                     false,0,null,
                     0,0,null);
+            calendar = Calendar.getInstance();
         }
+
+        edtDate.setText(AppConstants.df.format(calendar.getTime()));
+        edtTime.setText(AppConstants.tf.format(calendar.getTime()));
 
         return rootView;
     }
@@ -189,10 +203,6 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
                     transactionActual.setAmount(Double.parseDouble(edtAmount.getText().toString()));
                 }
                 transactionActual.setComment(tilComment.getEditText().getText().toString());
-                GregorianCalendar calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth(),dpDate.getDayOfMonth());
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth(),dpDate.getDayOfMonth(),tmTime.getHour(),tmTime.getMinute());
-                }
                 transactionActual.setCreationDate(calendar);
                 presenter.validateTransaction(transactionActual);
                 break;
@@ -218,4 +228,47 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
         showMessage(getString(R.string.errorAmountEmpty));
     }
     /* implements AddTransactionContract.View */
+
+    private void showDatePicker() {
+        CommonDatePicker date = new CommonDatePicker();
+        Bundle args = new Bundle();
+        args.putInt("year", calendar.get(Calendar.YEAR));
+        args.putInt("month", calendar.get(Calendar.MONTH));
+        args.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        date.setCallBack(onDateSetListener);
+        date.show(getFragmentManager(), CommonDatePicker.TAG);
+    }
+
+    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            calendar = new GregorianCalendar(year,month,day);
+            edtDate.setText(AppConstants.df.format(calendar.getTime()));
+        }
+    };
+
+    private void showTimePicker() {
+        CommonTimePicker time = new CommonTimePicker();
+        Bundle args = new Bundle();
+        args.putInt("year", calendar.get(Calendar.YEAR));
+        args.putInt("month", calendar.get(Calendar.MONTH));
+        args.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
+        time.setArguments(args);
+        time.setCallBack(onTimeSetListener);
+        time.show(getFragmentManager(), CommonTimePicker.TAG);
+    }
+
+    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hour, int minute) {
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            edtTime.setText(AppConstants.tf.format(calendar.getTime()));
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            calendar.set(year,month,day);
+            edtDate.setText(AppConstants.df.format(calendar.getTime()));
+        }
+    };
 }

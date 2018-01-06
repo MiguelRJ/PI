@@ -17,5 +17,6 @@ public class AppConstants {
     public static final String PREF_NAME = "PI_pref";
     public static final DecimalFormat decimalformat = new DecimalFormat("#.00");
     public static final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    public static final DateFormat tf = new SimpleDateFormat("HH:mm");
 
 }
