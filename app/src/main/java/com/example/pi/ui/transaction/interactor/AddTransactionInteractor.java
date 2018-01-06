@@ -1,5 +1,7 @@
 package com.example.pi.ui.transaction.interactor;
 
+import android.text.TextUtils;
+
 import com.example.pi.data.db.model.Transaction;
 
 /**
@@ -12,7 +14,12 @@ import com.example.pi.data.db.model.Transaction;
 public class AddTransactionInteractor implements AddTransactionInteractorInterface{
 
     @Override
-    public void validateTransaction(Transaction transaction) {
-        
+    public void validateTransaction(Transaction transaction , AddTransactionInteractorInterface.OnAddTransactionListener listener) {
+        if (transaction.getAmount().isNaN()){
+            listener.onAmountEmptyError();
+        } else if (true){ // UserRepository validate credentials User Pass
+
+
+        }
     }
 }

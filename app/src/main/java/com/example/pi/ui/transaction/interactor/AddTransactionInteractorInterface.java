@@ -13,7 +13,8 @@ public interface AddTransactionInteractorInterface {
 
     interface OnAddTransactionListener{
         void onSuccess();
+        void onAmountEmptyError();
     }
 
-    void validateTransaction(Transaction transaction);
+    void validateTransaction(Transaction transaction, AddTransactionInteractorInterface.OnAddTransactionListener listener);
 }

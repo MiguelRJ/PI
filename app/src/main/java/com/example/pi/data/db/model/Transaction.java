@@ -54,7 +54,7 @@ public class Transaction implements Comparable,Parcelable {
     int idPiggyBank;
     int idEstablishment;
     boolean payment; // type of transaction true = payment, false = entry
-    double amount;
+    Double amount;
     Calendar creationDate;
     String comment;
     double latitude;
@@ -159,11 +159,11 @@ public class Transaction implements Comparable,Parcelable {
         this.payment = payment;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

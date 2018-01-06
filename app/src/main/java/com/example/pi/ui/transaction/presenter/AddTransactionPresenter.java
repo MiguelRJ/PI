@@ -36,7 +36,7 @@ public class AddTransactionPresenter implements AddTransactionContract.Presenter
 
     @Override
     public void validateTransaction(Transaction transaction) {
-        interactor.validateTransaction(transaction);
+        interactor.validateTransaction(transaction,this);
     }
     /* implements AddTransactionContract.Presenter */
 
@@ -44,6 +44,11 @@ public class AddTransactionPresenter implements AddTransactionContract.Presenter
     @Override
     public void onSuccess() {
         view.showOnSuccess();
+    }
+
+    @Override
+    public void onAmountEmptyError() {
+        view.onAmountEmptyError();
     }
     /* implements AddTransactionInteractorInterface.OnAddTransactionListener */
 }

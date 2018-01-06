@@ -25,8 +25,10 @@ import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.transaction.contract.AddTransactionContract;
 import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
+import com.example.pi.ui.utils.AppConstants;
 import com.example.pi.ui.utils.ModeAdd;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -45,6 +47,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     private Transaction transactionActual;
     private int id;
     private int idUser;
+    private int idPiggyBank;
     private int idEstablishment;
     private RadioButton rbPayment, rbDeposit;
     private EditText edtAmount;
@@ -101,6 +104,30 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
         rbPayment = rootView.findViewById(R.id.rbPayment);
         rbDeposit = rootView.findViewById(R.id.rbDeposit);
         edtAmount = rootView.findViewById(R.id.edtAmount);
+        edtAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String temp = s.toString();
+                int posDot = temp.indexOf(".");
+
+                if (posDot <= 0) {
+                    return;
+                }
+                if (temp.length() - posDot - 1 > 2) {
+                    s.delete(posDot + 3, posDot + 4);
+                }
+            }
+        });
         dpDate = rootView.findViewById(R.id.dpDate);
         tmTime = rootView.findViewById(R.id.tmTime);
 
@@ -108,13 +135,14 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             transactionActual = getArguments().getParcelable(Transaction.TAG);
             id = transactionActual.getId();
             idUser = transactionActual.getIdUser();
+            idPiggyBank = transactionActual.getIdPiggyBank();
             idEstablishment = transactionActual.getIdEstablishment();
             if (transactionActual.isPayment()){
                 rbPayment.setChecked(true);
             } else {
                 rbDeposit.setChecked(true);
             }
-            edtAmount.setText(String.valueOf(transactionActual.getAmount()));
+            edtAmount.setText(AppConstants.decimalformat.format(transactionActual.getAmount()));
             tilComment.getEditText().setText(transactionActual.getComment());
             Calendar c = transactionActual.getCreationDate();
             dpDate.updateDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
@@ -124,6 +152,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             }
 
         } else {
+
             id = -1;
             idUser = -1;
             idEstablishment = -1;
@@ -149,7 +178,11 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
                 } else {
                     transactionActual.setPayment(false);
                 }
-                transactionActual.setAmount(Double.parseDouble(edtAmount.getText().toString()));
+                if (edtAmount.getText().toString().isEmpty()){
+                    transactionActual.setAmount(Double.NaN);
+                } else {
+                    transactionActual.setAmount(Double.parseDouble(edtAmount.getText().toString()));
+                }
                 transactionActual.setComment(tilComment.getEditText().getText().toString());
                 GregorianCalendar calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth(),dpDate.getDayOfMonth());
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -173,6 +206,11 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
         showMessage(getString(R.string.TransactionSaved));
         FragmentManager fm = getFragmentManager();
         fm.popBackStack();
+    }
+
+    @Override
+    public void onAmountEmptyError() {
+        showMessage(getString(R.string.errorAmountEmpty));
     }
     /* implements AddTransactionContract.View */
 }

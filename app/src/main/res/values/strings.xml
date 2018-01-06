@@ -48,5 +48,6 @@
     <string name="txvAmount">Cantidad:</string>
     <string name="txvChooseTime">Elige una hora:</string>
     <string name="TransactionSaved">Transaccion guardada</string>
+    <string name="errorAmountEmpty">Error: cantidad vacia</string>
 
 </resources>

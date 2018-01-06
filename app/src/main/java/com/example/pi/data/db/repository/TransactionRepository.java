@@ -48,12 +48,12 @@ public class TransactionRepository {
     }
 
     public void initialize() {
-        addTransaction(new Transaction(0,0,0,1,true,50,new GregorianCalendar(2017, 11-1,15,17,30,00),"100 del suelo",36.719116, -4.453754,null));
-        addTransaction(new Transaction(1,0,0,2,true,75,"1234567890",36.719116, -4.453754,null));
-        addTransaction(new Transaction(2,0,1,3,false,100,new GregorianCalendar(2017,11-1,16,17,30,00),"100 del suelo",36.719116, -4.453754,null));
-        addTransaction(new Transaction(3,0,1,4,true,25,"12345678901234567890",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
-        addTransaction(new Transaction(4,0,0,5,false,150,new GregorianCalendar(2017,11-1,17,17,30,00),"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
-        addTransaction(new Transaction(5,0,1,6,false,125,"123456789012345678901234567890",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
+        addTransaction(new Transaction(0,0,0,1,true,50.20,new GregorianCalendar(2017, 11-1,15,17,30,00),"100 del suelo",36.719116, -4.453754,null));
+        addTransaction(new Transaction(1,0,0,2,true,75.67,"1234567890",36.719116, -4.453754,null));
+        addTransaction(new Transaction(2,0,1,3,false,100.70,new GregorianCalendar(2017,11-1,16,17,30,00),"100 del suelo",36.719116, -4.453754,null));
+        addTransaction(new Transaction(3,0,1,4,true,25.13,"12345678901234567890",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
+        addTransaction(new Transaction(4,0,0,5,false,150.99,new GregorianCalendar(2017,11-1,17,17,30,00),"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
+        addTransaction(new Transaction(5,0,1,6,false,125.95,"123456789012345678901234567890",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
 
         addTransaction(new Transaction(0,1,0,6,true,50,new GregorianCalendar(2017,11-1,15,17,30,00),"100 del suelo",36.719116, -4.453754,new byte[]{1,2,3,4,5}));
         addTransaction(new Transaction(1,1,1,5,true,75,"1234567890",36.719116, -4.453754,new byte[]{1,2,3,4,5}));

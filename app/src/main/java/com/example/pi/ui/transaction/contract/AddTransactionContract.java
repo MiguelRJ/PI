@@ -14,6 +14,7 @@ import com.example.pi.ui.base.BaseView;
 public interface AddTransactionContract {
     interface View extends BaseView {
         void showOnSuccess();
+        void onAmountEmptyError();
     }
     interface Presenter extends BasePresenter {
         void validateTransaction(Transaction transaction);
