@@ -1,6 +1,6 @@
 package com.example.pi.ui.transaction.fragment;
 
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

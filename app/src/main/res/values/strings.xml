@@ -49,5 +49,7 @@
     <string name="txvChooseTime">Elige una hora:</string>
     <string name="TransactionSaved">Transaccion guardada</string>
     <string name="errorAmountEmpty">Error: cantidad vacia</string>
+    <string name="tilChooseDate">Elige una fecha</string>
+    <string name="txvAddPiggyBankName">Elige un nombre</string>
 
 </resources>

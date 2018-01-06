@@ -1,12 +1,10 @@
 package com.example.pi.ui.transaction;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import com.example.pi.R;
 import com.example.pi.ui.base.BaseAppCompatActivity;
-import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
-import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.transaction.fragment.AddTransactionView;
 import com.example.pi.ui.transaction.fragment.ListTransactionView;
 import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
@@ -33,7 +31,7 @@ public class TransactionActivity extends BaseAppCompatActivity implements ListTr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         listView = (ListTransactionView) fragmentManager.findFragmentByTag(ListTransactionView.TAG);
@@ -49,7 +47,7 @@ public class TransactionActivity extends BaseAppCompatActivity implements ListTr
 
     @Override
     public void addNewTransaction(Bundle bundle) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         addView = (AddTransactionView) fragmentManager.findFragmentByTag(AddTransactionView.TAG);
         if (addView == null){

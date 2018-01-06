@@ -1,7 +1,8 @@
 package com.example.pi.ui.piggybank;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.pi.R;
@@ -31,7 +32,7 @@ public class PiggyBankActivity extends AppCompatActivity implements ListPiggyBan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_piggybank);
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         listView = (ListPiggyBankView) fragmentManager.findFragmentByTag(ListPiggyBankView.TAG);
         if (listView == null) {
@@ -47,7 +48,7 @@ public class PiggyBankActivity extends AppCompatActivity implements ListPiggyBan
 
     @Override
     public void addNewPiggyBank(Bundle bundle) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         addView = (AddPiggyBankView) fragmentManager.findFragmentByTag(AddPiggyBankView.TAG);
         if (addView == null){
