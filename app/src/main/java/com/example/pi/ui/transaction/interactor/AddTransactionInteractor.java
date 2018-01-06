@@ -1,8 +1,7 @@
 package com.example.pi.ui.transaction.interactor;
 
-import android.text.TextUtils;
-
 import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.db.repository.TransactionRepository;
 
 /**
  * Created by
@@ -18,8 +17,26 @@ public class AddTransactionInteractor implements AddTransactionInteractorInterfa
         if (transaction.getAmount().isNaN()){
             listener.onAmountEmptyError();
         } else if (true){ // UserRepository validate credentials User Pass
-
-
+            if (transaction.getId() < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
+                int lastId = TransactionRepository.getInstance().getLastId();
+                TransactionRepository.getInstance().addTransaction(
+                        new Transaction(
+                                lastId+1,
+                                transaction.getIdUser(),
+                                transaction.getIdPiggyBank(),
+                                transaction.getIdEstablishment(),
+                                transaction.isPayment(),
+                                transaction.getAmount(),
+                                transaction.getCreationDate(),
+                                transaction.getComment(),
+                                transaction.getLatitude(),
+                                transaction.getLongitude(),
+                                transaction.getImage())
+                );
+            } else {
+                TransactionRepository.getInstance().modTransaction(transaction);
+            }
+            listener.onSuccess();
         }
     }
 }

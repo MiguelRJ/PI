@@ -3,6 +3,8 @@ package com.example.pi.data.db.repository;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
+
 import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.prefs.AppPreferencesHelper;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 /**
  * Created by
@@ -64,6 +67,42 @@ public class TransactionRepository {
 
     }
 
+    /**
+     * get the last id od transactions
+     * @return
+     */
+    public int getLastId(){
+        int id = 0;
+        for (int i=0; i < transactions.size(); i++) {
+            if (transactions.get(i).getId() > id){
+                id = transactions.get(i).getId();
+            }
+        }
+        return id;
+    }
+
+    /**
+     * Mod a transaction
+     * @param transaction
+     */
+    public void modTransaction(Transaction transaction){
+        Iterator<Transaction> iterator = transactions.iterator();
+        Transaction t;
+        while (iterator.hasNext()){
+            t = iterator.next();
+            if ( (t.getId() == transaction.getId()) && t.getIdUser() == transaction.getIdUser() ){
+                t.setPayment(transaction.isPayment());
+                t.setAmount(transaction.getAmount());
+                t.setCreationDate(transaction.getCreationDate());
+                t.setComment(t.getComment());
+                t.setLatitude(transaction.getLatitude());
+                t.setLongitude(transaction.getLongitude());
+                t.setImage(transaction.getImage());
+                break;
+            }
+        }
+    }
+
     /* GET INSTANCE OF REPOSITORY */
     public static TransactionRepository getInstance(){
         return transactionRepository;
@@ -71,6 +110,7 @@ public class TransactionRepository {
 
     /* ADD TRANCASTION */
     public void addTransaction(Transaction transaction) {
+        Log.e("add",transaction.toString());
         if (AppPreferencesHelper.getInstance().getCurrentUserId() == transaction.getIdUser()) {
             transactions.add(transaction);
         }

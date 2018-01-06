@@ -63,7 +63,7 @@ public class Transaction implements Comparable,Parcelable {
     double longitude;
     byte[] image; // wont be shown in toString()
 
-    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, GregorianCalendar creationDate, String comment, double latitude, double longitude, byte[] image) {
+    public Transaction(int id, int idUser, int idPiggyBank, int idEstablishment, boolean payment, double amount, Calendar creationDate, String comment, double latitude, double longitude, byte[] image) {
         this.id = id;
         this.idUser = idUser;
         this.idPiggyBank = idPiggyBank;

@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.TimePicker;
 import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.transaction.contract.AddTransactionContract;
@@ -152,10 +153,14 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             }
 
         } else {
-
-            id = -1;
-            idUser = -1;
-            idEstablishment = -1;
+            id = -1; // se cambiara al buscar el mayor
+            idUser = Integer.parseInt(String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId()));
+            idPiggyBank = 0; // se deberia elegir a la hora de añadir
+            idEstablishment = -1; // se deberia elegir a la hora de añadir
+            transactionActual = new Transaction(
+                    id,idUser,idPiggyBank,idEstablishment,
+                    false,0,null,
+                    0,0,null);
         }
 
         return rootView;
