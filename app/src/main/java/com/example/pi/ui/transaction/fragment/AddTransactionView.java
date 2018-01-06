@@ -143,7 +143,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             } else {
                 rbDeposit.setChecked(true);
             }
-            edtAmount.setText(AppConstants.decimalformat.format(transactionActual.getAmount()));
+            edtAmount.setText(AppConstants.decimalformat.format(transactionActual.getAmount()).replace(",","."));
             tilComment.getEditText().setText(transactionActual.getComment());
             Calendar c = transactionActual.getCreationDate();
             dpDate.updateDate(c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));

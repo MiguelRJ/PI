@@ -92,7 +92,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         transactionViewHolder.imageView.setImageBitmap(bitmap);
-        transactionViewHolder.txvAmount.setText(AppConstants.decimalformat.format(transactions.get(position).getAmount()));
+        transactionViewHolder.txvAmount.setText(AppConstants.decimalformat.format(transactions.get(position).getAmount()).replace(",","."));
         if (transactions.get(position).isPayment()) {
             transactionViewHolder.txvPayment.setText("payment");
         } else {
