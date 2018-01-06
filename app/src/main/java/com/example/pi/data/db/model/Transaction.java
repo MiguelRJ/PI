@@ -43,6 +43,8 @@ import java.util.GregorianCalendar;
  *      Tag
  * @date 05/01/18
  *      implement parcelable
+ * @date 06/01/18
+ *      amount from "double" to "Double"
  */
 
 public class Transaction implements Comparable,Parcelable {
