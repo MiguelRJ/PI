@@ -51,4 +51,5 @@
     <string name="txvChooseTime">Choose an hour:</string>
     <string name="txvAmount">Amount:</string>
     <string name="txvTypePayment">Transaction type:</string>
+    <string name="TransactionSaved">Transaction saved</string>
 </resources>
