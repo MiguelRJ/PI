@@ -115,7 +115,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_activity_add_piggybank,menu);
+        inflater.inflate(R.menu.menu_action_save,menu);
     }
 
     @Override
