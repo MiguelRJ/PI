@@ -18,7 +18,7 @@ public interface LoginContract {
     }
 
     interface Presenter {
-        void validateCredentials(String user, String password);
+        void validateCredentials(String user, String password, boolean remember);
         void onDestroy();
     }
 

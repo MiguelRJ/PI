@@ -63,9 +63,9 @@ public class AppPreferencesHelper implements AccountPreferencesHelper {
         return password;
     }
 
-    public boolean getCurrentUserRemember() {
-        boolean rememberUser=preferences.getBoolean(PREF_KEY_CURRENT_USER_REMEMBER, false);
-        return rememberUser;
+    public boolean getCurrentRemember() {
+        boolean remember=preferences.getBoolean(PREF_KEY_CURRENT_REMEMBER, false);
+        return remember;
     }
 
     public void setCurrentUserId(long id) {
@@ -80,7 +80,8 @@ public class AppPreferencesHelper implements AccountPreferencesHelper {
         preferences.edit().putString(PREF_KEY_CURRENT_USER_PASSWORD,password).apply();
     }
 
-    public void setCurrentUserRemember(boolean rememberUser) {
-        preferences.edit().putBoolean(PREF_KEY_CURRENT_USER_REMEMBER,rememberUser).apply();
+    public void setCurrentRemember(boolean remember) {
+        preferences.edit().putBoolean(PREF_KEY_CURRENT_REMEMBER,remember).apply();
     }
+
 }

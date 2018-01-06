@@ -45,6 +45,13 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
         edtPassvword = findViewById(R.id.edtPassword);
         txvSignUp = findViewById(R.id.txvSignUp);
         chkRemember = findViewById(R.id.chkRemember);
+
+        if (AppPreferencesHelper.getInstance().getCurrentRemember()) {
+            edtUser.setText(AppPreferencesHelper.getInstance().getCurrentUserName());
+            edtPassvword.setText(AppPreferencesHelper.getInstance().getCurrentUserPassword());
+            chkRemember.setEnabled(AppPreferencesHelper.getInstance().getCurrentRemember());
+        }
+
         txvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +66,7 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view == btnLogIn){
-            presenter.validateCredentials(edtUser.getText().toString(),edtPassvword.getText().toString());
+            presenter.validateCredentials(edtUser.getText().toString(),edtPassvword.getText().toString(),chkRemember.isChecked());
         }
     }
 

@@ -16,8 +16,8 @@ public class LoginPresenter implements LoginContract.Presenter, LoginInteractorI
 
     /* implements LoginContract.Presenter */
     @Override
-    public void validateCredentials(String user, String password) {
-        interactor.validateCredentials(user,password,this);
+    public void validateCredentials(String user, String password, boolean remember) {
+        interactor.validateCredentials(user,password,remember,this);
     }
 
     @Override

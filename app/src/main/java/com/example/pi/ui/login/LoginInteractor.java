@@ -17,7 +17,7 @@ import com.example.pi.ui.utils.CommonUtils;
 public class LoginInteractor implements LoginInteractorInterface {
 
     @Override
-    public void validateCredentials(String user, String password, OnLoginFinishedListener listener) {
+    public void validateCredentials(String user, String password, boolean remember, OnLoginFinishedListener listener) {
 
         if(TextUtils.isEmpty(user)) {
             listener.onUserEmptyError();
@@ -35,6 +35,7 @@ public class LoginInteractor implements LoginInteractorInterface {
             TransactionRepository.getInstance().initialize();
             AppPreferencesHelper.getInstance().setCurrentUserName(user);
             AppPreferencesHelper.getInstance().setCurrentUserPassword(password);
+            AppPreferencesHelper.getInstance().setCurrentRemember(remember);
             listener.onSuccess();
         } else {
             listener.onCredentialsFail();

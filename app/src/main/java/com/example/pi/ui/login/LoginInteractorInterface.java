@@ -9,7 +9,7 @@ package com.example.pi.ui.login;
 
 public interface LoginInteractorInterface {
 
-    void validateCredentials(String user, String password, LoginInteractorInterface.OnLoginFinishedListener listener);
+    void validateCredentials(String user, String password, boolean remember, LoginInteractorInterface.OnLoginFinishedListener listener);
 
     interface OnLoginFinishedListener{
         void onUserEmptyError();
