@@ -7,7 +7,9 @@ import com.example.pi.R;
 import com.example.pi.ui.base.BaseAppCompatActivity;
 import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
 import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
+import com.example.pi.ui.transaction.fragment.AddTransactionView;
 import com.example.pi.ui.transaction.fragment.ListTransactionView;
+import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
 import com.example.pi.ui.transaction.presenter.ListTransactionPresenter;
 
 /**
@@ -23,7 +25,9 @@ import com.example.pi.ui.transaction.presenter.ListTransactionPresenter;
 public class TransactionActivity extends BaseAppCompatActivity implements ListTransactionView.ListTransactionListener{
 
     private ListTransactionView listView;
-    private ListTransactionPresenter presenter;
+    private ListTransactionPresenter listPresenter;
+    private AddTransactionView addView;
+    private AddTransactionPresenter addPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +43,27 @@ public class TransactionActivity extends BaseAppCompatActivity implements ListTr
             fragmentTransaction.commit();
         }
 
-        presenter = new ListTransactionPresenter(listView);
-        listView.setPresenter(presenter);
+        listPresenter = new ListTransactionPresenter(listView);
+        listView.setPresenter(listPresenter);
     }
 
     @Override
     public void addNewTransaction(Bundle bundle) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        addView = (AddTransactionView) fragmentManager.findFragmentByTag(AddTransactionView.TAG);
+        if (addView == null){
+            if (bundle != null){
+                addView = AddTransactionView.newInstance(bundle);
+            } else {
+                addView = AddTransactionView.newInstance(null);
+            }
+            fragmentTransaction.replace(android.R.id.content,addView,AddTransactionView.TAG);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        addPresenter = new AddTransactionPresenter(addView);
 
+        addView.setPresenter(addPresenter);
     }
 }
