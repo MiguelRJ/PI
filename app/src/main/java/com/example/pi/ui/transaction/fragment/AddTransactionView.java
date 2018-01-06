@@ -4,13 +4,15 @@ import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
@@ -26,6 +28,7 @@ import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
 import com.example.pi.ui.utils.ModeAdd;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by
@@ -107,9 +110,9 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             idUser = transactionActual.getIdUser();
             idEstablishment = transactionActual.getIdEstablishment();
             if (transactionActual.isPayment()){
-                rbPayment.setEnabled(true);
+                rbPayment.setChecked(true);
             } else {
-                rbDeposit.setEnabled(true);
+                rbDeposit.setChecked(true);
             }
             edtAmount.setText(String.valueOf(transactionActual.getAmount()));
             tilComment.getEditText().setText(transactionActual.getComment());
@@ -127,6 +130,36 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
         }
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_action_save,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_save:
+                transactionActual.setId(id);
+                transactionActual.setIdUser(idUser);
+                transactionActual.setIdEstablishment(idEstablishment);
+                if (rbPayment.isChecked()){
+                    transactionActual.setPayment(true);
+                } else {
+                    transactionActual.setPayment(false);
+                }
+                transactionActual.setAmount(Double.parseDouble(edtAmount.getText().toString()));
+                transactionActual.setComment(tilComment.getEditText().getText().toString());
+                GregorianCalendar calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth(),dpDate.getDayOfMonth());
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    calendar = new GregorianCalendar(dpDate.getYear(),dpDate.getMonth(),dpDate.getDayOfMonth(),tmTime.getHour(),tmTime.getMinute());
+                }
+                transactionActual.setCreationDate(calendar);
+                presenter.validateTransaction(transactionActual);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /* implements AddTransactionContract.View */
