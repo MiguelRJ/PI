@@ -13,9 +13,11 @@ import android.widget.TextView;
 import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.db.repository.TransactionRepository;
+import com.example.pi.ui.utils.AppConstants;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -90,13 +92,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         transactionViewHolder.imageView.setImageBitmap(bitmap);
-        transactionViewHolder.txvAmount.setText((String.valueOf(transactions.get(position).getAmount())));
+        transactionViewHolder.txvAmount.setText(AppConstants.decimalformat.format(transactions.get(position).getAmount()));
         if (transactions.get(position).isPayment()) {
             transactionViewHolder.txvPayment.setText("payment");
         } else {
             transactionViewHolder.txvPayment.setText("deposit");
         }
-        transactionViewHolder.txvAmount.setText(String.valueOf(transactions.get(position).getAmount()));
         Calendar calendar = transactions.get(position).getCreationDate();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         //String formattedDate = df.format(Calendar.getInstance().getTime());

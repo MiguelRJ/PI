@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.example.pi.R;
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.data.db.repository.PiggyBankRepository;
+import com.example.pi.ui.utils.AppConstants;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,7 +64,7 @@ public class PiggyBankAdapter extends ArrayAdapter<PiggyBank> {
 
         piggyBankHolder.icon.setLetter(getItem(position).getName().substring(0,1));
         piggyBankHolder.txvName.setText(getItem(position).getName());
-        piggyBankHolder.txvAmount.setText((String.valueOf(getItem(position).getTotalAmount())));
+        piggyBankHolder.txvAmount.setText(AppConstants.decimalformat.format(getItem(position).getTotalAmount()));
         calendar =  getItem(position).getCreationDate();
         //date = calendar.get(Calendar.DAY_OF_MONTH)+"/"+ calendar.get(Calendar.MONTH)+"/"+ calendar.get(Calendar.YEAR);
         piggyBankHolder.txvCreationDate.setText(df.format(getItem(position).getCreationDate().getTime()));
