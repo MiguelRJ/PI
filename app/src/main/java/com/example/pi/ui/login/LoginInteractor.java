@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.data.db.repository.PiggyBankRepository;
+import com.example.pi.data.db.repository.TransactionRepository;
 import com.example.pi.data.db.repository.UserRepository;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.pi.PIApplication;
@@ -30,6 +31,8 @@ public class LoginInteractor implements LoginInteractorInterface {
             );
             PiggyBankRepository.getInstance().resetArray();
             PiggyBankRepository.getInstance().initialize();
+            TransactionRepository.getInstance().resetArray();
+            TransactionRepository.getInstance().initialize();
             AppPreferencesHelper.getInstance().setCurrentUserName(user);
             AppPreferencesHelper.getInstance().setCurrentUserPassword(password);
             listener.onSuccess();

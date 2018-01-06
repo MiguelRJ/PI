@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.prefs.AppPreferencesHelper;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -41,7 +43,11 @@ public class TransactionRepository {
         initialize();
     }
 
-    private void initialize() {
+    public void resetArray(){
+        transactions = new ArrayList<>();
+    }
+
+    public void initialize() {
         addTransaction(new Transaction(0,0,0,1,true,50,new GregorianCalendar(2017, 11-1,15,17,30,00),"100 del suelo",36.719116, -4.453754,null));
         addTransaction(new Transaction(1,0,0,2,true,75,"1234567890",36.719116, -4.453754,null));
         addTransaction(new Transaction(2,0,1,3,false,100,new GregorianCalendar(2017,11-1,16,17,30,00),"100 del suelo",36.719116, -4.453754,null));
@@ -65,7 +71,9 @@ public class TransactionRepository {
 
     /* ADD TRANCASTION */
     public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
+        if (AppPreferencesHelper.getInstance().getCurrentUserId() == transaction.getIdUser()) {
+            transactions.add(transaction);
+        }
     }
 
     /* GET TRANSACTIONS ORDER BY */
