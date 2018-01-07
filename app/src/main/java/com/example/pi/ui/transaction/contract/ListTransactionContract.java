@@ -16,8 +16,16 @@ import java.util.List;
 public interface ListTransactionContract {
     interface View extends BaseView {
         void showTransaction(List<Transaction> list);
+        Transaction getTransaction(Integer position);
+        String nameSelecteds();
     }
     interface Presenter extends BasePresenter {
         void loadTransaction();
+        void setNewSelection(int position);
+        void removeSelection(int position);
+        void deleteSelection();
+        void clearSelection();
+        boolean isPositionChecked(int position);
+        String nameSelecteds();
     }
 }

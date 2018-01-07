@@ -3,10 +3,13 @@ package com.example.pi.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,39 +37,59 @@ import java.util.Collections;
  * TransactionHolder{}
  */
 
-public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
+public class TransactionAdapter extends ArrayAdapter<Transaction> {
 
-    public interface OnItemClickListener{
-        void OnItemClick(Transaction transaction);
-        void OnItemLongClick(Transaction transaction);
-    }
-    private ArrayList<Transaction> transactions;
-    private static Context context; // necesito el contecto para tener acceso a los resources
-    private OnItemClickListener listener;
+    private static Context context;
 
-    public TransactionAdapter(OnItemClickListener listener) {
-        transactions = TransactionRepository.getInstance().getTransactionsOrderByCreationDate();
-        this.listener = listener;
+    public TransactionAdapter(@NonNull Context context) {
+        super(context, R.layout.item_transaction_2, new ArrayList<Transaction>(TransactionRepository.getInstance().getTransactions()));
+        this.context = context;
     }
 
     public TransactionAdapter orderByAmount() {
-        Collections.sort(transactions, new Transaction.TransactionOrderByAmount());
+        sort(new Transaction.TransactionOrderByAmount());
         return this;
     }
 
+    @NonNull
     @Override
-    public TransactionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context = parent.getContext();
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        TransactionHolder transactionHolder;
+        View view = convertView;
 
-        // 1.
-        LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        // 2.
-        View view = inflater.inflate(R.layout.item_transaction_2, null);
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.item_transaction_2, null);
+            transactionHolder = new TransactionHolder();
+            transactionHolder.imageView = view.findViewById(R.id.imgImage);
+            transactionHolder.txvPayment = view.findViewById(R.id.txvPayment);
+            transactionHolder.txvAmount = view.findViewById(R.id.txvAmount);
+            transactionHolder.txvCreationDate = view.findViewById(R.id.txvCreationDate);
+            transactionHolder.txvComment = view.findViewById(R.id.txvComment);
+            transactionHolder.txvPiggyBank = view.findViewById(R.id.txvPiggyBank);
+            view.setTag(transactionHolder);
+        } else {
+            transactionHolder = (TransactionHolder) view.getTag();
+        }
+        byte[] bytes = getItem(position).getImage();
+        if (bytes == null) {
+            bytes = image();
+        }
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        transactionHolder.imageView.setImageBitmap(bitmap);
+        transactionHolder.txvAmount.setText(AppConstants.decimalformat.format(getItem(position).getAmount()).replace(",","."));
+        if (getItem(position).isPayment()) {
+            transactionHolder.txvPayment.setText(context.getString(R.string.Payment));
+        } else {
+            transactionHolder.txvPayment.setText(context.getString(R.string.Deposit));
+        }
+        Calendar calendar = getItem(position).getCreationDate();
+        transactionHolder.txvCreationDate.setText(AppConstants.df.format(calendar.getTime()));
+        transactionHolder.txvComment.setText(getItem(position).getComment());
+        transactionHolder.txvPiggyBank.setText(String.valueOf(getItem(position).getIdPiggyBank()));
 
-        // 3.
-        TransactionViewHolder transactionViewHolder = new TransactionViewHolder(view);
-        return transactionViewHolder;
+        return view;
     }
 
     /**
@@ -82,69 +105,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return bitmapdata;
     }
 
-    @Override
-    public void onBindViewHolder(TransactionViewHolder transactionViewHolder, int position) {
-        byte[] bytes = transactions.get(position).getImage();
-        if (bytes == null) {
-            bytes = image();
-        }
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        transactionViewHolder.imageView.setImageBitmap(bitmap);
-        transactionViewHolder.txvAmount.setText(AppConstants.decimalformat.format(transactions.get(position).getAmount()).replace(",","."));
-        if (transactions.get(position).isPayment()) {
-            transactionViewHolder.txvPayment.setText(context.getString(R.string.Payment));
-        } else {
-            transactionViewHolder.txvPayment.setText(context.getString(R.string.Deposit));
-        }
-        Calendar calendar = transactions.get(position).getCreationDate();
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        //String formattedDate = df.format(Calendar.getInstance().getTime());
-        //String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
-        transactionViewHolder.txvCreationDate.setText(df.format(calendar.getTime()));
-        transactionViewHolder.txvComment.setText(transactions.get(position).getComment());
-        transactionViewHolder.txvPiggyBank.setText(String.valueOf(transactions.get(position).getIdPiggyBank()));
-        transactionViewHolder.bind(transactions.get(position),listener);
-    }
-
-    @Override
-    public int getItemCount() {
-        return transactions.size();
-    }
-
-    public static class TransactionViewHolder extends RecyclerView.ViewHolder {
-
+    class TransactionHolder {
         ImageView imageView;
         TextView txvPayment;
         TextView txvAmount;
         TextView txvCreationDate;
         TextView txvComment;
         TextView txvPiggyBank;
-
-        public TransactionViewHolder(View view) {
-            super(view);
-            imageView = view.findViewById(R.id.imgImage);
-            txvPayment = view.findViewById(R.id.txvPayment);
-            txvAmount = view.findViewById(R.id.txvAmount);
-            txvCreationDate = view.findViewById(R.id.txvCreationDate);
-            txvComment = view.findViewById(R.id.txvComment);
-            txvPiggyBank = view.findViewById(R.id.txvPiggyBank);
-        }
-
-        public void bind (final Transaction transaction, final OnItemClickListener listener){
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.OnItemClick(transaction);
-                }
-            });
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    listener.OnItemLongClick(transaction);
-                    return true;
-                }
-            });
-        }
     }
 
 }

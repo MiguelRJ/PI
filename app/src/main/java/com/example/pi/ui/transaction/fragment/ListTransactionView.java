@@ -1,6 +1,7 @@
 package com.example.pi.ui.transaction.fragment;
 
 import android.app.Activity;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.pi.R;
@@ -24,6 +28,7 @@ import com.example.pi.data.db.model.Transaction;
 import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.prefs.AccountSettingActivity;
+import com.example.pi.ui.transaction.TransactionMultiChoiceModeListener;
 import com.example.pi.ui.transaction.contract.ListTransactionContract;
 import com.example.pi.ui.transaction.presenter.ListTransactionPresenter;
 
@@ -36,7 +41,7 @@ import java.util.List;
  *
  */
 
-public class ListTransactionView extends Fragment implements ListTransactionContract.View {
+public class ListTransactionView extends ListFragment implements ListTransactionContract.View {
 
     public static final String TAG = "ListTransactionView";
 
@@ -46,30 +51,16 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
 
     private ListTransactionView.ListTransactionListener callback;
     private TransactionAdapter adapter;
-    private TransactionAdapter.OnItemClickListener listener;
     private ListTransactionContract.Presenter presenter;
 
-    private RecyclerView recyclerView;
+    private ListView listView;
     private Toolbar toolbar;
     private FloatingActionButton fab;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listener = new TransactionAdapter.OnItemClickListener() {
-            @Override
-            public void OnItemClick(Transaction transaction) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(Transaction.TAG,transaction);
-                callback.addNewTransaction(bundle);
-            }
-
-            @Override
-            public void OnItemLongClick(Transaction transaction) {
-                Toast.makeText(getActivity(),transaction.getComment(),Toast.LENGTH_SHORT).show();
-            }
-        };
-        this.adapter = new TransactionAdapter(listener);
+        this.adapter = new TransactionAdapter(getActivity());
         this.presenter = new ListTransactionPresenter(this);
         setRetainInstance(true);
     }
@@ -102,10 +93,7 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
 
-        recyclerView = rootView.findViewById(android.R.id.list);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        listView = rootView.findViewById(android.R.id.list);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +109,31 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView.setAdapter(adapter);
+        setListAdapter(adapter);
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Transaction.TAG,(Transaction)adapterView.getItemAtPosition(position));
+                callback.addNewTransaction(bundle);
+            }
+        });
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        getListView().setMultiChoiceModeListener(new TransactionMultiChoiceModeListener(presenter));
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                getListView().setItemChecked(position,!presenter.isPositionChecked(position));
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("");
+        getActivity().getMenuInflater().inflate(R.menu.menu_transaction_longclick,menu);
     }
 
     @Override
@@ -133,11 +145,11 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_order_by_creationDate:
-                adapter = new TransactionAdapter(listener);
-                recyclerView.setAdapter(adapter);
+                adapter = new TransactionAdapter(getActivity());
+                listView.setAdapter(adapter);
                 return true;
             case R.id.action_order_by_totalAmount:
-                recyclerView.setAdapter(adapter.orderByAmount());
+                listView.setAdapter(adapter.orderByAmount());
                 return true;
             case R.id.action_aboutus:
                 startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
@@ -159,7 +171,18 @@ public class ListTransactionView extends Fragment implements ListTransactionCont
 
     @Override
     public void showTransaction(List<Transaction> list) {
+        adapter.clear();
+        adapter.addAll(list);
+    }
 
+    @Override
+    public Transaction getTransaction(Integer position) {
+        return adapter.getItem(position);
+    }
+
+    @Override
+    public String nameSelecteds() {
+        return getActivity().getResources().getString(R.string.selecteds);
     }
     /* implements ListTransactionContract.View */
 }

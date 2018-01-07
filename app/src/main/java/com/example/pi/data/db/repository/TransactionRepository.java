@@ -131,4 +131,20 @@ public class TransactionRepository {
         Collections.sort(transactions, new Transaction.TransactionOrderByAmount());
         return  transactions;
     }
+
+    /**
+     * Eliminar una transaction con iterator
+     * @param t
+     */
+    public void deleteTransaction(Transaction t) {
+        Iterator<Transaction> iterator = transactions.iterator();
+        Transaction transaction;
+        while (iterator.hasNext()) {
+            transaction = iterator.next();
+            if (transaction.getId() == t.getId() && transaction.getIdUser() == t.getIdUser() && transaction.getIdPiggyBank() == t.getIdPiggyBank()) {
+                iterator.remove();
+                break;
+            }
+        }
+    }
 }

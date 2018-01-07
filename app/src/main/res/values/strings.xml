@@ -56,5 +56,6 @@
     <string name="AnEmailHasBeenSend">Se ha enviado un correo a:</string>
     <string name="Payment">Pago</string>
     <string name="Deposit">Ingreso</string>
+    <string name="action_list_delete">Borrar</string>
 
 </resources>

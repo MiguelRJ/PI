@@ -13,6 +13,8 @@ import java.util.List;
 
 public interface ListTransactionInteractorInterface {
 
+    void deleteTransaction(Transaction transaction);
+
     interface OnLoadFinisehdListener{
         void onSucces(List<Transaction> list);
     }

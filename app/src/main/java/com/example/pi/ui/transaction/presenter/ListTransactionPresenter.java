@@ -5,6 +5,7 @@ import com.example.pi.ui.transaction.contract.ListTransactionContract;
 import com.example.pi.ui.transaction.interactor.ListTransactionInteractor;
 import com.example.pi.ui.transaction.interactor.ListTransactionInteractorInterface;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,7 +41,44 @@ public class ListTransactionPresenter implements ListTransactionContract.Present
     public void loadTransaction() {
         interactor.loadTransaction();
     }
+
+
+    @Override
+    public String nameSelecteds() {
+        return view.nameSelecteds();
+    }
     /* implements ListTransactionContract.Presenter */
+
+    /* Gestion del multichoicelistener */
+    HashMap<Integer, Boolean> selection  = new HashMap<>();
+
+    @Override
+    public void setNewSelection(int position) {
+        selection.put(position,true);
+    }
+
+    @Override
+    public void removeSelection(int position) {
+        selection.remove(position);
+    }
+
+    @Override
+    public void deleteSelection() {
+        for (Integer position : selection.keySet()){
+            interactor.deleteTransaction(view.getTransaction(position));
+        }
+    }
+
+    @Override
+    public void clearSelection() {
+        selection.clear();
+    }
+
+    @Override
+    public boolean isPositionChecked(int position) {
+        return selection.get(position)==null?false:true;
+    }
+    /* Gestion del multichoicelistener */
 
     /* implements ListTransactionInteractorInterface.OnLoadFinisehdListener */
     @Override

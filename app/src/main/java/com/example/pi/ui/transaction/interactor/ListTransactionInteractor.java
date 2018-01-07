@@ -1,5 +1,6 @@
 package com.example.pi.ui.transaction.interactor;
 
+import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.db.repository.TransactionRepository;
 
 /**
@@ -20,6 +21,11 @@ public class ListTransactionInteractor implements ListTransactionInteractorInter
     @Override
     public void loadTransaction() {
         listener.onSucces(TransactionRepository.getInstance().getTransactions());
+    }
+
+    @Override
+    public void deleteTransaction(Transaction transaction) {
+        TransactionRepository.getInstance().deleteTransaction(transaction);
     }
 
 }

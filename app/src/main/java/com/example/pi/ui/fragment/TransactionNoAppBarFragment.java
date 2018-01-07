@@ -38,7 +38,7 @@ public class TransactionNoAppBarFragment extends Fragment {
     private TransactionNoAppBarFragmentListener mCallBack;
     private RecyclerView recyclerView;
     private TransactionAdapter adapter;
-    private TransactionAdapter.OnItemClickListener listener;
+    //private TransactionAdapter.OnItemClickListener listener;
 
     public interface TransactionNoAppBarFragmentListener {
         void onTransactionFragment();
@@ -53,7 +53,7 @@ public class TransactionNoAppBarFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),1));
         setHasOptionsMenu(true);
-        listener = new TransactionAdapter.OnItemClickListener() {
+        /*listener = new TransactionAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(Transaction transaction) {
                 Toast.makeText(getActivity(),String.valueOf(transaction.getAmount()),Toast.LENGTH_SHORT).show();
@@ -63,14 +63,14 @@ public class TransactionNoAppBarFragment extends Fragment {
             public void OnItemLongClick(Transaction transaction) {
                 Toast.makeText(getActivity(),transaction.getComment(),Toast.LENGTH_SHORT).show();
             }
-        };
+        };*/
 
         if (savedInstanceState != null) {
-            adapter = new TransactionAdapter(listener);
+            //adapter = new TransactionAdapter(listener);
         } else {
-            adapter = new TransactionAdapter(listener);
+            //adapter = new TransactionAdapter(listener);
         }
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
         return view;
     }
 
