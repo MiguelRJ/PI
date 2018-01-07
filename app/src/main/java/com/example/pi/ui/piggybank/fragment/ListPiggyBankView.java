@@ -151,7 +151,6 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView.setAdapter(adapter);
-        registerForContextMenu(recyclerView);
     }
 
     @Override
@@ -172,12 +171,6 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
             case R.id.action_order_by_creationDate:
                 recyclerView.setAdapter(adapter.orderByCreationDate());
                 return true;
-            case R.id.action_aboutus:
-                startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
-                break;
-            case R.id.action_preferences:
-                startActivity(new Intent(getActivity().getApplicationContext(), AccountSettingActivity.class));
-                break;
             default:
                 break;
         }

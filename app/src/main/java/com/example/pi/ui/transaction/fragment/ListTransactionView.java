@@ -151,12 +151,6 @@ public class ListTransactionView extends ListFragment implements ListTransaction
             case R.id.action_order_by_totalAmount:
                 listView.setAdapter(adapter.orderByAmount());
                 return true;
-            case R.id.action_aboutus:
-                startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
-                break;
-            case R.id.action_preferences:
-                startActivity(new Intent(getActivity().getApplicationContext(), AccountSettingActivity.class));
-                break;
             default:
                 break;
         }

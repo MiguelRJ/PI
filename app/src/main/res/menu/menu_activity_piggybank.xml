@@ -10,10 +10,4 @@
     <item android:title="@string/menuPiggyBankOrderCreationDate"
         app:showAsAction="never"
         android:id="@+id/action_order_by_creationDate"/>
-    <item android:title="@string/aboutus"
-        app:showAsAction="never"
-        android:id="@+id/action_aboutus"/>
-    <item android:title="@string/preferences"
-        app:showAsAction="never"
-        android:id="@+id/action_preferences"/>
 </menu>

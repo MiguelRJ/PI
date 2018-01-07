@@ -4,17 +4,22 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.example.pi.R;
 import com.example.pi.data.prefs.AppPreferencesHelper;
-import com.example.pi.ui.fragment.FastPayFragment;
+import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.fragment.PiggyBankNoAppBarFragment;
 import com.example.pi.ui.fragment.TransactionNoAppBarFragment;
 import com.example.pi.ui.pi.PIApplication;
 import com.example.pi.ui.piggybank.PiggyBankActivity;
+import com.example.pi.ui.prefs.AccountSettingActivity;
 import com.example.pi.ui.transaction.TransactionActivity;
 
 /**
@@ -24,9 +29,10 @@ import com.example.pi.ui.transaction.TransactionActivity;
  *
  */
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener,FastPayFragment.FastPayFragmentListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener,TransactionNoAppBarFragment.TransactionNoAppBarFragmentListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener,TransactionNoAppBarFragment.TransactionNoAppBarFragmentListener {
 
-    TabHost tab;
+    private Toolbar toolbar;
+    private TabHost tab;
     private FloatingActionButton fabOpenPiggyBank;
     private FloatingActionButton fabOpenTransaction;
     String TAB_1_TAG;
@@ -38,6 +44,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_menu);
         TAB_1_TAG = getApplicationContext().getResources().getString(R.string.tabPiggyBank);
         TAB_2_TAG = getApplicationContext().getResources().getString(R.string.tabTransaction);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
         tab = findViewById(R.id.tabHost);
         fabOpenPiggyBank = findViewById(R.id.fabOpenPiggyBank);
         fabOpenPiggyBank.setOnClickListener(this);
@@ -66,8 +76,25 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onFastPayFragment() {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_activity,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_aboutus:
+                startActivity(new Intent(MenuActivity.this, AboutUsActivity.class));
+                break;
+            case R.id.action_preferences:
+                startActivity(new Intent(MenuActivity.this, AccountSettingActivity.class));
+                break;
+            default:
+                break;
+        }
+        return false;
     }
 
     @Override

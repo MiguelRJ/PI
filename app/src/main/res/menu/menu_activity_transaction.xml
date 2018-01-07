@@ -6,10 +6,4 @@
     <item android:title="@string/menuPiggyBankOrderTotalAmount"
         app:showAsAction="never"
         android:id="@+id/action_order_by_totalAmount"/>
-    <item android:title="@string/aboutus"
-        app:showAsAction="never"
-        android:id="@+id/action_aboutus"/>
-    <item android:title="@string/preferences"
-        app:showAsAction="never"
-        android:id="@+id/action_preferences"/>
 </menu>

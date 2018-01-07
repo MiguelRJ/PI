@@ -7,26 +7,34 @@
     android:background="@color/colorPrimaryDark"
     tools:context="com.example.pi.ui.MenuActivity">
 
-    <fragment
-        android:id="@+id/fragmentA"
-        android:name="com.example.pi.ui.fragment.FastPayFragment"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_fastpay" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Para que la toolbar haga scroll: app:layout_scrollFlags="scroll|enterAlways" -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:titleTextColor="@android:color/white"/>
+    </android.support.design.widget.AppBarLayout>
 
     <TabHost
         android:id="@+id/tabHost"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentA">
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +45,7 @@
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary" >
+                android:background="@color/colorPrimary">
 
             </TabWidget>
 
@@ -52,18 +60,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <fragment
-                        android:id="@+id/fragmentPiggyBankNoAppBar"
-                        android:name="com.example.pi.ui.fragment.PiggyBankNoAppBarFragment"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout="@layout/fragment_piggybanknoappbar" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fabOpenPiggyBank"
@@ -87,18 +83,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <fragment
-                        android:id="@+id/fragmentTransaction"
-                        android:name="com.example.pi.ui.fragment.TransactionNoAppBarFragment"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout="@layout/fragment_transactionnoappbar" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fabOpenTransaction"
