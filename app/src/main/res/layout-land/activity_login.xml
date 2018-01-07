@@ -7,10 +7,6 @@
     android:background="@color/colorPrimary"
     tools:context="com.example.pi.ui.login.LoginActivity">
 
-    <!--
-        Subrayar txvSignUp
-    -->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -116,6 +112,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llySignOptions" />
 
+            <TextView
+                android:id="@+id/txvForgotPassword"
+                style="@style/LoginTextViewMoreOptions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txvForgetPassword"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/btnLogIn"
+                app:layout_constraintStart_toStartOf="@+id/btnLogIn"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+
             <Button
                 android:id="@+id/btnGoogle"
                 style="@style/GoogleButton"
@@ -123,10 +133,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+                app:layout_constraintTop_toBottomOf="@+id/txvForgotPassword" />
 
             <Button
                 android:id="@+id/btnFacebook"
@@ -144,9 +154,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
 
         </android.support.constraint.ConstraintLayout>
-
-
-
+        
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
