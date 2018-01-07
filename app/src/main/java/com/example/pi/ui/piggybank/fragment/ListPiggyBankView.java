@@ -199,6 +199,15 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
     }
     /* implements ListPiggyBankContract.View */
 
+    /**
+     * Metodo para el nombre cuando hacemos seleccion multiple
+     * @return
+     */
+    @Override
+    public String nameSelecteds(){
+        return getActivity().getResources().getString(R.string.selecteds);
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();

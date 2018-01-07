@@ -30,6 +30,10 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
         this.interactor = new ListPiggyBankInteractor(this);
     }
 
+    public String nameSelecteds(){
+        return view.nameSelecteds();
+    }
+
     /* implements ListPiggyBankContract.Presenter */
     @Override
     public void OnDestroy() {

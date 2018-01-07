@@ -26,6 +26,8 @@ public interface ListPiggyBankContract {
 
         PiggyBank getPiggyBank(Integer position);
 
+        String nameSelecteds();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -35,6 +37,7 @@ public interface ListPiggyBankContract {
         void deleteSelection();
         void clearSelection();
         boolean isPositionChecked(int position);
+        String nameSelecteds();
     }
 
 }

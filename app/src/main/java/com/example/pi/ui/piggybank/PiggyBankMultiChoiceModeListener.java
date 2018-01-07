@@ -34,7 +34,7 @@ public class PiggyBankMultiChoiceModeListener implements AbsListView.MultiChoice
             count--;
             presenter.removeSelection(position);
         }
-        actionMode.setTitle(count + " " + R.string.selecteds);
+        actionMode.setTitle(count + " " + presenter.nameSelecteds());
     }
 
     @Override
