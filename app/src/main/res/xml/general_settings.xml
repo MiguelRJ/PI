@@ -4,7 +4,7 @@
     <PreferenceCategory android:title="@string/pref_category_general">
 
         <SwitchPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="PREF_KEY_ICON_SHOW"
             android:title="@string/pref_title_showimage"
             android:summary="@string/pref_description_viewicon"
