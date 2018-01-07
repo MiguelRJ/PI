@@ -5,6 +5,10 @@ import android.util.Log;
 
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.data.db.repository.PiggyBankRepository;
+import com.example.pi.data.db.repository.UserRepository;
+import com.example.pi.data.prefs.AppPreferencesHelper;
+import com.example.pi.ui.utils.AppConstants;
+
 import java.util.GregorianCalendar;
 
 /**
@@ -19,21 +23,35 @@ public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
 
     @Override
     public void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar, OnAddPiggyBankListener listener) {
+        Log.e("id",String.valueOf(id));
+        Log.e("iduser",String.valueOf(idUser));
+        Log.e("name",name);
         if (TextUtils.isEmpty(name)){
             listener.onNameEmptyError();
-        } else if (true){ // UserRepository validate credentials User Pass
-            if (PiggyBankRepository.getInstance().existsPiggyBankBy(name,calendar)) {
-                listener.onDuplicatedName();
-            } else {
-                if (id < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
+        } else if (UserRepository.getInstance().validateCredentials(
+                AppPreferencesHelper.getInstance().getCurrentUserName(),
+                AppPreferencesHelper.getInstance().getCurrentUserPassword())){ // UserRepository validate credentials User Pass
+
+            if (id < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
+
+                if (PiggyBankRepository.getInstance().existsPiggyBankBy(name)) {
+                    listener.onDuplicatedName();
+                } else {
                     int lastId = PiggyBankRepository.getInstance().getLastId();
                     PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId+1, 0, name, calendar));
+                    listener.onSucces();
+                }
+
+            } else {
+
+                if (PiggyBankRepository.getInstance().existsPiggyBankBy(name,calendar)) {
+                    listener.onDuplicatedName();
                 } else {
                     PiggyBankRepository.getInstance().modPiggyBank(id,idUser,name,calendar);
+                    listener.onSucces();
                 }
-                listener.onSucces();
-            }
 
+            }
         }
     }
 }
