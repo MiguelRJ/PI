@@ -17,12 +17,10 @@ import com.example.pi.ui.utils.AppConstants;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by
@@ -64,7 +62,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // 2.
-        View view = inflater.inflate(R.layout.item_transaction, null);
+        View view = inflater.inflate(R.layout.item_transaction_2, null);
 
         // 3.
         TransactionViewHolder transactionViewHolder = new TransactionViewHolder(view);
@@ -94,9 +92,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         transactionViewHolder.imageView.setImageBitmap(bitmap);
         transactionViewHolder.txvAmount.setText(AppConstants.decimalformat.format(transactions.get(position).getAmount()).replace(",","."));
         if (transactions.get(position).isPayment()) {
-            transactionViewHolder.txvPayment.setText("payment");
+            transactionViewHolder.txvPayment.setText(context.getString(R.string.Payment));
         } else {
-            transactionViewHolder.txvPayment.setText("deposit");
+            transactionViewHolder.txvPayment.setText(context.getString(R.string.Deposit));
         }
         Calendar calendar = transactions.get(position).getCreationDate();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -104,7 +102,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //String date = calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
         transactionViewHolder.txvCreationDate.setText(df.format(calendar.getTime()));
         transactionViewHolder.txvComment.setText(transactions.get(position).getComment());
-        transactionViewHolder.txvEstablishment.setText(String.valueOf(transactions.get(position).getIdEstablishment()));
+        transactionViewHolder.txvPiggyBank.setText(String.valueOf(transactions.get(position).getIdPiggyBank()));
         transactionViewHolder.bind(transactions.get(position),listener);
     }
 
@@ -120,7 +118,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         TextView txvAmount;
         TextView txvCreationDate;
         TextView txvComment;
-        TextView txvEstablishment;
+        TextView txvPiggyBank;
 
         public TransactionViewHolder(View view) {
             super(view);
@@ -129,7 +127,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             txvAmount = view.findViewById(R.id.txvAmount);
             txvCreationDate = view.findViewById(R.id.txvCreationDate);
             txvComment = view.findViewById(R.id.txvComment);
-            txvEstablishment = view.findViewById(R.id.txvEstablishment);
+            txvPiggyBank = view.findViewById(R.id.txvPiggyBank);
         }
 
         public void bind (final Transaction transaction, final OnItemClickListener listener){

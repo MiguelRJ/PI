@@ -55,4 +55,6 @@
     <string name="txvForgetPassword"><u>I forgot my password</u></string>
     <string name="btnRecoverPassword">Recover password</string>
     <string name="AnEmailHasBeenSend">An email has been send to:</string>
+    <string name="Payment">Payment</string>
+    <string name="Deposit">Deposit</string>
 </resources>
