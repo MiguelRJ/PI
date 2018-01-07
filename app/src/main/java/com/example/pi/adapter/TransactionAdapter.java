@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.transition.Visibility;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.example.pi.R;
 import com.example.pi.data.db.model.Transaction;
 import com.example.pi.data.db.repository.TransactionRepository;
+import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.utils.AppConstants;
 
 import java.io.ByteArrayOutputStream;
@@ -73,11 +75,16 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
             transactionHolder = (TransactionHolder) view.getTag();
         }
         byte[] bytes = getItem(position).getImage();
-        if (bytes == null) {
-            bytes = image();
+        if (AppPreferencesHelper.getInstance().getIconShow()) {
+            if (bytes == null) {
+                bytes = image();
+            }
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            transactionHolder.imageView.setImageBitmap(bitmap);
+        } else {
+            transactionHolder.imageView.setImageBitmap(null);
+            transactionHolder.imageView.setVisibility(View.GONE);
         }
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        transactionHolder.imageView.setImageBitmap(bitmap);
         transactionHolder.txvAmount.setText(AppConstants.decimalformat.format(getItem(position).getAmount()).replace(",","."));
         if (getItem(position).isPayment()) {
             transactionHolder.txvPayment.setText(context.getString(R.string.Payment));
@@ -98,7 +105,7 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
      */
     public byte[] image() {
         Bitmap bitmap;
-        bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_transaction_default_diss));
+        bitmap = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), AppPreferencesHelper.getInstance().getIcon()));
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] bitmapdata = stream.toByteArray();

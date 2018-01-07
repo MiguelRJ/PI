@@ -68,6 +68,16 @@ public class AppPreferencesHelper implements AccountPreferencesHelper {
         return remember;
     }
 
+    public int getIcon() {
+        int numIcon = preferences.getInt(PREF_KEY_ICON,0);
+        return numIcon;
+    }
+
+    public boolean getIconShow() {
+        boolean iconShow = preferences.getBoolean(PREF_KEY_ICON_SHOW,false);
+        return iconShow;
+    }
+
     public void setCurrentUserId(long id) {
         preferences.edit().putLong(PREF_KEY_CURRENT_USER_ID,id).apply();
     }
@@ -82,6 +92,14 @@ public class AppPreferencesHelper implements AccountPreferencesHelper {
 
     public void setCurrentRemember(boolean remember) {
         preferences.edit().putBoolean(PREF_KEY_CURRENT_REMEMBER,remember).apply();
+    }
+
+    public void setIcon(int numIcon) {
+        preferences.edit().putInt(PREF_KEY_ICON,numIcon).apply();
+    }
+
+    public void setIconShow(boolean iconShow) {
+        preferences.edit().putBoolean(PREF_KEY_ICON_SHOW,iconShow).apply();
     }
 
 }

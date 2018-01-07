@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/pref_login">
-        <SwitchPreference
-            android:defaultValue="false"
-            android:id="@+id/rememberPassword"
-            android:summary="@string/pref_remember_password"
-            android:summaryOff="@string/pref_remember_password_off"
-            android:summaryOn="@string/pref_remember_password_on"
-            android:title="@string/pref_title_remember_password" />
-    </PreferenceCategory>
 
 </PreferenceScreen>

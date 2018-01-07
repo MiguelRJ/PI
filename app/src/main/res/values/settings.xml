@@ -19,8 +19,8 @@
         <item>Satisfecho</item>
     </string-array>
     <string-array name="pref_transaction_default_icon_value">
-        <item>@drawable/ic_transaction_default_diss</item>
-        <item>@drawable/ic_transaction_default_neutral</item>
-        <item>@drawable/ic_transaction_default_sati</item>
+        <item>ic_transaction_default_diss</item>
+        <item>ic_transaction_default_neutral</item>
+        <item>ic_transaction_default_sati</item>
     </string-array>
 </resources>

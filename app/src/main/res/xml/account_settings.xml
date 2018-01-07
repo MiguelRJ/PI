@@ -5,7 +5,7 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="PREF_KEY_CURRENT_USER_REMEMBER"
+            android:key="PREF_KEY_CURRENT_REMEMBER"
             android:title="@string/pref_title_swtRemember"
             android:summary="@string/pref_summary_swtRemember"/>
 
