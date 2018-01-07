@@ -51,5 +51,8 @@
     <string name="errorAmountEmpty">Error: cantidad vacia</string>
     <string name="tilChooseDate">Elige una fecha</string>
     <string name="txvAddPiggyBankName">Elige un nombre</string>
+    <string name="txvForgetPassword"><u>He olvidado mi contraseña</u></string>
+    <string name="btnRecoverPassword">Recuperar contraseña</string>
+    <string name="AnEmailHasBeenSend">Se ha enviado un correo a:</string>
 
 </resources>

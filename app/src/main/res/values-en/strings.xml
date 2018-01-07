@@ -49,4 +49,10 @@
     <string name="txvAmount">Amount:</string>
     <string name="txvTypePayment">Transaction type:</string>
     <string name="TransactionSaved">Transaction saved</string>
+    <string name="errorAmountEmpty">Error: empty amount</string>
+    <string name="tilChooseDate">Choose a date</string>
+    <string name="txvAddPiggyBankName">Choose a name</string>
+    <string name="txvForgetPassword"><u>I forgot my password</u></string>
+    <string name="btnRecoverPassword">Recover password</string>
+    <string name="AnEmailHasBeenSend">An email has been send to:</string>
 </resources>

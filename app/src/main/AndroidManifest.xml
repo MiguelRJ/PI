@@ -24,7 +24,8 @@
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.about.AboutUsActivity" />
         <activity android:name=".ui.prefs.AccountSettingActivity" />
-        <activity android:name=".ui.signin.SigninActivity"></activity>
+        <activity android:name=".ui.signin.SigninActivity" />
+        <activity android:name=".ui.recover.RecoverActivity"></activity>
     </application>
 
 </manifest>

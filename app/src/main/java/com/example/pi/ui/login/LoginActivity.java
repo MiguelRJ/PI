@@ -12,6 +12,7 @@ import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.MenuActivity;
 import com.example.pi.ui.base.BaseAppCompatActivity;
 import com.example.pi.ui.pi.PIApplication;
+import com.example.pi.ui.recover.RecoverActivity;
 import com.example.pi.ui.signin.SigninActivity;
 
 /**
@@ -29,7 +30,7 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
     private LoginPresenter presenter;
 
     private EditText edtUser, edtPassvword;
-    private TextView txvSignUp;
+    private TextView txvSignUp, txvForgotPassword;
     private CheckBox chkRemember;
     private Button btnLogIn;
 
@@ -43,6 +44,7 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
         edtUser = findViewById(R.id.edtUser);
         edtPassvword = findViewById(R.id.edtPassword);
         txvSignUp = findViewById(R.id.txvSignUp);
+        txvForgotPassword = findViewById(R.id.txvForgotPassword);
         chkRemember = findViewById(R.id.chkRemember);
 
         if (AppPreferencesHelper.getInstance().getCurrentRemember()) {
@@ -55,6 +57,12 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SigninActivity.class));
+            }
+        });
+        txvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RecoverActivity.class));
             }
         });
         btnLogIn = findViewById(R.id.btnLogIn);

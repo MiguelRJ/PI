@@ -123,6 +123,23 @@ public class UserRepository {
     }
 
     /**
+     * Devuelve la password de un usuario con nombre X
+     * @param username
+     * @return
+     */
+    public String getPasswordBy(String username){
+        Iterator<User> iterator = users.iterator();
+        User user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if (user.getUser().toLowerCase().equals(username.toLowerCase())){
+                return user.getPassword();
+            }
+        }
+        return "null";
+    }
+
+    /**
      * Obtiene el mayor Id
      * @return
      */

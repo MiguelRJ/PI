@@ -28,7 +28,7 @@ public class SigninActivity extends BaseAppCompatActivity implements View.OnClic
         edtEmail = findViewById(R.id.edtEmail);
         edtName = findViewById(R.id.edtName);
 
-        btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignIn = findViewById(R.id.btnRecoverPassword);
         btnSignIn.setOnClickListener(this);
     }
 
