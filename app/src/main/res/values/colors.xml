@@ -2,7 +2,7 @@
 <resources>
     <!-- Colores usados por la APP -->
     <color name="colorPrimary">@color/colorOriginalPrimary</color>
-    <color name="colorPrimaryLight">@color/colorOriginalPrimaryLight</color>
+    <color name="colorPrimaryLight">@color/colorOriginalPrimaryLighter</color>
     <color name="colorPrimaryDark">@color/colorOriginalPrimaryDark</color>
 
     <color name="colorSecondary">@color/colorOriginalSecondary</color>
@@ -21,6 +21,7 @@
     <color name="colorOriginalSecondaryLight">#527d2f</color>
     <color name="colorOriginalSecondaryDark">#062700</color>
     <color name="colorOriginalAccent">#EBB02D</color>
+    <color name="colorOriginalPrimaryLighter">#ffffd4</color>
     <!-- Colores Originales -->
 
     <!-- Colores prueba 1 -->
