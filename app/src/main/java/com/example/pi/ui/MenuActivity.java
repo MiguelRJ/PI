@@ -15,8 +15,6 @@ import android.widget.Toast;
 import com.example.pi.R;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.about.AboutUsActivity;
-import com.example.pi.ui.fragment.PiggyBankNoAppBarFragment;
-import com.example.pi.ui.fragment.TransactionNoAppBarFragment;
 import com.example.pi.ui.pi.PIApplication;
 import com.example.pi.ui.piggybank.PiggyBankActivity;
 import com.example.pi.ui.prefs.AccountSettingActivity;
@@ -29,7 +27,7 @@ import com.example.pi.ui.transaction.TransactionActivity;
  *
  */
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener,PiggyBankNoAppBarFragment.PiggyBankNoAppBarFragmentListener,TransactionNoAppBarFragment.TransactionNoAppBarFragmentListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private TabHost tab;
@@ -97,13 +95,4 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    @Override
-    public void onPiggyBankNoAppBarFragment() {
-
-    }
-
-    @Override
-    public void onTransactionFragment() {
-
-    }
 }
