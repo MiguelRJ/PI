@@ -29,12 +29,12 @@ public class PiggyBankMultiChoiceModeListener implements AbsListView.MultiChoice
     public void onItemCheckedStateChanged(ActionMode actionMode, int position, long id, boolean checked) {
         if (checked){
             count++;
-            presenter.setNewSelection(position);
+            //presenter.setNewSelection(position);
         } else {
             count--;
-            presenter.removeSelection(position);
+            //presenter.removeSelection(position);
         }
-        actionMode.setTitle(count + " " + presenter.nameSelecteds());
+        //actionMode.setTitle(count + " " + presenter.nameSelecteds());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class PiggyBankMultiChoiceModeListener implements AbsListView.MultiChoice
         // cuando se pulsa sobre el elemento
         switch (menuItem.getItemId()){
             case R.id.action_list_piggybank_delete:
-                presenter.deleteSelection();
+                //presenter.deleteSelection();
                 presenter.loadPiggyBank();
                 break;
         }
@@ -67,6 +67,6 @@ public class PiggyBankMultiChoiceModeListener implements AbsListView.MultiChoice
     @Override
     public void onDestroyActionMode(ActionMode mode) {
         count = 0;
-        presenter.clearSelection();
+        //presenter.clearSelection();
     }
 }

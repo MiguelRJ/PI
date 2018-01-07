@@ -21,23 +21,11 @@ import java.util.List;
 public interface ListPiggyBankContract {
 
     interface View extends BaseView {
-
         void showPiggyBank(List<PiggyBank> list);
-
-        PiggyBank getPiggyBank(Integer position);
-
-        String nameSelecteds();
-
     }
 
     interface Presenter extends BasePresenter {
         void loadPiggyBank();
-        void setNewSelection(int position);
-        void removeSelection(int position);
-        void deleteSelection();
-        void clearSelection();
-        boolean isPositionChecked(int position);
-        String nameSelecteds();
     }
 
 }

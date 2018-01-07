@@ -30,14 +30,11 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
         this.interactor = new ListPiggyBankInteractor(this);
     }
 
-    public String nameSelecteds(){
-        return view.nameSelecteds();
-    }
-
     /* implements ListPiggyBankContract.Presenter */
     @Override
     public void OnDestroy() {
-
+        view = null;
+        interactor = null;
     }
 
     @Override
@@ -47,9 +44,7 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
 
     @Override
     public void loadPiggyBank() {
-
         interactor.loadPiggyBank();
-
     }
     /* implements ListPiggyBankContract.Presenter */
 
@@ -60,34 +55,4 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
     }
     /* ListPiggyBankInteractorInterface.OnLoadFinishedListener */
 
-    /* Gestion del multichoicelistener */
-    HashMap<Integer,Boolean> selection = new HashMap<>();
-
-    @Override
-    public void setNewSelection(int position) {
-        selection.put(position,true);
-    }
-
-    @Override
-    public void removeSelection(int position) {
-        selection.remove(position);
-    }
-
-    @Override
-    public void deleteSelection() {
-        for (Integer position : selection.keySet()){
-            interactor.deletePiggyBank(view.getPiggyBank(position));
-        }
-    }
-
-    @Override
-    public void clearSelection() {
-        selection.clear();
-    }
-
-    @Override
-    public boolean isPositionChecked(int position) {
-        return selection.get(position)==null?false:true; // Si es null falso, si no true;
-    }
-    /* Gestion del multichoicelistener */
 }

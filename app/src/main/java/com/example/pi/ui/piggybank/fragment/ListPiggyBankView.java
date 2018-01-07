@@ -2,13 +2,14 @@ package com.example.pi.ui.piggybank.fragment;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import android.widget.ListView;
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.db.model.Transaction;
 import com.example.pi.ui.about.AboutUsActivity;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.piggybank.PiggyBankMultiChoiceModeListener;
@@ -50,7 +52,7 @@ import java.util.List;
  *      public boolean onOptionsItemSelected()
  */
 
-public class ListPiggyBankView extends ListFragment implements ListPiggyBankContract.View {
+public class ListPiggyBankView extends Fragment implements ListPiggyBankContract.View {
 
     public static final String TAG = "ListPiggyBankView";
 
@@ -60,16 +62,28 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
 
     private ListPiggyBankListener callback;
     private PiggyBankAdapter adapter;
+    private PiggyBankAdapter.OnItemClickListener listener;
     private ListPiggyBankContract.Presenter presenter;
 
-    private ListView listView;
+    private RecyclerView recyclerView;
     private Toolbar toolbar;
     private FloatingActionButton fab;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.adapter = new PiggyBankAdapter(getActivity());
+        listener = new PiggyBankAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(PiggyBank piggyBank) {
+
+            }
+
+            @Override
+            public void OnItemLongClick(PiggyBank piggyBank) {
+
+            }
+        };
+        this.adapter = new PiggyBankAdapter(listener);
         this.presenter = new ListPiggyBankPresenter(this);
         setRetainInstance(true);
     }
@@ -96,21 +110,19 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_list_piggybank,container,false);
 
-        listView = rootView.findViewById(android.R.id.list);
         toolbar = rootView.findViewById(R.id.toolbar);
         fab = rootView.findViewById(R.id.fabPiggyBank);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            listView.setNestedScrollingEnabled(true);
-        }
-
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         setHasOptionsMenu(true);
+
+        recyclerView = rootView.findViewById(R.id.recylerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
                 callback.addNewPiggyBank(null);
             }
         });
@@ -123,32 +135,7 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(PiggyBank.TAG,(PiggyBank)adapterView.getItemAtPosition(position));
-                callback.addNewPiggyBank(bundle);
-            }
-        });
-
-        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);// modal mantiene la seleccion
-        getListView().setMultiChoiceModeListener(new PiggyBankMultiChoiceModeListener(presenter));
-        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                getListView().setItemChecked(position,!presenter.isPositionChecked(position));
-                return true;
-            }
-        });
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Seleccion multiple");
-        getActivity().getMenuInflater().inflate(R.menu.menu_piggybank_longclick,menu);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -160,14 +147,14 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_order_by_name:
-                adapter = new PiggyBankAdapter(getActivity());
-                listView.setAdapter(adapter);
+                adapter = new PiggyBankAdapter(listener);
+                recyclerView.setAdapter(adapter);
                 return true;
             case R.id.action_order_by_totalAmount:
-                listView.setAdapter(adapter.orderByTotalAmount());
+                recyclerView.setAdapter(adapter.orderByTotalAmount());
                 return true;
             case R.id.action_order_by_creationDate:
-                listView.setAdapter(adapter.orderByCreationDate());
+                recyclerView.setAdapter(adapter.orderByCreationDate());
                 return true;
             case R.id.action_aboutus:
                 startActivity(new Intent(getActivity().getApplicationContext(), AboutUsActivity.class));
@@ -189,24 +176,9 @@ public class ListPiggyBankView extends ListFragment implements ListPiggyBankCont
 
     @Override
     public void showPiggyBank(List<PiggyBank> list) {
-        adapter.clear();
-        adapter.addAll(list);
-    }
 
-    @Override
-    public PiggyBank getPiggyBank(Integer position) {
-        return adapter.getItem(position);
     }
     /* implements ListPiggyBankContract.View */
-
-    /**
-     * Metodo para el nombre cuando hacemos seleccion multiple
-     * @return
-     */
-    @Override
-    public String nameSelecteds(){
-        return getActivity().getResources().getString(R.string.selecteds);
-    }
 
     @Override
     public void onDetach() {

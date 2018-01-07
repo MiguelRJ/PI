@@ -50,8 +50,8 @@ public class PiggyBankNoAppBarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_piggybanknoappbar,container,false);
         listView = view.findViewById(R.id.listView);
-        adapter = new PiggyBankAdapter(getActivity().getApplicationContext());
-        listView.setAdapter(adapter);
+        //adapter = new PiggyBankAdapter(getActivity().getApplicationContext());
+        //listView.setAdapter(adapter);
         return view;
     }
 
