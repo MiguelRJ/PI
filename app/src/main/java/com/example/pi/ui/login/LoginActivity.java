@@ -33,7 +33,6 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
     private CheckBox chkRemember;
     private Button btnLogIn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

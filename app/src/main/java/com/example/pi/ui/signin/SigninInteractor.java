@@ -22,9 +22,12 @@ public class SigninInteractor implements SigninInteractorInterface {
             listener.onUserEmptyError();
         } else if (TextUtils.isEmpty(password)) {
             listener.onPasswordEmptyError();
-            Log.e("pass",password);
+        } else if (TextUtils.isEmpty(email)) {
+            listener.onEmailEmptyError();
         } else if (!CommonUtils.isPasswordValid(password)) {
             listener.onPasswordError();
+        } else if (!CommonUtils.isEmailValid(email)) {
+            listener.onEmailError();
         } else if (UserRepository.getInstance().isUserAlreadySignIn(user)){
             listener.onUserDuplicated();
         } else if (UserRepository.getInstance().isEmailAlreadySignIn(email)){

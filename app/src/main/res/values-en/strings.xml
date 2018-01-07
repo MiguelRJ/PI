@@ -41,9 +41,6 @@
     <string name="txvEmail">Email</string>
     <string name="txvName">Full name</string>
     <string name="btnSignIn">Sign In</string>
-    <string name="errorUserDuplicated">User already signed in</string>
-    <string name="errorEmailDuplicated">Email already signed in</string>
-    <string name="errorPasswordText">Incorrect password, minimun 6 characters, 1 capital letter, 1 digit</string>
     <string name="selecteds">Selecteds</string>
     <string name="action_list_piggybank_delete">Delete</string>
     <string name="rbPayment">Payment</string>

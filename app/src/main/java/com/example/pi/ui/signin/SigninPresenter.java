@@ -42,8 +42,18 @@ public class SigninPresenter implements SigninContract.Presenter, SigninInteract
     }
 
     @Override
+    public void onEmailEmptyError() {
+        view.onEmailEmptyError();
+    }
+
+    @Override
     public void onPasswordError() {
         view.onPasswordError();
+    }
+
+    @Override
+    public void onEmailError() {
+        view.onEmailError();
     }
 
     @Override

@@ -16,7 +16,9 @@ public interface SigninInteractorInterface {
     interface OnSigninFinishedListener{
         void onUserEmptyError();
         void onPasswordEmptyError();
+        void onEmailEmptyError();
         void onPasswordError();
+        void onEmailError();
         void onUserDuplicated();
         void onEmailDuplicated();
         void onSuccess();

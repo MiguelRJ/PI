@@ -20,7 +20,7 @@ public class SigninActivity extends BaseAppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_signin);
         presenter = new SigninPresenter(this);
 
         edtUser = findViewById(R.id.edtUser);
@@ -72,8 +72,18 @@ public class SigninActivity extends BaseAppCompatActivity implements View.OnClic
     }
 
     @Override
+    public void onEmailEmptyError() {
+        onError(R.string.errorEmailEmpty);
+    }
+
+    @Override
     public void onPasswordError() {
         onError(R.string.errorPasswordText);
+    }
+
+    @Override
+    public void onEmailError() {
+        onError(R.string.errorEmail);
     }
 
     /* implements SigninContract.View */

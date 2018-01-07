@@ -1,5 +1,7 @@
 package com.example.pi.ui.utils;
 
+import android.util.Patterns;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,21 @@ public class CommonUtils {
         final String PASSWORD_PATTERN = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}";//(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,} https://regexr.com/
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    /**
+     * Metodo que comprueba que el correo sea valido
+     * @param email
+     * @return
+     */
+    public static boolean isEmailValid(String email){
+        Pattern pattern;
+        Matcher matcher;
+        //final String EMAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        //pattern = Pattern.compile(EMAIL_PATTERN);
+        pattern = Patterns.EMAIL_ADDRESS;
+        matcher = pattern.matcher(email);
         return matcher.matches();
     }
 

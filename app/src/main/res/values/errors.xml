@@ -7,4 +7,6 @@
     <string name="errorUserDuplicated">Usuario ya registrado</string>
     <string name="errorEmailDuplicated">Email ya registrado</string>
     <string name="errorPasswordText">Contraseña no valida, minimo 6 caracteres, 1 mayuscula, 1 digito</string>
+    <string name="errorEmailEmpty">Debe introducir un email</string>
+    <string name="errorEmail">Email erroneo</string>
 </resources>
