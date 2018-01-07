@@ -1,6 +1,7 @@
 package com.example.pi.ui.piggybank.presenter;
 
 import android.text.BoringLayout;
+import android.util.Log;
 
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
@@ -22,6 +23,8 @@ import java.util.List;
 
 public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,ListPiggyBankInteractorInterface.OnLoadFinishedListener {
 
+    public static final int DELETE = 1;
+
     private ListPiggyBankContract.View view;
     private ListPiggyBankInteractorInterface interactor;
 
@@ -39,12 +42,24 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
 
     @Override
     public void options(int i, Object o) {
-
+        switch (i) {
+            case DELETE:
+                interactor.deletePiggyBank((PiggyBank) o);
+                break;
+            default:
+                Log.e("Error option","Option "+i+" not found");
+                break;
+        }
     }
 
     @Override
     public void loadPiggyBank() {
         interactor.loadPiggyBank();
+    }
+
+    @Override
+    public void onDeletedPiggyBank() {
+        view.onDeletedPiggyBank();
     }
     /* implements ListPiggyBankContract.Presenter */
 

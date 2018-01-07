@@ -57,5 +57,12 @@
     <string name="Payment">Pago</string>
     <string name="Deposit">Ingreso</string>
     <string name="action_list_delete">Borrar</string>
+    <string name="btnOk">Aceptar</string>
+    <string name="btnCancel">Cancelar</string>
+    <string name="menuTittleDeletePiggyBank">Borrar PiggyBank</string>
+    <string name="optionsLongClickPiggyBank">Opciones PiggiBank</string>
+    <string name="PiggyBankDeleted">PiggyBank borrada</string>
+    <string name="titleDeletePiggyBank">Eliminar PiggyBank</string>
+    <string name="messageDeletePiggyBank">Desea eliminar la hucha:</string>
 
 </resources>

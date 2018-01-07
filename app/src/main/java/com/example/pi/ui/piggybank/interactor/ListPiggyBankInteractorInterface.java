@@ -16,6 +16,7 @@ public interface ListPiggyBankInteractorInterface {
 
     interface OnLoadFinishedListener{
         void onSucces(List<PiggyBank> list);
+        void onDeletedPiggyBank();
     }
 
     void loadPiggyBank(); // Get the list of pojos

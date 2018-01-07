@@ -1,12 +1,15 @@
 package com.example.pi.ui.piggybank.fragment;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,11 +28,15 @@ import com.example.pi.adapter.PiggyBankAdapter;
 import com.example.pi.data.db.model.PiggyBank;
 import com.example.pi.data.db.model.Transaction;
 import com.example.pi.ui.about.AboutUsActivity;
+import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.piggybank.PiggyBankMultiChoiceModeListener;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
 import com.example.pi.ui.prefs.AccountSettingActivity;
+import com.example.pi.ui.transaction.TransactionMultiChoiceModeListener;
+import com.example.pi.ui.utils.ComonDialog;
+
 import java.util.List;
 
 /**
@@ -52,7 +59,7 @@ import java.util.List;
  *      public boolean onOptionsItemSelected()
  */
 
-public class ListPiggyBankView extends Fragment implements ListPiggyBankContract.View {
+public class ListPiggyBankView extends BaseFragment implements ListPiggyBankContract.View {
 
     public static final String TAG = "ListPiggyBankView";
 
@@ -75,12 +82,20 @@ public class ListPiggyBankView extends Fragment implements ListPiggyBankContract
         listener = new PiggyBankAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(PiggyBank piggyBank) {
-
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(PiggyBank.TAG,piggyBank);
+                callback.addNewPiggyBank(bundle);
             }
 
             @Override
             public void OnItemLongClick(PiggyBank piggyBank) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString(ComonDialog.TITTLE,getActivity().getResources().getString(R.string.titleDeletePiggyBank));
+                bundle.putString(ComonDialog.MESSAGE, getActivity().getResources().getString(R.string.messageDeletePiggyBank)+" "+piggyBank.getName());
+                bundle.putString(ComonDialog.TAG,PiggyBank.TAG);
+                bundle.putParcelable(PiggyBank.TAG,piggyBank);
+                Dialog dialog = ComonDialog.showConfirmDialog(bundle,getActivity(),presenter,ListPiggyBankPresenter.DELETE);
+                dialog.show();
             }
         };
         this.adapter = new PiggyBankAdapter(listener);
@@ -136,6 +151,7 @@ public class ListPiggyBankView extends Fragment implements ListPiggyBankContract
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView.setAdapter(adapter);
+        registerForContextMenu(recyclerView);
     }
 
     @Override
@@ -177,6 +193,13 @@ public class ListPiggyBankView extends Fragment implements ListPiggyBankContract
     @Override
     public void showPiggyBank(List<PiggyBank> list) {
 
+    }
+
+    @Override
+    public void onDeletedPiggyBank() {
+        showMessage(getString(R.string.PiggyBankDeleted));
+        adapter = new PiggyBankAdapter(listener);
+        recyclerView.setAdapter(adapter);
     }
     /* implements ListPiggyBankContract.View */
 

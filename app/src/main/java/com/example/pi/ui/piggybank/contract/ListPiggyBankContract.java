@@ -22,10 +22,12 @@ public interface ListPiggyBankContract {
 
     interface View extends BaseView {
         void showPiggyBank(List<PiggyBank> list);
+        void onDeletedPiggyBank();
     }
 
     interface Presenter extends BasePresenter {
         void loadPiggyBank();
+        void onDeletedPiggyBank();
     }
 
 }

@@ -57,4 +57,7 @@
     <string name="AnEmailHasBeenSend">An email has been send to:</string>
     <string name="Payment">Payment</string>
     <string name="Deposit">Deposit</string>
+    <string name="action_list_delete">Delete</string>
+    <string name="btnOk">Ok</string>
+    <string name="btnCancel">Cancel</string>
 </resources>

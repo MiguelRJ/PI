@@ -31,5 +31,6 @@ public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface
     @Override
     public void deletePiggyBank(PiggyBank piggyBank) {
         PiggyBankRepository.getInstance().deletePiggyBank(piggyBank);
+        listener.onDeletedPiggyBank();
     }
 }
