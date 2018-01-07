@@ -10,6 +10,7 @@
     <color name="colorSecondaryDark">@color/colorOriginalSecondaryDark</color>
 
     <color name="colorAccent">@color/colorDarkGoldenRod</color>
+    <color name="colorBackgroundActionMode">@color/colorPrimary</color>
     <!-- Colores usados por la APP -->
 
     <!-- Colores Originales -->

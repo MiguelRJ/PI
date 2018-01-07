@@ -4,6 +4,21 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- para que la action Mode se situe sobre la toolber y no la desplace -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/Widget.ActionMode</item>
+    </style>
+
+    <style name="Widget.ActionMode" parent="Widget.AppCompat.ActionMode">
+        <item name="background">@color/colorBackgroundActionMode</item>
+        <item name="android:background">@color/colorBackgroundActionMode</item>
+        <item name="actionModeBackground">@color/colorBackgroundActionMode</item>
+        <item name="android:actionModeBackground">@color/colorBackgroundActionMode</item>
+        <item name="titleTextStyle">@style/Widget.ActionMode.TitleTextStyle</item>
+    </style>
+
+    <style name="Widget.ActionMode.TitleTextStyle">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">

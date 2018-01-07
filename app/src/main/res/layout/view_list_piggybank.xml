@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Para que la toolbar haga scroll: app:layout_scrollFlags="scroll|enterAlways" -->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -24,16 +25,8 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:titleTextColor="@android:color/white" />
     </android.support.design.widget.AppBarLayout>
-
-    <!-- android:id="@+id/listView"
-     app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-     -->
 
     <ListView
         android:id="@android:id/list"
