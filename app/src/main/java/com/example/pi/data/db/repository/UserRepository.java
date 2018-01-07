@@ -34,6 +34,7 @@ public class UserRepository {
     private void initialice() {
         addUser(new User(0,"Miguel","miguel.rj96@gmail.com","Miguel1", "Miguel Rodriguez Jimenez",new GregorianCalendar(1996,9,7),"Hombre",600000000,"Malaga","@migue.rj",true));
         addUser(new User(1,"Lourdes","Lourdes@gmail.com","Lourdes1", "Lourdes",new GregorianCalendar(1996,9,7),"Mujer",600000001,"Malaga","@Lourdes",false));
+        addUser(new User(2,"yo","yo@yo.com","Miguel1", "yo",new GregorianCalendar(1996,9,7),"Hombre",600000001,"Malaga","@yo",false));
     }
 
     /**

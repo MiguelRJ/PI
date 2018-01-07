@@ -38,7 +38,7 @@ public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
                     listener.onDuplicatedName();
                 } else {
                     int lastId = PiggyBankRepository.getInstance().getLastId();
-                    PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId+1, 0, name, calendar));
+                    PiggyBankRepository.getInstance().addPiggyBank(new PiggyBank(lastId+1, Integer.parseInt(String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId())), name, calendar));
                     listener.onSucces();
                 }
 

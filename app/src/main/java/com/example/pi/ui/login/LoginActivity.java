@@ -50,7 +50,7 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
         if (AppPreferencesHelper.getInstance().getCurrentRemember()) {
             edtUser.setText(AppPreferencesHelper.getInstance().getCurrentUserName());
             edtPassvword.setText(AppPreferencesHelper.getInstance().getCurrentUserPassword());
-            chkRemember.setEnabled(AppPreferencesHelper.getInstance().getCurrentRemember());
+            chkRemember.setChecked(AppPreferencesHelper.getInstance().getCurrentRemember());
         }
 
         txvSignUp.setOnClickListener(new View.OnClickListener() {

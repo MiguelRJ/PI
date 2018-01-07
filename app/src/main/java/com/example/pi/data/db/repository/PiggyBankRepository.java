@@ -1,5 +1,6 @@
 package com.example.pi.data.db.repository;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.pi.data.db.model.PiggyBank;
@@ -79,7 +80,9 @@ public class PiggyBankRepository {
 
     public int getLastId(){
         int id = 0;
+        Log.e("lastid",String.valueOf(id));
         for (int i=0; i < piggybanks.size(); i++) {
+            Log.e("lastid",String.valueOf(i));
             if (piggybanks.get(i).getId() > id){
                 id = piggybanks.get(i).getId();
             }
