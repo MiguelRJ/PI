@@ -23,8 +23,7 @@ public class AccountSettingActivity extends PreferenceActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.account_settings);
-        addPreferencesFromResource(R.xml.general_settings);
+        addPreferencesFromResource(R.xml.settings);
 
         Preference remember = findPreference(AppPreferencesHelper.PREF_KEY_CURRENT_REMEMBER);
         remember.setDefaultValue(AppPreferencesHelper.getInstance().getCurrentRemember());
@@ -38,10 +37,23 @@ public class AccountSettingActivity extends PreferenceActivity {
         });
 
         Preference user = findPreference(AppPreferencesHelper.PREF_KEY_CURRENT_USER_NAME);
-        user.setDefaultValue(AppPreferencesHelper.getInstance().getCurrentUserName());
+        user.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Toast.makeText(getApplicationContext(),AppPreferencesHelper.getInstance().getCurrentUserName(),Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
 
         Preference password = findPreference(AppPreferencesHelper.PREF_KEY_CURRENT_USER_PASSWORD);
-        password.setDefaultValue(AppPreferencesHelper.getInstance().getCurrentUserId());
+        password.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Toast.makeText(getApplicationContext(),AppPreferencesHelper.getInstance().getCurrentUserPassword(),Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
 
         Preference icon = findPreference(AppPreferencesHelper.PREF_KEY_ICON);
         icon.setDefaultValue(AppPreferencesHelper.getInstance().getIcon());

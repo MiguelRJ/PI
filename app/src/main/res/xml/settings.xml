@@ -1,4 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="@string/pref_category_account">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="PREF_KEY_CURRENT_REMEMBER"
+            android:title="@string/pref_title_swtRemember"
+            android:summary="@string/pref_summary_swtRemember"/>
+
+        <Preference
+            android:defaultValue="Default value"
+            android:key="PREF_KEY_CURRENT_USER_NAME"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_title_edtRememberUser"
+            android:summary="@string/pref_summary_edtRememberUser"/>
+
+        <Preference
+            android:defaultValue="Default value"
+            android:key="PREF_KEY_CURRENT_USER_PASSWORD"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_title_edtRememberPass"
+            android:summary="@string/pref_summary_edtRememberPass"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_general">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="PREF_KEY_ICON_SHOW"
+            android:title="@string/pref_title_showimage"
+            android:summary="@string/pref_description_viewicon"
+            android:summaryOff="Listado sin imagenes"
+            android:summaryOn="Listados con imagenes"/>
+
+        <ListPreference android:key="PREF_KEY_ICON"
+            android:summary="@string/pref_summary_icon"
+            android:title="@string/pref_title_numcolum"
+            android:entries="@array/pref_transaction_default_icon_name"
+            android:entryValues="@array/pref_transaction_default_icon_value"
+            android:defaultValue="ic_transaction_default_neutral"/>
+
+    </PreferenceCategory>
+
+    <Preference
+        android:key="aboutus"
+        android:title="@string/pref_title_aboutus">
+        <intent android:targetClass="com.example.pi.ui.about.AboutUsActivity"
+            android:targetPackage="com.example.pi"/>
+    </Preference>
 </PreferenceScreen>
