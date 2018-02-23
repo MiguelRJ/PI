@@ -1,48 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Colores usados por la APP -->
-    <color name="colorPrimary">@color/colorOriginalPrimary</color>
-    <color name="colorPrimaryLight">@color/colorOriginalPrimaryLighter</color>
-    <color name="colorPrimaryDark">@color/colorOriginalPrimaryDark</color>
+    <color name="colorPrimary">@color/LightGreen500</color>
+    <color name="colorPrimaryLight">@color/LightGreen100</color>
+    <color name="colorPrimaryDark">@color/LightGreen700</color>
+    <color name="colorPrimaryDarker">@color/LightGreen900</color>
 
-    <color name="colorSecondary">@color/colorOriginalSecondary</color>
-    <color name="colorSecondaryLight">@color/colorOriginalSecondaryLight</color>
-    <color name="colorSecondaryDark">@color/colorOriginalSecondaryDark</color>
-
-    <color name="colorAccent">@color/colorDarkGoldenRod</color>
-    <color name="colorBackgroundActionMode">@color/colorPrimary</color>
+    <color name="colorAccent">@color/LightGreen500</color>
+    <color name="colorBackgroundActionMode">@color/LightGreen700</color>
     <!-- Colores usados por la APP -->
 
-    <!-- Colores Originales -->
-    <color name="colorOriginalPrimary">#537D10</color>
-    <color name="colorOriginalPrimaryLight">#83ac43</color>
-    <color name="colorOriginalPrimaryDark">#245000</color>
-    <color name="colorOriginalSecondary">#245000</color>
-    <color name="colorOriginalSecondaryLight">#527d2f</color>
-    <color name="colorOriginalSecondaryDark">#062700</color>
-    <color name="colorOriginalAccent">#EBB02D</color>
-    <color name="colorOriginalPrimaryLighter">#ffffd4</color>
-    <!-- Colores Originales -->
-
-    <!-- Colores prueba 1 -->
-    <color name="colorDollarGreen">#85BB65</color>
-    <color name="colorDollarGreenLight">#B6EE94</color>
-    <color name="colorDollarGreenDark">#558B38</color>
-
-    <color name="colorDollarWhite">#D5CAB4</color>
-    <color name="colorDollarWhiteLight">#FFFDE6</color>
-    <color name="colorDollarWhiteDark">#A49984</color>
-    <!-- Colores prueba 1 -->
-
-    <!-- Colores prueba 2 https://html-color-codes.info/colors-from-image/ -->
-    <color name="colorRealDollarGreen">#a0b17b</color>
-    <color name="colorRealDollarGreenLight">#B6EE94</color>
-    <color name="colorRealDollarGreenDark">#556E46</color>
-
-    <color name="colorRealDollarWhite">#efecc3</color>
-    <color name="colorRealDollarWhiteLight">#FFFDE6</color>
-    <color name="colorRealDollarWhiteDark">#A49984</color>
-    <!-- Colores prueba 2 -->
+    <!-- Material color -->
+    <color name="LightGreen50">#F1F8E9</color>
+    <color name="LightGreen100">#DCEDC8</color>
+    <color name="LightGreen200">#C5E1A5</color>
+    <color name="LightGreen300">#AED581</color>
+    <color name="LightGreen400">#9CCC65</color>
+    <color name="LightGreen500">#8BC34A</color>
+    <color name="LightGreen600">#7CB342</color>
+    <color name="LightGreen700">#689F38</color>
+    <color name="LightGreen800">#558B2F</color>
+    <color name="LightGreen900">#33691E</color>
+    <color name="LightGreenA100">#CCFF90</color>
+    <color name="LightGreenA200">#B2FF59</color>
+    <color name="LightGreenA700">#64DD17</color>
+    <!-- Material color -->
 
     <!-- Otros colores -->
     <color name="colorGoogle">#dc4a38</color>

@@ -79,13 +79,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtPassword">
 
-                <CheckBox
+                <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/chkRemember"
                     style="@style/LoginCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-7dp"
                     android:layout_weight="0.7"
+                    android:checked="true"
                     android:text="@string/chkRemember" />
 
                 <TextView

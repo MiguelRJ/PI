@@ -21,43 +21,38 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
     <style name="LoginEditText">
         <item name="android:padding">10dp</item>
         <item name="android:background">@drawable/shape_loginedittext</item>
     </style>
 
     <style name="LoginTextView">
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryDarker</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
     </style>
 
     <style name="LoginCheckBox">
-        <item name="android:textColor">@color/colorSilver</item>
+        <item name="android:textColor">@color/colorPrimaryDarker</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
-        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDarker</item>
+        <item name="android:buttonTint">@color/colorPrimaryDarker</item>
     </style>
 
     <style name="LoginTextViewMoreOptions">
-        <item name="android:textColor">@color/colorSilver</item>
+        <item name="android:textColor">@color/colorPrimaryDarker</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
-        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDarker</item>
         <item name="android:textAlignment">textEnd</item>
     </style>
 
     <style name="LoginButton">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimaryDarker</item>
     </style>
 
     <style name="LoginButtonOnDark">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimaryDarker</item>
     </style>
 
     <style name="SocialButton">
