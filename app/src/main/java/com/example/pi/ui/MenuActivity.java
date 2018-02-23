@@ -30,31 +30,23 @@ import com.example.pi.ui.transaction.TransactionActivity;
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
-    private TabHost tab;
     private FloatingActionButton fabOpenPiggyBank;
     private FloatingActionButton fabOpenTransaction;
-    String TAB_1_TAG;
-    String TAB_2_TAG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        TAB_1_TAG = getApplicationContext().getResources().getString(R.string.tabPiggyBank);
-        TAB_2_TAG = getApplicationContext().getResources().getString(R.string.tabTransaction);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        tab = findViewById(R.id.tabHost);
         fabOpenPiggyBank = findViewById(R.id.fabOpenPiggyBank);
         fabOpenPiggyBank.setOnClickListener(this);
         fabOpenTransaction = findViewById(R.id.fabOpenTransaction);
         fabOpenTransaction.setOnClickListener(this);
-        tabHostInitialize();
-        AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
+        /*AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
         String message = app.getCurrentUserId()+". Tu usuario de sesion es "+ app.getCurrentUserName();
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();*/
     }
 
     @Override
@@ -65,12 +57,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         if (v == fabOpenTransaction){
             startActivity( new Intent(MenuActivity.this, TransactionActivity.class));
         }
-    }
-
-    public void tabHostInitialize() {
-        tab.setup();
-        tab.addTab(tab.newTabSpec("tab0").setIndicator(TAB_1_TAG, null).setContent(R.id.llyPiggyBank));
-        tab.addTab(tab.newTabSpec("tab2").setIndicator(TAB_2_TAG, null).setContent(R.id.llyTransaction));
     }
 
     @Override
