@@ -10,6 +10,7 @@ import com.example.pi.data.base.PiggyBankDaoBase;
 import com.example.pi.data.db.PIContract;
 import com.example.pi.data.db.PIOpenHelper;
 import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.utils.AppConstants;
 
 import java.text.ParseException;
@@ -27,11 +28,13 @@ public class PiggyBankDao implements PiggyBankDaoBase {
         ArrayList<PiggyBank> piggyBanks = new ArrayList<>();
 
         SQLiteDatabase db = PIOpenHelper.getInstance().openDataBase();
+        String selection = PIContract.PiggyBankEntry.COL_ID_USER+"=?";
+        String[] selectionArgs = new String[]{String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId())};
         Cursor cursor = db.query(
                 PIContract.PiggyBankEntry.TABLE_NAME,
                 PIContract.PiggyBankEntry.COL_ALL,
-                null,
-                null,
+                selection,
+                selectionArgs,
                 null,
                 null,
                 orderBy,
