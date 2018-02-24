@@ -23,35 +23,36 @@
 
     <style name="LoginEditText">
         <item name="android:padding">10dp</item>
-        <item name="android:background">@drawable/shape_loginedittext</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="LoginTextView">
-        <item name="android:textColor">@color/colorPrimaryDarker</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
     </style>
 
-    <style name="LoginCheckBox">
-        <item name="android:textColor">@color/colorPrimaryDarker</item>
+    <style name="LoginCheckBox" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
         <item name="android:textColorSecondary">@color/colorPrimaryDarker</item>
-        <item name="android:buttonTint">@color/colorPrimaryDarker</item>
+        <item name="colorControlNormal">@color/colorPrimaryDarker</item>
+        <item name="colorControlActivated">@color/colorPrimaryDarker</item>
     </style>
 
     <style name="LoginTextViewMoreOptions">
-        <item name="android:textColor">@color/colorPrimaryDarker</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
-        <item name="android:textColorSecondary">@color/colorPrimaryDarker</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
         <item name="android:textAlignment">textEnd</item>
     </style>
 
     <style name="LoginButton">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@color/colorPrimaryDarker</item>
     </style>
 
     <style name="LoginButtonOnDark">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@color/colorPrimaryDarker</item>
     </style>
 
