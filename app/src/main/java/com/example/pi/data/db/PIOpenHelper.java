@@ -46,6 +46,8 @@ public class PIOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.beginTransaction();
+            db.execSQL(PIContract.UserEntry.SQL_CREATE);
+            db.execSQL(PIContract.UserEntry.SQL_INSERT);
             db.execSQL(PIContract.PiggyBankEntry.SQL_CREATE);
             db.execSQL(PIContract.PiggyBankEntry.SQL_INSERT);
             db.setTransactionSuccessful();
@@ -61,6 +63,7 @@ public class PIOpenHelper extends SQLiteOpenHelper {
         try {
             db.beginTransaction();
             db.execSQL(PIContract.PiggyBankEntry.SQL_DELETE);
+            db.execSQL(PIContract.UserEntry.SQL_DELETE);
             onCreate(db);
             db.setTransactionSuccessful();
         } catch (SQLException e) {
