@@ -18,23 +18,9 @@ public class AddTransactionInteractor implements AddTransactionInteractorInterfa
             listener.onAmountEmptyError();
         } else if (true){ // UserRepository validate credentials User Pass
             if (transaction.getId() < 0) { //si es menor de 0 entonces esque es una Piggybank nueva
-                int lastId = TransactionRepository.getInstance().getLastId();
-                TransactionRepository.getInstance().addTransaction(
-                        new Transaction(
-                                lastId+1,
-                                transaction.getIdUser(),
-                                transaction.getIdPiggyBank(),
-                                transaction.getIdEstablishment(),
-                                transaction.isPayment(),
-                                transaction.getAmount(),
-                                transaction.getCreationDate(),
-                                transaction.getComment(),
-                                transaction.getLatitude(),
-                                transaction.getLongitude(),
-                                transaction.getImage())
-                );
+                TransactionRepository.getInstance().add(transaction);
             } else {
-                TransactionRepository.getInstance().modTransaction(transaction);
+                TransactionRepository.getInstance().udpate(transaction);
             }
             listener.onSuccess();
         }

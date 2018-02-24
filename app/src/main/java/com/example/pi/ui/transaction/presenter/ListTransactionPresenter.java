@@ -85,5 +85,15 @@ public class ListTransactionPresenter implements ListTransactionContract.Present
     public void onSucces(List<Transaction> list) {
         view.showTransaction(list);
     }
+
+    @Override
+    public void showProgress() {
+        view.showProgress();
+    }
+
+    @Override
+    public void dismissProgress() {
+        view.dismissProgress();
+    }
     /* implements ListTransactionInteractorInterface.OnLoadFinisehdListener */
 }

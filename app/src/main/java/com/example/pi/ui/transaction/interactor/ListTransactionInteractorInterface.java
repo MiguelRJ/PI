@@ -17,6 +17,8 @@ public interface ListTransactionInteractorInterface {
 
     interface OnLoadFinisehdListener{
         void onSucces(List<Transaction> list);
+        void showProgress();
+        void dismissProgress();
     }
 
     void loadTransaction();

@@ -1,7 +1,11 @@
 package com.example.pi.ui.transaction.interactor;
 
+import android.os.AsyncTask;
+
 import com.example.pi.data.model.Transaction;
 import com.example.pi.data.repository.TransactionRepository;
+
+import java.util.ArrayList;
 
 /**
  * Created by
@@ -20,12 +24,28 @@ public class ListTransactionInteractor implements ListTransactionInteractorInter
 
     @Override
     public void loadTransaction() {
-        listener.onSucces(TransactionRepository.getInstance().getTransactions());
+        new AsyncTask<Void, Void, ArrayList<Transaction>>() {
+            @Override
+            protected void onPreExecute() {
+                listener.showProgress();
+            }
+
+            @Override
+            protected ArrayList<Transaction> doInBackground(Void... voids) {
+                return TransactionRepository.getInstance().getTransactions();
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Transaction> transactions) {
+                listener.dismissProgress();
+                listener.onSucces(transactions);
+            }
+        }.execute();
     }
 
     @Override
     public void deleteTransaction(Transaction transaction) {
-        TransactionRepository.getInstance().deleteTransaction(transaction);
+        TransactionRepository.getInstance().delete(transaction);
     }
 
 }

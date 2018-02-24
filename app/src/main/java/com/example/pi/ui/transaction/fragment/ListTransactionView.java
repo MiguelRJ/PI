@@ -1,6 +1,7 @@
 package com.example.pi.ui.transaction.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -50,6 +51,7 @@ public class ListTransactionView extends ListFragment implements ListTransaction
     private ListView listView;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private ProgressDialog progress;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +59,10 @@ public class ListTransactionView extends ListFragment implements ListTransaction
         this.adapter = new TransactionAdapter(getActivity());
         this.presenter = new ListTransactionPresenter(this);
         setRetainInstance(true);
+        progress = new ProgressDialog(getActivity());
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setMessage(getActivity().getResources().getString(R.string.downloading));
+        progress.setCancelable(false);
     }
 
     @Override
@@ -171,6 +177,16 @@ public class ListTransactionView extends ListFragment implements ListTransaction
     @Override
     public String nameSelecteds() {
         return getActivity().getResources().getString(R.string.selecteds);
+    }
+
+    @Override
+    public void showProgress() {
+        progress.show();
+    }
+
+    @Override
+    public void dismissProgress() {
+        progress.dismiss();
     }
     /* implements ListTransactionContract.View */
 }

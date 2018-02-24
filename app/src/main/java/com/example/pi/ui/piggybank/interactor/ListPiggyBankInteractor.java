@@ -38,11 +38,6 @@ public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface
 
             @Override
             protected ArrayList<PiggyBank> doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 return PiggyBankRepository.getInstance().getPiggybanks();
             }
 

@@ -18,6 +18,8 @@ public interface ListTransactionContract {
         void showTransaction(List<Transaction> list);
         Transaction getTransaction(Integer position);
         String nameSelecteds();
+        void showProgress();
+        void dismissProgress();
     }
     interface Presenter extends BasePresenter {
         void loadTransaction();
