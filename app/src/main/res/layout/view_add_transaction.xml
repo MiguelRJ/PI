@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/txvTypePayment"
-                style="@style/LoginTextView"
+                style="@style/AddTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -80,7 +80,7 @@
 
             <TextView
                 android:id="@+id/txvAmount"
-                style="@style/LoginTextView"
+                style="@style/AddTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txvAmount"
@@ -121,7 +121,7 @@
 
             <TextView
                 android:id="@+id/txvDate"
-                style="@style/LoginTextView"
+                style="@style/AddTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -151,7 +151,7 @@
 
             <TextView
                 android:id="@+id/txvTime"
-                style="@style/LoginTextView"
+                style="@style/AddTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txvChooseTime"
