@@ -3,6 +3,7 @@ package com.example.pi.data.db;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.pi.ui.pi.PIApplication;
 
@@ -50,6 +51,8 @@ public class PIOpenHelper extends SQLiteOpenHelper {
             db.execSQL(PIContract.UserEntry.SQL_INSERT);
             db.execSQL(PIContract.PiggyBankEntry.SQL_CREATE);
             db.execSQL(PIContract.PiggyBankEntry.SQL_INSERT);
+            db.execSQL(PIContract.TransactionEntry.SQL_CREATE);
+            db.execSQL(PIContract.TransactionEntry.SQL_INSERT);
             db.setTransactionSuccessful();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,6 +65,7 @@ public class PIOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
             db.beginTransaction();
+            db.execSQL(PIContract.TransactionEntry.SQL_DELETE);
             db.execSQL(PIContract.PiggyBankEntry.SQL_DELETE);
             db.execSQL(PIContract.UserEntry.SQL_DELETE);
             onCreate(db);
