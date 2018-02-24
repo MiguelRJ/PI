@@ -1,31 +1,21 @@
 package com.example.pi.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pi.R;
-import com.example.pi.data.db.model.PiggyBank;
-import com.example.pi.data.db.model.Transaction;
-import com.example.pi.data.db.repository.PiggyBankRepository;
+import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.repository.PiggyBankRepository;
 import com.example.pi.ui.utils.AppConstants;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-
-import static com.example.pi.ui.pi.PIApplication.getContext;
 
 /**
  * Created by

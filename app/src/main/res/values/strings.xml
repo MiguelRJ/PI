@@ -64,5 +64,6 @@
     <string name="PiggyBankDeleted">PiggyBank borrada</string>
     <string name="titleDeletePiggyBank">Eliminar PiggyBank</string>
     <string name="messageDeletePiggyBank">Desea eliminar la hucha:</string>
+    <string name="downloading">Descargando...</string>
 
 </resources>

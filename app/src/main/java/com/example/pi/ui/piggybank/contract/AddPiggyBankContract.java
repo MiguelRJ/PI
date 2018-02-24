@@ -1,5 +1,6 @@
 package com.example.pi.ui.piggybank.contract;
 
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.base.BaseView;
 
@@ -22,6 +23,6 @@ public interface AddPiggyBankContract {
         void showDuplicatedName();
     }
     interface Presenter extends BasePresenter{
-        void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar);
+        void validatePiggyBank(PiggyBank piggyBank);
     }
 }

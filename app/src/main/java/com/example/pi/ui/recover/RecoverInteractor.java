@@ -2,7 +2,7 @@ package com.example.pi.ui.recover;
 
 import android.text.TextUtils;
 
-import com.example.pi.data.db.repository.UserRepository;
+import com.example.pi.data.repository.UserRepository;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.utils.CommonUtils;
 

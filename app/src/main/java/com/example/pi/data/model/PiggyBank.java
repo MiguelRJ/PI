@@ -1,4 +1,4 @@
-package com.example.pi.data.db.model;
+package com.example.pi.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,10 +6,6 @@ import android.support.annotation.NonNull;
 
 import com.example.pi.ui.utils.AppConstants;
 
-import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
@@ -50,28 +46,13 @@ public class PiggyBank implements Comparable, Parcelable {
     /**
      * Complete constructor
      */
-    public PiggyBank(int id, int idUser, String name, GregorianCalendar creationDate) {
+    public PiggyBank(int id, int idUser, String name, double amount, Calendar creationDate) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
-        this.totalAmount =  Double.parseDouble(AppConstants.decimalformat.format(Math.random()*100).toString().replace(",","."));
+        //this.totalAmount =  Double.parseDouble(AppConstants.decimalformat.format(Math.random()*100).toString().replace(",","."));
+        this.totalAmount = amount;
         this.creationDate = creationDate;
-    }
-
-    /**
-     * Constructor with no creationDate, it will be added automatic
-     */
-    public PiggyBank(int id, int idUser, String name) {
-        this.id = id;
-        this.idUser = idUser;
-        this.name = name;
-        this.totalAmount =  Double.parseDouble(AppConstants.decimalformat.format(Math.random()*100).toString().replace(",","."));
-        this.creationDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
-                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                Calendar.getInstance().get(Calendar.MINUTE),
-                Calendar.getInstance().get(Calendar.SECOND));
     }
 
     public int getId() {

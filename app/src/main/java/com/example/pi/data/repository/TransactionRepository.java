@@ -1,18 +1,11 @@
-package com.example.pi.data.db.repository;
+package com.example.pi.data.repository;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import com.example.pi.R;
-import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.model.Transaction;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Iterator;

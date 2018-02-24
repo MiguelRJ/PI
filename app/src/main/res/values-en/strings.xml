@@ -60,4 +60,5 @@
     <string name="action_list_delete">Delete</string>
     <string name="btnOk">Ok</string>
     <string name="btnCancel">Cancel</string>
+    <string name="downloading">Downloading...</string>
 </resources>

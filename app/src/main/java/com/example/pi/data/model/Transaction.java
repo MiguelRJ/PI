@@ -1,24 +1,11 @@
-package com.example.pi.data.db.model;
+package com.example.pi.data.model;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 
-import com.example.pi.R;
-
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.sql.Time;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**

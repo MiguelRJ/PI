@@ -1,5 +1,6 @@
 package com.example.pi.ui.piggybank.presenter;
 
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.ui.piggybank.contract.AddPiggyBankContract;
 import com.example.pi.ui.piggybank.interactor.AddPiggyBankInteractor;
 import com.example.pi.ui.piggybank.interactor.AddPiggyBankInteractorInterface;
@@ -44,8 +45,8 @@ public class AddPiggyBankPresenter implements AddPiggyBankContract.Presenter,Add
 
     /* implements AddPiggyBankContract.Presenter */
     @Override
-    public void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar) {
-        interactor.validatePiggyBank(id,idUser,name,calendar,this);
+    public void validatePiggyBank(PiggyBank piggyBank) {
+        interactor.validatePiggyBank(piggyBank,this);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.example.pi.ui.transaction.interactor;
 
-import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.model.Transaction;
 
 /**
  * Created by

@@ -1,7 +1,11 @@
 package com.example.pi.ui.piggybank.interactor;
 
-import com.example.pi.data.db.model.PiggyBank;
-import com.example.pi.data.db.repository.PiggyBankRepository;
+import android.os.AsyncTask;
+
+import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.repository.PiggyBankRepository;
+
+import java.util.ArrayList;
 
 /**
  * Created by
@@ -25,12 +29,34 @@ public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface
      */
     @Override
     public void loadPiggyBank() {
-        listener.onSucces(PiggyBankRepository.getInstance().getPiggybanks());
+        new AsyncTask<Void, Void, ArrayList<PiggyBank>>() {
+
+            @Override
+            protected void onPreExecute() {
+                listener.showProgress();
+            }
+
+            @Override
+            protected ArrayList<PiggyBank> doInBackground(Void... voids) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return PiggyBankRepository.getInstance().getPiggybanks();
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<PiggyBank> piggyBanks) {
+                listener.dismissProgress();
+                listener.onSucces(piggyBanks);
+            }
+        }.execute();
     }
 
     @Override
     public void deletePiggyBank(PiggyBank piggyBank) {
-        PiggyBankRepository.getInstance().deletePiggyBank(piggyBank);
+        PiggyBankRepository.getInstance().delete(piggyBank);
         listener.onDeletedPiggyBank();
     }
 }

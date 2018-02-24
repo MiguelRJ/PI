@@ -1,7 +1,6 @@
-package com.example.pi.data.db.model;
+package com.example.pi.data.model;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**

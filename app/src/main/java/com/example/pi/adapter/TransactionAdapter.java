@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.transition.Visibility;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pi.R;
-import com.example.pi.data.db.model.Transaction;
-import com.example.pi.data.db.repository.TransactionRepository;
+import com.example.pi.data.model.Transaction;
+import com.example.pi.data.repository.TransactionRepository;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.utils.AppConstants;
 
 import java.io.ByteArrayOutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 
 /**
  * Created by

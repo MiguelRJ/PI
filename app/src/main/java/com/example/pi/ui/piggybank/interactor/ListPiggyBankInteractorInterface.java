@@ -1,6 +1,6 @@
 package com.example.pi.ui.piggybank.interactor;
 
-import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.model.PiggyBank;
 import java.util.List;
 
 /**
@@ -17,6 +17,8 @@ public interface ListPiggyBankInteractorInterface {
     interface OnLoadFinishedListener{
         void onSucces(List<PiggyBank> list);
         void onDeletedPiggyBank();
+        void showProgress();
+        void dismissProgress();
     }
 
     void loadPiggyBank(); // Get the list of pojos

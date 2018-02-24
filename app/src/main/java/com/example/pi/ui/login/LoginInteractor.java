@@ -1,16 +1,11 @@
 package com.example.pi.ui.login;
 
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.example.pi.R;
-import com.example.pi.data.db.model.PiggyBank;
-import com.example.pi.data.db.repository.PiggyBankRepository;
-import com.example.pi.data.db.repository.TransactionRepository;
-import com.example.pi.data.db.repository.UserRepository;
+import com.example.pi.data.repository.PiggyBankRepository;
+import com.example.pi.data.repository.TransactionRepository;
+import com.example.pi.data.repository.UserRepository;
 import com.example.pi.data.prefs.AppPreferencesHelper;
-import com.example.pi.ui.pi.PIApplication;
 import com.example.pi.ui.utils.CommonUtils;
 
 /**
@@ -32,10 +27,10 @@ public class LoginInteractor implements LoginInteractorInterface {
             AppPreferencesHelper.getInstance().setCurrentUserId(
                     UserRepository.getInstance().getUserIdBy(user)
             );
-            PiggyBankRepository.getInstance().resetArray();
+            /*PiggyBankRepository.getInstance().resetArray();
             PiggyBankRepository.getInstance().initialize();
             TransactionRepository.getInstance().resetArray();
-            TransactionRepository.getInstance().initialize();
+            TransactionRepository.getInstance().initialize();*/
             AppPreferencesHelper.getInstance().setCurrentUserName(user);
             AppPreferencesHelper.getInstance().setCurrentUserPassword(password);
             AppPreferencesHelper.getInstance().setCurrentRemember(remember);

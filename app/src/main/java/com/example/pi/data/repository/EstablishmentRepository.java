@@ -1,6 +1,6 @@
-package com.example.pi.data.db.repository;
+package com.example.pi.data.repository;
 
-import com.example.pi.data.db.model.Establishment;
+import com.example.pi.data.model.Establishment;
 
 import java.util.ArrayList;
 import java.util.Collections;

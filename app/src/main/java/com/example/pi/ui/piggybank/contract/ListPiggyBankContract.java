@@ -1,6 +1,6 @@
 package com.example.pi.ui.piggybank.contract;
 
-import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.base.BaseView;
 
@@ -23,6 +23,8 @@ public interface ListPiggyBankContract {
     interface View extends BaseView {
         void showPiggyBank(List<PiggyBank> list);
         void onDeletedPiggyBank();
+        void showProgress();
+        void dismissProgress();
     }
 
     interface Presenter extends BasePresenter {

@@ -1,8 +1,8 @@
-package com.example.pi.data.db.repository;
+package com.example.pi.data.repository;
 
 import android.util.Log;
 
-import com.example.pi.data.db.model.User;
+import com.example.pi.data.model.User;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

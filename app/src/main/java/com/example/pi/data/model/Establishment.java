@@ -1,4 +1,4 @@
-package com.example.pi.data.db.model;
+package com.example.pi.data.model;
 
 import android.support.annotation.NonNull;
 

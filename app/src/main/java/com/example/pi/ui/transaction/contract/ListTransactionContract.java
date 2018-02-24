@@ -1,6 +1,6 @@
 package com.example.pi.ui.transaction.contract;
 
-import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.model.Transaction;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.base.BaseView;
 

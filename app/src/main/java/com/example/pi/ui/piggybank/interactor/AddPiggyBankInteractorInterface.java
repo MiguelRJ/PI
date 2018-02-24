@@ -1,5 +1,9 @@
 package com.example.pi.ui.piggybank.interactor;
 
+import android.content.pm.PermissionGroupInfo;
+
+import com.example.pi.data.model.PiggyBank;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -23,5 +27,5 @@ public interface AddPiggyBankInteractorInterface {
         void onDuplicatedName();
 
     }
-    void validatePiggyBank(int id, int idUser, String name, GregorianCalendar calendar, AddPiggyBankInteractorInterface.OnAddPiggyBankListener listener);
+    void validatePiggyBank(PiggyBank piggyBank, AddPiggyBankInteractorInterface.OnAddPiggyBankListener listener);
 }

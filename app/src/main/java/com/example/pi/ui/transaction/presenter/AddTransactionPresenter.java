@@ -1,6 +1,6 @@
 package com.example.pi.ui.transaction.presenter;
 
-import com.example.pi.data.db.model.Transaction;
+import com.example.pi.data.model.Transaction;
 import com.example.pi.ui.transaction.contract.AddTransactionContract;
 import com.example.pi.ui.transaction.interactor.AddTransactionInteractor;
 import com.example.pi.ui.transaction.interactor.AddTransactionInteractorInterface;

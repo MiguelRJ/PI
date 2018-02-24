@@ -1,14 +1,12 @@
 package com.example.pi.ui.piggybank.presenter;
 
-import android.text.BoringLayout;
 import android.util.Log;
 
-import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.interactor.ListPiggyBankInteractor;
 import com.example.pi.ui.piggybank.interactor.ListPiggyBankInteractorInterface;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -67,6 +65,16 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
     @Override
     public void onSucces(List<PiggyBank> list) {
         view.showPiggyBank(list);
+    }
+
+    @Override
+    public void showProgress() {
+        view.showProgress();
+    }
+
+    @Override
+    public void dismissProgress() {
+        view.dismissProgress();
     }
     /* ListPiggyBankInteractorInterface.OnLoadFinishedListener */
 

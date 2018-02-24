@@ -2,39 +2,29 @@ package com.example.pi.ui.piggybank.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+
 import com.example.pi.R;
 import com.example.pi.adapter.PiggyBankAdapter;
-import com.example.pi.data.db.model.PiggyBank;
-import com.example.pi.data.db.model.Transaction;
-import com.example.pi.ui.about.AboutUsActivity;
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
-import com.example.pi.ui.piggybank.PiggyBankMultiChoiceModeListener;
 import com.example.pi.ui.piggybank.contract.ListPiggyBankContract;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
-import com.example.pi.ui.prefs.AccountSettingActivity;
-import com.example.pi.ui.transaction.TransactionMultiChoiceModeListener;
 import com.example.pi.ui.utils.ComonDialog;
 
 import java.util.List;
@@ -75,6 +65,7 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
     private RecyclerView recyclerView;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private ProgressDialog progress;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,6 +92,10 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
         this.adapter = new PiggyBankAdapter(listener);
         this.presenter = new ListPiggyBankPresenter(this);
         setRetainInstance(true);
+        progress = new ProgressDialog(getActivity());
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setMessage(getActivity().getResources().getString(R.string.downloading));
+        progress.setCancelable(false);
     }
 
     @Override
@@ -185,7 +180,8 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
 
     @Override
     public void showPiggyBank(List<PiggyBank> list) {
-
+        adapter = new PiggyBankAdapter(listener);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -193,6 +189,16 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
         showMessage(getString(R.string.PiggyBankDeleted));
         adapter = new PiggyBankAdapter(listener);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showProgress() {
+        progress.show();
+    }
+
+    @Override
+    public void dismissProgress() {
+        progress.dismiss();
     }
     /* implements ListPiggyBankContract.View */
 

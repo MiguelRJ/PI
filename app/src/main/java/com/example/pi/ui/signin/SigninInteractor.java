@@ -1,10 +1,9 @@
 package com.example.pi.ui.signin;
 
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.example.pi.data.db.model.User;
-import com.example.pi.data.db.repository.UserRepository;
+import com.example.pi.data.model.User;
+import com.example.pi.data.repository.UserRepository;
 import com.example.pi.ui.utils.CommonUtils;
 
 /**

@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -16,12 +15,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.pi.R;
-import com.example.pi.data.db.model.PiggyBank;
+import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.piggybank.contract.AddPiggyBankContract;
@@ -29,6 +28,8 @@ import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.utils.AppConstants;
 import com.example.pi.ui.utils.CommonDatePicker;
 import com.example.pi.ui.utils.ModeAdd;
+
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -52,12 +53,9 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     private AddPiggyBankContract.Presenter presenter;
 
     private PiggyBank piggyBankActual;
-    private int id;
-    private int idUser;
     private TextInputLayout tilName;
     private EditText edtDate;
     private Toolbar toolbar;
-    private Calendar calendar;
 
     static ModeAdd mode;
 
@@ -115,17 +113,18 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
 
         if (getArguments() != null){
             piggyBankActual = getArguments().getParcelable(PiggyBank.TAG);
-            id = piggyBankActual.getId();
-            idUser = piggyBankActual.getIdUser();
-            tilName.getEditText().setText(piggyBankActual.getName().toString());
-            calendar = piggyBankActual.getCreationDate();
         } else {
-            id = -1;
-            idUser = -1;
-            calendar = Calendar.getInstance();
+            piggyBankActual = new PiggyBank(
+                    -1,
+                    Integer.parseInt(String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId())),
+                    "",
+                    0,
+                    Calendar.getInstance()
+            );
         }
 
-        edtDate.setText(AppConstants.df.format(calendar.getTime()));
+        tilName.getEditText().setText(piggyBankActual.getName().toString());
+        edtDate.setText(AppConstants.df.format(piggyBankActual.getCreationDate().getTime()));
         return rootView;
     }
 
@@ -138,7 +137,8 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_save:
-                presenter.validatePiggyBank(id,idUser,tilName.getEditText().getText().toString(), (GregorianCalendar) calendar);
+                piggyBankActual.setName(tilName.getEditText().getText().toString());
+                presenter.validatePiggyBank(piggyBankActual);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -153,7 +153,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     @Override
     public void showOnSucces() {
         showMessage(getString(R.string.PiggyBankSaved));
-        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentManager fm = getFragmentManager();
         fm.popBackStack();
     }
 
@@ -177,9 +177,9 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     private void showDatePicker() {
         CommonDatePicker date = new CommonDatePicker();
         Bundle args = new Bundle();
-        args.putInt("year", calendar.get(Calendar.YEAR));
-        args.putInt("month", calendar.get(Calendar.MONTH));
-        args.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
+        args.putInt("year", piggyBankActual.getCreationDate().get(Calendar.YEAR));
+        args.putInt("month", piggyBankActual.getCreationDate().get(Calendar.MONTH));
+        args.putInt("day", piggyBankActual.getCreationDate().get(Calendar.DAY_OF_MONTH));
         date.setArguments(args);
         date.setCallBack(onDateSetListener);
         date.show(getFragmentManager(), CommonDatePicker.TAG);
@@ -187,8 +187,12 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
 
     OnDateSetListener onDateSetListener = new OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            calendar = new GregorianCalendar(year,month,day);
-            edtDate.setText(AppConstants.df.format(calendar.getTime()));
+            try {
+                piggyBankActual.getCreationDate().setTime(AppConstants.df.parse(day+"/"+month+"/"+year));
+                edtDate.setText(AppConstants.df.format(piggyBankActual.getCreationDate().getTime()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     };
 }
