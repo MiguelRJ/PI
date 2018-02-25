@@ -13,20 +13,29 @@ import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
 import com.example.pi.ui.piggybank.fragment.ListPiggyBankView;
 import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
+import com.example.pi.ui.transaction.fragment.AddTransactionView;
+import com.example.pi.ui.transaction.fragment.ListTransactionView;
+import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
+import com.example.pi.ui.transaction.presenter.ListTransactionPresenter;
 
 /**
  * Created by Miguel on 25/02/2018.
  */
 
 public class MainActivity extends AppCompatActivity implements MenuView.MenuListener,
-        ListPiggyBankView.ListPiggyBankListener {
+        ListPiggyBankView.ListPiggyBankListener,
+        ListTransactionView.ListTransactionListener {
 
     private MenuView menuView;
     private MenuPresenter menuPresenter;
-    private ListPiggyBankView listView;
-    private ListPiggyBankPresenter listPresenter;
-    private AddPiggyBankView addView;
-    private AddPiggyBankPresenter addPresenter;
+    private ListPiggyBankView listViewPiggyBank;
+    private ListPiggyBankPresenter listPresenterPiggyBank;
+    private AddPiggyBankView addViewPiggyBank;
+    private AddPiggyBankPresenter addPresenterPiggyBank;
+    private ListTransactionView listViewTransaction;
+    private ListTransactionPresenter listPresenterTransaction;
+    private AddTransactionView addViewTransaction;
+    private AddTransactionPresenter addPresenterTransaction;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,43 +51,73 @@ public class MainActivity extends AppCompatActivity implements MenuView.MenuList
         }
         menuPresenter = new MenuPresenter(menuView);
         menuView.setPresenter(menuPresenter);
-
     }
 
     @Override
     public void loadAllPiggyBank() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        listView = (ListPiggyBankView) fm.findFragmentByTag(ListPiggyBankView.TAG);
-        if (listView == null) {
-            listView = (ListPiggyBankView) ListPiggyBankView.newInstance(null);
-            ft.replace(android.R.id.content,listView, ListPiggyBankView.TAG);
+        listViewPiggyBank = (ListPiggyBankView) fm.findFragmentByTag(ListPiggyBankView.TAG);
+        if (listViewPiggyBank == null) {
+            listViewPiggyBank = (ListPiggyBankView) ListPiggyBankView.newInstance(null);
+            ft.replace(android.R.id.content,listViewPiggyBank, ListPiggyBankView.TAG);
             ft.addToBackStack(null);
             ft.commit();
         }
-
-        listPresenter = new ListPiggyBankPresenter(listView);
-
-        listView.setPresenter(listPresenter);
+        listPresenterPiggyBank = new ListPiggyBankPresenter(listViewPiggyBank);
+        listViewPiggyBank.setPresenter(listPresenterPiggyBank);
     }
 
     @Override
     public void addNewPiggyBank(Bundle bundle) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        addView = (AddPiggyBankView) fm.findFragmentByTag(AddPiggyBankView.TAG);
-        if (addView == null){
+        addViewPiggyBank = (AddPiggyBankView) fm.findFragmentByTag(AddPiggyBankView.TAG);
+        if (addViewPiggyBank == null){
             if (bundle != null){
-                addView = AddPiggyBankView.newInstance(bundle);
+                addViewPiggyBank = AddPiggyBankView.newInstance(bundle);
             } else {
-                addView = AddPiggyBankView.newInstance(null);
+                addViewPiggyBank = AddPiggyBankView.newInstance(null);
             }
-            ft.replace(android.R.id.content,addView,AddPiggyBankView.TAG);
+            ft.replace(android.R.id.content,addViewPiggyBank,AddPiggyBankView.TAG);
             ft.addToBackStack(null);
             ft.commit();
         }
-        addPresenter = new AddPiggyBankPresenter(addView);
+        addPresenterPiggyBank = new AddPiggyBankPresenter(addViewPiggyBank);
+        addViewPiggyBank.setPresenter(addPresenterPiggyBank);
+    }
 
-        addView.setPresenter(addPresenter);
+    @Override
+    public void loadAllTransaction() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        listViewTransaction = (ListTransactionView) fm.findFragmentByTag(ListTransactionView.TAG);
+        if (listViewTransaction == null) {
+            listViewTransaction = (ListTransactionView) ListTransactionView.newInstance(null);
+            ft.replace(android.R.id.content,listViewTransaction,ListTransactionView.TAG);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+        listPresenterTransaction = new ListTransactionPresenter(listViewTransaction);
+        listViewTransaction.setPresenter(listPresenterTransaction);
+    }
+
+    @Override
+    public void addNewTransaction(Bundle bundle) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        addViewTransaction = (AddTransactionView) fm.findFragmentByTag(AddTransactionView.TAG);
+        if (addViewTransaction == null){
+            if (bundle != null){
+                addViewTransaction = AddTransactionView.newInstance(bundle);
+            } else {
+                addViewTransaction = AddTransactionView.newInstance(null);
+            }
+            ft.replace(android.R.id.content,addViewTransaction,AddTransactionView.TAG);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+        addPresenterTransaction = new AddTransactionPresenter(addViewTransaction);
+        addViewTransaction.setPresenter(addPresenterTransaction);
     }
 }

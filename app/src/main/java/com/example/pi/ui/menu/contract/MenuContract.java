@@ -13,13 +13,11 @@ import java.util.List;
 
 public interface MenuContract {
     interface View extends BaseView {
-       void showPiggyBank(ArrayList<PiggyBank> list);
         void onDeletedPiggyBank();
         void onSuccess();
         void onError();
     }
     interface Presenter extends BasePresenter {
-        void loadPiggyBank();
         void onDeletedPiggyBank();
         boolean existsAnyTransactionWithPiggyBankID(int id);
     }

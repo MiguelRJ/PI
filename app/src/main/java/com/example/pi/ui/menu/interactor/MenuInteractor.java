@@ -15,10 +15,6 @@ public class MenuInteractor implements MenuInteractorInterface {
     public MenuInteractor(MenuInteractorInterface.OnLoadFinishedListener listener){
         this.listener = listener;
     }
-    @Override
-    public void loadPiggyBank() {
-        listener.onSucces(PiggyBankRepository.getInstance().getPiggybanks());
-    }
 
     @Override
     public void deletePiggyBank(PiggyBank piggyBank) {

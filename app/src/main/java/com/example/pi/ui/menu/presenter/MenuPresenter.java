@@ -29,11 +29,6 @@ public class MenuPresenter implements MenuContract.Presenter, MenuInteractorInte
     }
 
     @Override
-    public void loadPiggyBank() {
-        interactor.loadPiggyBank();
-    }
-
-    @Override
     public void onDeletedPiggyBank() {
         view.onDeletedPiggyBank();
     }
@@ -41,11 +36,6 @@ public class MenuPresenter implements MenuContract.Presenter, MenuInteractorInte
     @Override
     public boolean existsAnyTransactionWithPiggyBankID(int id) {
         return interactor.existsAnyTransactionWithPiggyBankID(id);
-    }
-
-    @Override
-    public void onSucces(ArrayList<PiggyBank> list) {
-        view.showPiggyBank(list);
     }
 
     @Override
