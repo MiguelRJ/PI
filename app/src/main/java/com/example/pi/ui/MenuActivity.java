@@ -40,10 +40,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fabOpenPiggyBank = findViewById(R.id.fabOpenPiggyBank);
+        /*fabOpenPiggyBank = findViewById(R.id.fabOpenPiggyBank);
         fabOpenPiggyBank.setOnClickListener(this);
         fabOpenTransaction = findViewById(R.id.fabOpenTransaction);
-        fabOpenTransaction.setOnClickListener(this);
+        fabOpenTransaction.setOnClickListener(this);*/
         /*AppPreferencesHelper app = ((PIApplication)getApplicationContext()).getAppPreferencesHelper();
         String message = app.getCurrentUserId()+". Tu usuario de sesion es "+ app.getCurrentUserName();
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();*/

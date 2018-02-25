@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.piggybank.PiggyBankActivity" />
+        <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.MenuActivity" />
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.about.AboutUsActivity" />

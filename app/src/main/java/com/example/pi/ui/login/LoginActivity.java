@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.pi.R;
 import com.example.pi.data.prefs.AppPreferencesHelper;
+import com.example.pi.ui.MainActivity;
 import com.example.pi.ui.MenuActivity;
 import com.example.pi.ui.base.BaseAppCompatActivity;
 import com.example.pi.ui.pi.PIApplication;
@@ -79,7 +80,7 @@ public class LoginActivity extends BaseAppCompatActivity implements View.OnClick
 
     @Override
     public void onSuccess() {
-        startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override

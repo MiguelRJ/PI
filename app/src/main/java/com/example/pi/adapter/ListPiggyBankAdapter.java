@@ -27,8 +27,8 @@ public class ListPiggyBankAdapter extends RecyclerView.Adapter<ListPiggyBankAdap
     private ArrayList<PiggyBank> piggyBanks;
     private static Context context; // necesito el contecto para tener acceso a los resources
 
-    public ListPiggyBankAdapter(Context context) {
-        piggyBanks = PiggyBankRepository.getInstance().getPiggybanks();
+    public ListPiggyBankAdapter(Context context, ArrayList<PiggyBank> piggyBanks) {
+        this.piggyBanks = piggyBanks;
         this.context = context;
     }
 
