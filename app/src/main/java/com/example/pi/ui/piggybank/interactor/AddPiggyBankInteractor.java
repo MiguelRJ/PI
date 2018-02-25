@@ -23,7 +23,7 @@ public class AddPiggyBankInteractor implements AddPiggyBankInteractorInterface {
 
     @Override
     public void validatePiggyBank(PiggyBank piggyBank, OnAddPiggyBankListener listener) {
-        if (TextUtils.isEmpty(piggyBank.getName())){
+        if (TextUtils.isEmpty(piggyBank.getName().replace(" ",""))){
             listener.onNameEmptyError();
         } else if (UserRepository.getInstance().validateCredentials(
                 AppPreferencesHelper.getInstance().getCurrentUserName(),

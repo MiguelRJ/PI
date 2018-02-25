@@ -137,7 +137,7 @@ public class AddPiggyBankView extends BaseFragment implements AddPiggyBankContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_save:
-                piggyBankActual.setName(tilName.getEditText().getText().toString());
+                piggyBankActual.setName(tilName.getEditText().getText().toString().trim());
                 presenter.validatePiggyBank(piggyBankActual);
                 break;
         }
