@@ -240,10 +240,18 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
 
     @Override
     public void showPiggyBankOnSpinner(ArrayList<PiggyBank> piggyBanks) {
+        int selection = 0;
         adapterSpinner.clear();
         adapterSpinner.addAll(piggyBanks);
         spnPiggyBank.setAdapter(adapterSpinner);
-        spnPiggyBank.setSelection(transactionActual.getIdPiggyBank()-1);
+        while (piggyBanks.get(selection).getId() != transactionActual.getIdPiggyBank()){
+            selection++;
+            if (selection == piggyBanks.size()){
+                selection = 0;
+                break;
+            }
+        }
+        spnPiggyBank.setSelection(selection);
     }
     /* implements AddTransactionContract.View */
 
