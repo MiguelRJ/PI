@@ -24,12 +24,18 @@ import java.util.Collections;
 public class ListPiggyBankAdapter extends RecyclerView.Adapter<ListPiggyBankAdapter.PiggyBankViewHolder> {
 
 
+    public interface OnItemClickListener{
+        void OnItemClick(PiggyBank piggyBank);
+        void OnItemLongClick(PiggyBank piggyBank);
+    }
+    private OnItemClickListener listener;
     private ArrayList<PiggyBank> piggyBanks;
     private static Context context; // necesito el contecto para tener acceso a los resources
 
-    public ListPiggyBankAdapter(Context context, ArrayList<PiggyBank> piggyBanks) {
-        this.piggyBanks = piggyBanks;
+    public ListPiggyBankAdapter(Context context, OnItemClickListener listener) {
+        this.piggyBanks = PiggyBankRepository.getInstance().getPiggybanks();
         this.context = context;
+        this.listener = listener;
     }
 
     public ListPiggyBankAdapter orderByTotalAmount() {
@@ -63,7 +69,7 @@ public class ListPiggyBankAdapter extends RecyclerView.Adapter<ListPiggyBankAdap
         piggyBankViewHolder.txvAmount.setText(AppConstants.decimalformat.format(piggyBanks.get(position).getTotalAmount()).replace(",", "."));
         Drawable d = context.getResources().getDrawable(R.drawable.shape_item_piggybank);
         piggyBankViewHolder.cl.setBackground(d);
-        //piggyBankViewHolder.cl.setBackground(context.getResources().getDrawable(R.drawable.shape_loginedittext));
+        piggyBankViewHolder.bind(piggyBanks.get(position),listener);
     }
 
     @Override
@@ -85,7 +91,7 @@ public class ListPiggyBankAdapter extends RecyclerView.Adapter<ListPiggyBankAdap
             txvAmount = view.findViewById(R.id.txvAmount);
         }
 
-        public void bind(final PiggyBank piggyBank, final PiggyBankAdapter.OnItemClickListener listener) {
+        public void bind (final PiggyBank piggyBank, final ListPiggyBankAdapter.OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

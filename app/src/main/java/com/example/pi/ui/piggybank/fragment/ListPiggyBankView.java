@@ -100,7 +100,7 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
             }
         };
         this.adapter = new PiggyBankAdapter(listener);
-        this.presenter = new ListPiggyBankPresenter(this);
+        //this.presenter = new ListPiggyBankPresenter(this);
         setRetainInstance(true);
         progress = new ProgressDialog(getActivity());
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.pi.R;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.MainActivity;
-import com.example.pi.ui.MenuActivity;
 import com.example.pi.ui.base.BaseAppCompatActivity;
 import com.example.pi.ui.pi.PIApplication;
 import com.example.pi.ui.recover.RecoverActivity;

@@ -13,7 +13,13 @@ public interface MenuInteractorInterface {
 
     interface OnLoadFinishedListener{
         void onSucces(ArrayList<PiggyBank> list);
+        void onSucces();
+        void onError();
+        void onDeletedPiggyBank();
     }
 
-    void loadPiggyBank();
+    void loadPiggyBank(); // Get the list of pojos
+    void deletePiggyBank(PiggyBank piggyBank);
+    boolean existsAnyTransactionWithPiggyBankID(int id);
+    void deleteAllTransactionsWithPiggyBankID(int id);
 }

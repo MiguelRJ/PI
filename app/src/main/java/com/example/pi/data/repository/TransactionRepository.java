@@ -7,6 +7,7 @@ import com.example.pi.data.db.PIContract;
 import com.example.pi.data.db.dao.TransactionDao;
 import com.example.pi.data.model.Transaction;
 import com.example.pi.data.prefs.AppPreferencesHelper;
+import com.example.pi.ui.menu.interactor.MenuInteractorInterface;
 import com.example.pi.ui.piggybank.interactor.ListPiggyBankInteractorInterface;
 
 import java.util.ArrayList;
@@ -80,6 +81,15 @@ public class TransactionRepository {
     }
 
     public void deleteAll(int id, ListPiggyBankInteractorInterface.OnLoadFinishedListener listener){
+        dao.deleteAll(id);
+        if (id == 0){
+            listener.onError();
+        } else {
+            listener.onSucces();
+        }
+    }
+
+    public void deleteAll(int id, MenuInteractorInterface.OnLoadFinishedListener listener){
         dao.deleteAll(id);
         if (id == 0){
             listener.onError();
