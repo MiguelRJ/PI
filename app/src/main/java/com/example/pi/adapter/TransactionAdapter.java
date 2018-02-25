@@ -40,7 +40,7 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
     private static Context context;
 
     public TransactionAdapter(@NonNull Context context) {
-        super(context, R.layout.item_transaction_2, new ArrayList<Transaction>(TransactionRepository.getInstance().getTransactions()));
+        super(context, R.layout.item_transaction, new ArrayList<Transaction>(TransactionRepository.getInstance().getTransactions()));
         this.context = context;
     }
 
@@ -58,7 +58,7 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
 
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.item_transaction_2, null);
+            view = inflater.inflate(R.layout.item_transaction, null);
             transactionHolder = new TransactionHolder();
             transactionHolder.imageView = view.findViewById(R.id.imgImage);
             transactionHolder.txvPayment = view.findViewById(R.id.txvPayment);
