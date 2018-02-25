@@ -139,6 +139,20 @@ public class TransactionDao implements TransactionDaoBase {
         return deposits - payments;
     }
 
+    @Override
+    public boolean exists(int id) {
+        boolean resultado = false;
+        SQLiteDatabase db = PIOpenHelper.getInstance().openDataBase();
+        String query = "SELECT * FROM '"+PIContract.TransactionEntry.TABLE_NAME+"' "+
+                " WHERE "+PIContract.TransactionEntry.COL_ID_PIGGYBANK+"="+id;
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount()>0){
+            resultado = true;
+        }
+        PIOpenHelper.getInstance().closeDataBase();
+        return resultado;
+    }
+
 
     @Override
     public ContentValues createContent(Transaction transaction) {

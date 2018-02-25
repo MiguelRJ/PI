@@ -80,13 +80,17 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
 
             @Override
             public void OnItemLongClick(PiggyBank piggyBank) {
-                Bundle bundle = new Bundle();
-                bundle.putString(ComonDialog.TITTLE,getActivity().getResources().getString(R.string.titleDeletePiggyBank));
-                bundle.putString(ComonDialog.MESSAGE, getActivity().getResources().getString(R.string.messageDeletePiggyBank)+" "+piggyBank.getName());
-                bundle.putString(ComonDialog.TAG,PiggyBank.TAG);
-                bundle.putParcelable(PiggyBank.TAG,piggyBank);
-                Dialog dialog = ComonDialog.showConfirmDialog(bundle,getActivity(),presenter,ListPiggyBankPresenter.DELETE);
-                dialog.show();
+                if (presenter.existsAnyTransactionWithPiggyBankID(piggyBank.getId())) {
+
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ComonDialog.TITTLE, getActivity().getResources().getString(R.string.titleDeletePiggyBank));
+                    bundle.putString(ComonDialog.MESSAGE, getActivity().getResources().getString(R.string.messageDeletePiggyBank) + " " + piggyBank.getName());
+                    bundle.putString(ComonDialog.TAG, PiggyBank.TAG);
+                    bundle.putParcelable(PiggyBank.TAG, piggyBank);
+                    Dialog dialog = ComonDialog.showConfirmDialog(bundle, getActivity(), presenter, ListPiggyBankPresenter.DELETE);
+                    dialog.show();
+                }
             }
         };
         this.adapter = new PiggyBankAdapter(listener);

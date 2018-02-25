@@ -30,6 +30,7 @@ public interface ListPiggyBankContract {
     interface Presenter extends BasePresenter {
         void loadPiggyBank();
         void onDeletedPiggyBank();
+        boolean existsAnyTransactionWithPiggyBankID(int id);
     }
 
 }

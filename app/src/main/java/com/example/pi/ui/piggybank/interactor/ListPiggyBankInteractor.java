@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.pi.data.model.PiggyBank;
 import com.example.pi.data.repository.PiggyBankRepository;
+import com.example.pi.data.repository.TransactionRepository;
 
 import java.util.ArrayList;
 
@@ -53,5 +54,10 @@ public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface
     public void deletePiggyBank(PiggyBank piggyBank) {
         PiggyBankRepository.getInstance().delete(piggyBank);
         listener.onDeletedPiggyBank();
+    }
+
+    @Override
+    public boolean existsAnyTransactionWithPiggyBankID(int id) {
+        return TransactionRepository.getInstance().exists(id);
     }
 }

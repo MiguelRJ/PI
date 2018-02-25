@@ -59,6 +59,11 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
     public void onDeletedPiggyBank() {
         view.onDeletedPiggyBank();
     }
+
+    @Override
+    public boolean existsAnyTransactionWithPiggyBankID(int id) {
+        return interactor.existsAnyTransactionWithPiggyBankID(id);
+    }
     /* implements ListPiggyBankContract.Presenter */
 
     /* ListPiggyBankInteractorInterface.OnLoadFinishedListener */

@@ -23,4 +23,5 @@ public interface ListPiggyBankInteractorInterface {
 
     void loadPiggyBank(); // Get the list of pojos
     void deletePiggyBank(PiggyBank piggyBank);
+    boolean existsAnyTransactionWithPiggyBankID(int id);
 }

@@ -74,6 +74,10 @@ public class TransactionRepository {
         }
     }
 
+    public boolean exists(int id){
+        return dao.exists(id);
+    }
+
     public double sumTotalAmount(int idPiggyBank){
         return dao.sumTotalAmount(idPiggyBank);
     }

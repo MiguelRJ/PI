@@ -3,6 +3,7 @@ package com.example.pi.data.db;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.util.Log;
 
 import com.example.pi.ui.pi.PIApplication;
@@ -74,6 +75,18 @@ public class PIOpenHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         } finally {
             db.endTransaction();
+        }
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                db.setForeignKeyConstraintsEnabled(true);
+            } else {
+                db.execSQL("PRAGMA foreign_keys=1");
+            }
         }
     }
 }
