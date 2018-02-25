@@ -8,6 +8,7 @@ import com.example.pi.data.db.PIContract;
 import com.example.pi.data.db.PIOpenHelper;
 import com.example.pi.data.model.PiggyBank;
 import com.example.pi.data.prefs.AppPreferencesHelper;
+import com.example.pi.data.repository.TransactionRepository;
 import com.example.pi.ui.utils.AppConstants;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class PiggyBankDao implements PiggyBankDaoBase {
                         cursor.getInt(0),
                         cursor.getInt(1),
                         cursor.getString(2),
-                        cursor.getDouble(3),
+                        TransactionRepository.getInstance().sumTotalAmount(cursor.getInt(0)),
                         c
                 ));
             } while (cursor.moveToNext());

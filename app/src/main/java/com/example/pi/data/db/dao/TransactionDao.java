@@ -108,6 +108,39 @@ public class TransactionDao implements TransactionDaoBase {
     }
 
     @Override
+    public double sumTotalAmount(int idPiggyBank) {
+        double deposits = 0; // 0, false
+        double payments = 0; // 1 , true
+
+        SQLiteDatabase db = PIOpenHelper.getInstance().openDataBase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT sum(" + PIContract.TransactionEntry.COL_AMOUNT +
+                        ") FROM '" + PIContract.TransactionEntry.TABLE_NAME + "'" +
+                        " WHERE " + PIContract.TransactionEntry.COL_ID_PIGGYBANK + "=" + String.valueOf(idPiggyBank)+
+                        " AND "+PIContract.TransactionEntry.COL_PAYMENT+"='0'",
+                null
+        );
+        if (cursor.moveToFirst()){
+            deposits=  cursor.getDouble(0);
+        }
+
+        cursor = db.rawQuery(
+                "SELECT sum(" + PIContract.TransactionEntry.COL_AMOUNT +
+                        ") FROM '" + PIContract.TransactionEntry.TABLE_NAME + "'" +
+                        " WHERE " + PIContract.TransactionEntry.COL_ID_PIGGYBANK + "=" + String.valueOf(idPiggyBank)+
+                        " AND "+PIContract.TransactionEntry.COL_PAYMENT+"='1'",
+                null
+        );
+        if (cursor.moveToFirst()){
+            payments =  cursor.getDouble(0);
+        }
+        PIOpenHelper.getInstance().closeDataBase();
+        return deposits - payments;
+    }
+
+
+    @Override
     public ContentValues createContent(Transaction transaction) {
         ContentValues cv = new ContentValues();
         cv.put(PIContract.TransactionEntry.COL_ID_USER,transaction.getIdUser());

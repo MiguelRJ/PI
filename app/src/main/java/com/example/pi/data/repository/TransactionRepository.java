@@ -74,6 +74,10 @@ public class TransactionRepository {
         }
     }
 
+    public double sumTotalAmount(int idPiggyBank){
+        return dao.sumTotalAmount(idPiggyBank);
+    }
+
     /* GET TRANSACTIONS ORDER BY */
     public ArrayList<Transaction> getTransactions(){
         return dao.loadAll(PIContract.TransactionEntry.DEFAULT_SORT);
