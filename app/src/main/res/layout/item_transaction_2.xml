@@ -37,7 +37,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ellipsize="end"
-        android:scrollHorizontally="true"
+        android:scrollHorizontally="false"
         android:singleLine="true"
         android:textColor="@android:color/secondary_text_light"
         app:layout_constraintBottom_toBottomOf="@+id/txvAmount"
@@ -59,18 +59,20 @@
 
     <TextView
         android:id="@+id/txvAmount"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:maxLength="14"
+        android:ellipsize="middle"
         android:singleLine="true"
         android:textAlignment="textEnd"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txvPiggyBank"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="123456789.67" />
+        tools:text="1234567891234456789.67" />
 
     <TextView
         android:id="@+id/txvComment"
