@@ -60,4 +60,9 @@ public class ListPiggyBankInteractor implements ListPiggyBankInteractorInterface
     public boolean existsAnyTransactionWithPiggyBankID(int id) {
         return TransactionRepository.getInstance().exists(id);
     }
+
+    @Override
+    public void deleteAllTransactionsWithPiggyBankID(int id) {
+        TransactionRepository.getInstance().deleteAll(id, listener);
+    }
 }

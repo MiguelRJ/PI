@@ -16,6 +16,8 @@ public interface ListPiggyBankInteractorInterface {
 
     interface OnLoadFinishedListener{
         void onSucces(List<PiggyBank> list);
+        void onSucces();
+        void onError();
         void onDeletedPiggyBank();
         void showProgress();
         void dismissProgress();
@@ -24,4 +26,5 @@ public interface ListPiggyBankInteractorInterface {
     void loadPiggyBank(); // Get the list of pojos
     void deletePiggyBank(PiggyBank piggyBank);
     boolean existsAnyTransactionWithPiggyBankID(int id);
+    void deleteAllTransactionsWithPiggyBankID(int id);
 }

@@ -22,6 +22,7 @@ import java.util.List;
 public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,ListPiggyBankInteractorInterface.OnLoadFinishedListener {
 
     public static final int DELETE = 1;
+    public static final int DELETE_ALL = 2;
 
     private ListPiggyBankContract.View view;
     private ListPiggyBankInteractorInterface interactor;
@@ -43,6 +44,9 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
         switch (i) {
             case DELETE:
                 interactor.deletePiggyBank((PiggyBank) o);
+                break;
+            case DELETE_ALL:
+                interactor.deleteAllTransactionsWithPiggyBankID( ((PiggyBank)o).getId() );
                 break;
             default:
                 Log.e("Error option","Option "+i+" not found");
@@ -70,6 +74,16 @@ public class ListPiggyBankPresenter implements ListPiggyBankContract.Presenter,L
     @Override
     public void onSucces(List<PiggyBank> list) {
         view.showPiggyBank(list);
+    }
+
+    @Override
+    public void onSucces() {
+        view.onSuccess();
+    }
+
+    @Override
+    public void onError() {
+        view.onError();
     }
 
     @Override

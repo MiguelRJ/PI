@@ -153,6 +153,20 @@ public class TransactionDao implements TransactionDaoBase {
         return resultado;
     }
 
+    @Override
+    public int deleteAll(int id) {
+        SQLiteDatabase db = PIOpenHelper.getInstance().openDataBase();
+        String where = PIContract.TransactionEntry.COL_ID_PIGGYBANK+"=?";
+        String[] whereArgs = new String[]{String.valueOf(id)};
+        int count = db.delete(
+                "'"+PIContract.TransactionEntry.TABLE_NAME+"'",
+                where,
+                whereArgs
+        );
+        PIOpenHelper.getInstance().closeDataBase();
+        return count;
+    }
+
 
     @Override
     public ContentValues createContent(Transaction transaction) {

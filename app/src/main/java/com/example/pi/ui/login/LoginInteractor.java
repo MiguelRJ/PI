@@ -25,7 +25,7 @@ public class LoginInteractor implements LoginInteractorInterface {
             listener.onPasswordError();
         } else if (UserRepository.getInstance().validateCredentials(user,password)){
             AppPreferencesHelper.getInstance().setCurrentUserId(
-                    UserRepository.getInstance().getUserIdBy(user)
+                    UserRepository.getInstance().getUserIdBy(user)+1
             );
             /*PiggyBankRepository.getInstance().resetArray();
             PiggyBankRepository.getInstance().initialize();

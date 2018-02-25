@@ -25,6 +25,8 @@ public interface ListPiggyBankContract {
         void onDeletedPiggyBank();
         void showProgress();
         void dismissProgress();
+        void onSuccess();
+        void onError();
     }
 
     interface Presenter extends BasePresenter {

@@ -7,6 +7,7 @@ import com.example.pi.data.db.PIContract;
 import com.example.pi.data.db.dao.TransactionDao;
 import com.example.pi.data.model.Transaction;
 import com.example.pi.data.prefs.AppPreferencesHelper;
+import com.example.pi.ui.piggybank.interactor.ListPiggyBankInteractorInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,6 +77,15 @@ public class TransactionRepository {
 
     public boolean exists(int id){
         return dao.exists(id);
+    }
+
+    public void deleteAll(int id, ListPiggyBankInteractorInterface.OnLoadFinishedListener listener){
+        dao.deleteAll(id);
+        if (id == 0){
+            listener.onError();
+        } else {
+            listener.onSucces();
+        }
     }
 
     public double sumTotalAmount(int idPiggyBank){

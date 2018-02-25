@@ -17,5 +17,6 @@ public interface TransactionDaoBase {
     int delete(Transaction transaction);
     double sumTotalAmount(int idPiggyBank);
     boolean exists(int id);
+    int deleteAll(int id);
     ContentValues createContent(Transaction transaction);
 }

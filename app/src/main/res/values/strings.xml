@@ -65,5 +65,9 @@
     <string name="titleDeletePiggyBank">Eliminar PiggyBank</string>
     <string name="messageDeletePiggyBank">Desea eliminar la hucha:</string>
     <string name="downloading">Descargando...</string>
+    <string name="titlePiggyBankNotEmpty">¡CUIDADO! </string>
+    <string name="messagePiggyBankDeleteAll">Esta hucha aun contiene transacciones. ¿Desea borrar TODAS las transacciones asociadas a la hucha</string>
+    <string name="onSuccess">Realizado con exito!</string>
+    <string name="onError">Ocurrio un error.</string>
 
 </resources>

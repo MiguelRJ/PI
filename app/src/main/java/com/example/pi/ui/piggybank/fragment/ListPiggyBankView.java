@@ -81,7 +81,13 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
             @Override
             public void OnItemLongClick(PiggyBank piggyBank) {
                 if (presenter.existsAnyTransactionWithPiggyBankID(piggyBank.getId())) {
-
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ComonDialog.TITTLE, getActivity().getResources().getString(R.string.titlePiggyBankNotEmpty));
+                    bundle.putString(ComonDialog.MESSAGE, getActivity().getResources().getString(R.string.messagePiggyBankDeleteAll) + " '" + piggyBank.getName()+"'?");
+                    bundle.putString(ComonDialog.TAG, PiggyBank.TAG);
+                    bundle.putParcelable(PiggyBank.TAG, piggyBank);
+                    Dialog dialog = ComonDialog.showConfirmDialog(bundle, getActivity(), presenter, ListPiggyBankPresenter.DELETE_ALL);
+                    dialog.show();
                 } else {
                     Bundle bundle = new Bundle();
                     bundle.putString(ComonDialog.TITTLE, getActivity().getResources().getString(R.string.titleDeletePiggyBank));
@@ -203,6 +209,18 @@ public class ListPiggyBankView extends BaseFragment implements ListPiggyBankCont
     @Override
     public void dismissProgress() {
         progress.dismiss();
+    }
+
+    @Override
+    public void onSuccess() {
+        showMessage(getString(R.string.onSuccess));
+        adapter = new PiggyBankAdapter(listener);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onError() {
+        showMessage(getString(R.string.onError));
     }
     /* implements ListPiggyBankContract.View */
 
