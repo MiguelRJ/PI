@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import com.example.pi.R;
+import com.example.pi.adapter.PiggyBankAdapterSpinner;
 import com.example.pi.data.model.PiggyBank;
 import com.example.pi.data.model.Transaction;
 import com.example.pi.data.prefs.AppPreferencesHelper;
@@ -50,6 +51,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
 
     public static final String TAG = "AddTransactionView";
     private AddTransactionContract.Presenter presenter;
+    private PiggyBankAdapterSpinner adapterSpinner;
 
     private Transaction transactionActual;
     private RadioButton rbPayment, rbDeposit;
@@ -76,6 +78,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new AddTransactionPresenter(this);
+        adapterSpinner = new PiggyBankAdapterSpinner(getActivity());
         setRetainInstance(true);
     }
 
@@ -237,10 +240,9 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
 
     @Override
     public void showPiggyBankOnSpinner(ArrayList<PiggyBank> piggyBanks) {
-        ArrayAdapter<PiggyBank> piggyBankAdapter = new ArrayAdapter<PiggyBank>(
-                getActivity(), android.R.layout.simple_spinner_item,piggyBanks
-        );
-        spnPiggyBank.setAdapter(piggyBankAdapter);
+        adapterSpinner.clear();
+        adapterSpinner.addAll(piggyBanks);
+        spnPiggyBank.setAdapter(adapterSpinner);
         spnPiggyBank.setSelection(transactionActual.getIdPiggyBank()-1);
     }
     /* implements AddTransactionContract.View */
