@@ -15,8 +15,8 @@
     <string name="btnFastPay">Pago rapido</string>
     <string name="chkImage">Imagen</string>
     <string name="chkLocation">Ubicacion</string>
-    <string name="tabPiggyBank">Huchas</string>
-    <string name="tabTransaction">Transacciones</string>
+    <string name="PiggyBank">Hucha:</string>
+    <string name="Transaction">Transaccion:</string>
     <string name="imgImageDescription">Imagen de transaccion</string>
     <string name="isPayment">Pago</string>
     <string name="isDeposit">Ingreso</string>

@@ -16,11 +16,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import com.example.pi.R;
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.data.model.Transaction;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.base.BaseFragment;
@@ -31,6 +34,8 @@ import com.example.pi.ui.utils.AppConstants;
 import com.example.pi.ui.utils.CommonDatePicker;
 import com.example.pi.ui.utils.CommonTimePicker;
 import com.example.pi.ui.utils.ModeAdd;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -47,15 +52,12 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     private AddTransactionContract.Presenter presenter;
 
     private Transaction transactionActual;
-    private int id;
-    private int idUser;
-    private int idPiggyBank;
-    private int idEstablishment;
     private RadioButton rbPayment, rbDeposit;
     private EditText edtAmount;
     private TextInputLayout tilComment;
     private EditText edtDate, edtTime;
     private Toolbar toolbar;
+    private Spinner spnPiggyBank;
     private Calendar calendar;
 
     static ModeAdd mode;
@@ -147,36 +149,44 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
             }
         });
 
+        spnPiggyBank = rootView.findViewById(R.id.spnPiggyBank);
+
         if (getArguments() != null){
             transactionActual = getArguments().getParcelable(Transaction.TAG);
-            id = transactionActual.getId();
-            idUser = transactionActual.getIdUser();
-            idPiggyBank = transactionActual.getIdPiggyBank();
-            idEstablishment = transactionActual.getIdEstablishment();
-            if (transactionActual.isPayment()){
-                rbPayment.setChecked(true);
-            } else {
-                rbDeposit.setChecked(true);
-            }
-            edtAmount.setText(AppConstants.decimalformat.format(transactionActual.getAmount()).replace(",","."));
-            tilComment.getEditText().setText(transactionActual.getComment());
-            calendar = transactionActual.getCreationDate();
         } else {
-            id = -1; // se cambiara al buscar el mayor
-            idUser = Integer.parseInt(String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId()));
-            idPiggyBank = 0; // se deberia elegir a la hora de añadir
-            idEstablishment = -1; // se deberia elegir a la hora de añadir
             transactionActual = new Transaction(
-                    id,idUser,idPiggyBank,idEstablishment,
-                    false,0,null,
-                    0,0,null);
-            calendar = Calendar.getInstance();
+                    -1,
+                    Integer.parseInt(String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId())),
+                    0,
+                    0,
+                    false,
+                    0,
+                    Calendar.getInstance(),
+                    "",
+                    0,
+                    0,
+                    null
+            );
         }
 
+        if (transactionActual.isPayment()){
+            rbPayment.setChecked(true);
+        } else {
+            rbDeposit.setChecked(true);
+        }
+        edtAmount.setText(AppConstants.decimalformat.format(transactionActual.getAmount()).replace(",","."));
+        tilComment.getEditText().setText(transactionActual.getComment());
+        calendar = transactionActual.getCreationDate();
         edtDate.setText(AppConstants.df.format(calendar.getTime()));
         edtTime.setText(AppConstants.tf.format(calendar.getTime()));
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.loadPiggyBank();
     }
 
     @Override
@@ -188,9 +198,7 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_save:
-                transactionActual.setId(id);
-                transactionActual.setIdUser(idUser);
-                transactionActual.setIdEstablishment(idEstablishment);
+                transactionActual.setIdPiggyBank(((PiggyBank)spnPiggyBank.getSelectedItem()).getId());
                 if (rbPayment.isChecked()){
                     transactionActual.setPayment(true);
                 } else {
@@ -225,6 +233,15 @@ public class AddTransactionView extends BaseFragment implements AddTransactionCo
     @Override
     public void onAmountEmptyError() {
         showMessage(getString(R.string.errorAmountEmpty));
+    }
+
+    @Override
+    public void showPiggyBankOnSpinner(ArrayList<PiggyBank> piggyBanks) {
+        ArrayAdapter<PiggyBank> piggyBankAdapter = new ArrayAdapter<PiggyBank>(
+                getActivity(), android.R.layout.simple_spinner_item,piggyBanks
+        );
+        spnPiggyBank.setAdapter(piggyBankAdapter);
+        spnPiggyBank.setSelection(transactionActual.getIdPiggyBank()-1);
     }
     /* implements AddTransactionContract.View */
 

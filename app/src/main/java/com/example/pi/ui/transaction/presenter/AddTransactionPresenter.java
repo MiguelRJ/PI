@@ -1,9 +1,12 @@
 package com.example.pi.ui.transaction.presenter;
 
+import com.example.pi.data.model.PiggyBank;
 import com.example.pi.data.model.Transaction;
 import com.example.pi.ui.transaction.contract.AddTransactionContract;
 import com.example.pi.ui.transaction.interactor.AddTransactionInteractor;
 import com.example.pi.ui.transaction.interactor.AddTransactionInteractorInterface;
+
+import java.util.ArrayList;
 
 /**
  * Created by
@@ -38,6 +41,11 @@ public class AddTransactionPresenter implements AddTransactionContract.Presenter
     public void validateTransaction(Transaction transaction) {
         interactor.validateTransaction(transaction,this);
     }
+
+    @Override
+    public void loadPiggyBank() {
+        interactor.loadPiggyBank(this);
+    }
     /* implements AddTransactionContract.Presenter */
 
     /* implements AddTransactionInteractorInterface.OnAddTransactionListener */
@@ -49,6 +57,11 @@ public class AddTransactionPresenter implements AddTransactionContract.Presenter
     @Override
     public void onAmountEmptyError() {
         view.onAmountEmptyError();
+    }
+
+    @Override
+    public void showPiggyBankOnSpinner(ArrayList<PiggyBank> piggyBanks) {
+        view.showPiggyBankOnSpinner(piggyBanks);
     }
     /* implements AddTransactionInteractorInterface.OnAddTransactionListener */
 }

@@ -83,9 +83,10 @@
                 style="@style/AddTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/txvAmount"
-                app:layout_constraintBaseline_toBaselineOf="@+id/edtAmount"
-                app:layout_constraintStart_toStartOf="@+id/txvTypePayment" />
+                app:layout_constraintStart_toStartOf="@+id/txvTypePayment"
+                app:layout_constraintTop_toBottomOf="@+id/rbgPayment" />
 
             <EditText
                 android:id="@+id/edtAmount"
@@ -93,44 +94,49 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:inputType="numberDecimal"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txvAmount"
-                app:layout_constraintTop_toBottomOf="@+id/rbgPayment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvAmount"
                 tools:text="3.13" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilComment"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txvPiggyBank"
+                style="@style/AddTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/PiggyBank"
+                app:layout_constraintStart_toStartOf="@+id/txvAmount"
+                app:layout_constraintTop_toBottomOf="@+id/edtAmount" />
+
+            <Spinner
+                android:id="@+id/spnPiggyBank"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtAmount">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/tilCommentHint" />
-            </android.support.design.widget.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/txvPiggyBank" />
 
             <TextView
                 android:id="@+id/txvDate"
                 style="@style/AddTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="@string/txvChooseDate"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@+id/txvTime"
                 app:layout_constraintStart_toStartOf="@+id/txvTypePayment"
-                app:layout_constraintTop_toBottomOf="@+id/tilComment" />
+                app:layout_constraintTop_toBottomOf="@+id/spnPiggyBank" />
 
             <EditText
                 android:id="@+id/edtDate"
@@ -177,6 +183,23 @@
                 app:layout_constraintStart_toStartOf="@+id/txvTime"
                 app:layout_constraintTop_toBottomOf="@+id/txvTime"
                 tools:text="15:30" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtDate">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tilCommentHint" />
+            </android.support.design.widget.TextInputLayout>
 
 
         </android.support.constraint.ConstraintLayout>

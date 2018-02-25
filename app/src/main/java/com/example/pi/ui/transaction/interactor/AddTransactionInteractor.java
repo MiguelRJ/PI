@@ -1,6 +1,7 @@
 package com.example.pi.ui.transaction.interactor;
 
 import com.example.pi.data.model.Transaction;
+import com.example.pi.data.repository.PiggyBankRepository;
 import com.example.pi.data.repository.TransactionRepository;
 
 /**
@@ -24,5 +25,10 @@ public class AddTransactionInteractor implements AddTransactionInteractorInterfa
             }
             listener.onSuccess();
         }
+    }
+
+    @Override
+    public void loadPiggyBank(AddTransactionInteractorInterface.OnAddTransactionListener listener) {
+        listener.showPiggyBankOnSpinner(PiggyBankRepository.getInstance().getPiggybanks());
     }
 }

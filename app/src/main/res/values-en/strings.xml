@@ -16,8 +16,8 @@
     <string name="btnFastPay">Fast pay</string>
     <string name="chkImage">Image</string>
     <string name="chkLocation">Location</string>
-    <string name="tabPiggyBank">Piggy Banks</string>
-    <string name="tabTransaction">Transaction</string>
+    <string name="PiggyBank">PiggyBank:</string>
+    <string name="Transaction">Transaction:</string>
     <string name="imgImageDescription">Transaction image</string>
     <string name="isPayment">Payment</string>
     <string name="isDeposit">Deposit</string>
@@ -61,4 +61,5 @@
     <string name="btnOk">Ok</string>
     <string name="btnCancel">Cancel</string>
     <string name="downloading">Downloading...</string>
+
 </resources>
