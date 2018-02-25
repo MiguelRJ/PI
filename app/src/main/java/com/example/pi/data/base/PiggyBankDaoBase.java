@@ -15,5 +15,6 @@ public interface PiggyBankDaoBase {
     long add(PiggyBank piggyBank);
     int update(PiggyBank piggyBank);
     int delete(PiggyBank piggyBank);
+    PiggyBank loadPiggybank(int idPiggyBank);
     ContentValues createContent(PiggyBank piggyBank);
 }

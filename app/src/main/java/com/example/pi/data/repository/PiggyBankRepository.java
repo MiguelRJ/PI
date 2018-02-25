@@ -76,6 +76,9 @@ public class PiggyBankRepository {
         }
     }
 
+    public PiggyBank loadPiggyBank(int idPiggyBank){
+        return dao.loadPiggybank(idPiggyBank);
+    }
     /* GET PIGGY BANKS ORDER BY */
     public ArrayList<PiggyBank> getPiggybanks(){
         return dao.loadAll(PIContract.PiggyBankEntry.DEFAULT_SORT);

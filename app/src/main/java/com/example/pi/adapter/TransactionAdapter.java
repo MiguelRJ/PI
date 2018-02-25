@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.pi.R;
 import com.example.pi.data.model.Transaction;
+import com.example.pi.data.repository.PiggyBankRepository;
 import com.example.pi.data.repository.TransactionRepository;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.utils.AppConstants;
@@ -89,7 +90,11 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
         Calendar calendar = getItem(position).getCreationDate();
         transactionHolder.txvCreationDate.setText(AppConstants.df.format(calendar.getTime()));
         transactionHolder.txvComment.setText(getItem(position).getComment());
-        transactionHolder.txvPiggyBank.setText(String.valueOf(getItem(position).getIdPiggyBank()));
+        transactionHolder.txvPiggyBank.setText(
+                PiggyBankRepository.getInstance().loadPiggyBank(
+                        getItem(position).getIdPiggyBank()
+                ).getName()
+        );
 
         return view;
     }

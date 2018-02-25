@@ -2,17 +2,13 @@ package com.example.pi.data.db.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
-
 import com.example.pi.data.base.PiggyBankDaoBase;
 import com.example.pi.data.db.PIContract;
 import com.example.pi.data.db.PIOpenHelper;
 import com.example.pi.data.model.PiggyBank;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 import com.example.pi.ui.utils.AppConstants;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,6 +58,44 @@ public class PiggyBankDao implements PiggyBankDaoBase {
         PIOpenHelper.getInstance().closeDataBase();
 
         return piggyBanks;
+    }
+
+    @Override
+    public PiggyBank loadPiggybank(int idPiggyBank){
+        PiggyBank piggyBank = null;
+        SQLiteDatabase db = PIOpenHelper.getInstance().openDataBase();
+        String selection = PIContract.PiggyBankEntry.COL_ID_USER+"=? AND "+PIContract.PiggyBankEntry.COL_ID+"=?";
+        String[] selectionArgs = new String[]{String.valueOf(AppPreferencesHelper.getInstance().getCurrentUserId()),String.valueOf(idPiggyBank)};
+
+        Cursor cursor = db.query(
+                PIContract.PiggyBankEntry.TABLE_NAME,
+                PIContract.PiggyBankEntry.COL_ALL,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if(cursor.moveToFirst()){
+                Calendar c = Calendar.getInstance();
+                try {
+                    c.setTime(AppConstants.df.parse(cursor.getString(4)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                piggyBank = new PiggyBank(
+                        cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getDouble(3),
+                        c
+                );
+        }
+
+        PIOpenHelper.getInstance().closeDataBase();
+        return piggyBank;
     }
 
     /**
