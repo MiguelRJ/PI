@@ -10,7 +10,7 @@ public class PIContract {
 
     public PIContract(){}
 
-    public static final int DB_VERSION = 10;
+    public static final int DB_VERSION = 11;
     public static final String DAB_NAME= "pi.db";
 
     public static class UserEntry implements BaseColumns {
@@ -224,7 +224,7 @@ public class PIContract {
         )+String.format(
                 "(%s,%s,%s,%s,%s,'%s','%s',%s,%s,'%s'),",
                 0,
-                0,
+                1,
                 1,
                 1,
                 5.45,
@@ -236,7 +236,7 @@ public class PIContract {
         )+String.format(
                 "(%s,%s,%s,%s,%s,'%s','%s',%s,%s,'%s')",
                 0,
-                0,
+                1,
                 1,
                 1,
                 0.45,
