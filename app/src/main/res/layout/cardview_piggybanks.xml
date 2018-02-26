@@ -26,7 +26,7 @@
             android:layout_marginTop="8dp"
             android:text="PiggyBanks list"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnMorePiggyBank"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -62,7 +62,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/ic_action_more"
             app:layout_constraintBottom_toBottomOf="@+id/txvPiggyBanks"
-            app:layout_constraintStart_toEndOf="@+id/txvPiggyBanks"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txvPiggyBanks" />
 
     </android.support.constraint.ConstraintLayout>

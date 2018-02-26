@@ -26,7 +26,7 @@
             android:layout_marginTop="8dp"
             android:text="Last transactions"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnMoreTransaction"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.RecyclerView
@@ -49,7 +49,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/ic_action_more"
             app:layout_constraintBottom_toBottomOf="@+id/txvPiggyBanks"
-            app:layout_constraintStart_toEndOf="@+id/txvTransactions"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txvTransactions" />
 
     </android.support.constraint.ConstraintLayout>
