@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.pi.R;
+import com.example.pi.ui.about.AboutUsView;
 import com.example.pi.ui.menu.fragment.MenuView;
 import com.example.pi.ui.menu.presenter.MenuPresenter;
 import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MenuView.MenuList
     private ListTransactionPresenter listPresenterTransaction;
     private AddTransactionView addViewTransaction;
     private AddTransactionPresenter addPresenterTransaction;
+    private AboutUsView aboutUsView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,5 +121,19 @@ public class MainActivity extends AppCompatActivity implements MenuView.MenuList
         }
         addPresenterTransaction = new AddTransactionPresenter(addViewTransaction);
         addViewTransaction.setPresenter(addPresenterTransaction);
+    }
+
+    @Override
+    public void aboutUs() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        aboutUsView = (AboutUsView) fm.findFragmentByTag(AboutUsView.TAG);
+        if (aboutUsView == null){
+            aboutUsView = (AboutUsView) AboutUsView.newInstance(null);
+            ft.replace(android.R.id.content,aboutUsView,AboutUsView.TAG);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+
     }
 }

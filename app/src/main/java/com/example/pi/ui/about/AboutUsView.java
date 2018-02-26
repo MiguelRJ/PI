@@ -1,6 +1,7 @@
 package com.example.pi.ui.about;
 
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,10 +20,20 @@ import com.vansuita.materialabout.views.AboutView;
  * @author Miguel Rodriguez Jimenez
  * @date 17/11/17
  */
-public class AboutUsActivity extends BaseFragment {
+public class AboutUsView extends BaseFragment {
 
+    public static final String TAG = "AboutUsView";
     private AboutView aboutView;
-    
+
+    public static Fragment newInstance(Bundle bundle){
+        AboutUsView aboutUsView = new AboutUsView();
+        if (bundle != null) {
+            aboutUsView.setArguments(bundle);
+        }
+        return aboutUsView;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +49,8 @@ public class AboutUsActivity extends BaseFragment {
                 .addGooglePlayStoreLink("")
                 .addGitHubLink("MiguelRJ")
                 .addInstagramLink("migue.rj")
-                .addLinkedInLink("a")
+                .addLinkedInLink("miguelrodríguezjiménez")
                 .addFiveStarsAction()
-                .setVersionNameAsAppSubTitle()
                 .addShareAction(R.string.app_name)
                 .setWrapScrollView(true)
                 .setLinksAnimated(true)

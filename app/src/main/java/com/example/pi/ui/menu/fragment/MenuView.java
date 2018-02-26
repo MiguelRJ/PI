@@ -43,6 +43,7 @@ public class MenuView extends BaseFragment implements MenuContract.View {
         void addNewPiggyBank(Bundle bundle);
         void loadAllTransaction();
         void addNewTransaction(Bundle bundle);
+        void aboutUs();
     }
 
     private MenuListener callback;
@@ -204,7 +205,7 @@ public class MenuView extends BaseFragment implements MenuContract.View {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_aboutus:
-                //startActivity(new Intent(MenuActivity.this, AboutUsActivity.class));
+                callback.aboutUs();
                 break;
             case R.id.action_preferences:
                 //startActivity(new Intent(MenuActivity.this, AccountSettingActivity.class));

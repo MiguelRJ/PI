@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.pi.ui.about.AboutUsActivity">
+    tools:context="com.example.pi.ui.about.AboutUsView">
 
 </android.support.constraint.ConstraintLayout>
