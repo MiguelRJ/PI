@@ -23,6 +23,8 @@
         <activity android:name=".ui.transaction.TransactionActivity" />
         <activity android:name=".ui.signin.SigninActivity" />
         <activity android:name=".ui.recover.RecoverActivity"></activity>
+
+        <receiver android:name=".ui.AlarmReceiver"/>
     </application>
 
 </manifest>

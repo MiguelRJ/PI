@@ -76,5 +76,7 @@
     <string name="titleDeleteTransaction">Eliminar transaccion</string>
     <string name="messageDeleteTransaction">Quiere borrar la transacion:</string>
     <string name="Deleted">Borrado</string>
+    <string name="remember">¿Has hecho alguna transaccion?</string>
+    <string name="alarm">Recordatorio</string>
 
 </resources>

@@ -74,4 +74,9 @@
     <string name="menuPiggyBankOrderTotalAmountASC">Order by amount asc</string>
     <string name="menuPiggyBankOrderCreationDateDESC">Order by date desc</string>
     <string name="menuPiggyBankOrderCreationDateASC">Order by date asc</string>
+    <string name="titleDeleteTransaction">Delete transaction</string>
+    <string name="messageDeleteTransaction">Want to delete the transaction:</string>
+    <string name="Deleted">Deleted</string>
+    <string name="remember">Did you do any transaction?</string>
+    <string name="alarm">Remember</string>
 </resources>

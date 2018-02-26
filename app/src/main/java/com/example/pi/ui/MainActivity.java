@@ -1,5 +1,8 @@
 package com.example.pi.ui;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +22,8 @@ import com.example.pi.ui.transaction.fragment.AddTransactionView;
 import com.example.pi.ui.transaction.fragment.ListTransactionView;
 import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
 import com.example.pi.ui.transaction.presenter.ListTransactionPresenter;
+
+import java.util.Calendar;
 
 /**
  * Created by Miguel on 25/02/2018.
@@ -55,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements MenuView.MenuList
         }
         menuPresenter = new MenuPresenter(menuView);
         menuView.setPresenter(menuPresenter);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE)+1);
+        calendar.set(Calendar.SECOND, 0);
+        Intent intent1 = new Intent(MainActivity.this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     @Override
