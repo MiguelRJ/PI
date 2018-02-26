@@ -44,8 +44,20 @@ public class TransactionAdapter extends ArrayAdapter<Transaction> {
         this.context = context;
     }
 
-    public TransactionAdapter orderByAmount() {
-        sort(new Transaction.TransactionOrderByAmount());
+    public TransactionAdapter orderByAmountDESC() {
+        sort(new Transaction.TransactionOrderByAmountDESC());
+        return this;
+    }
+    public TransactionAdapter orderByAmountASC() {
+        sort(new Transaction.TransactionOrderByAmountASC());
+        return this;
+    }
+    public TransactionAdapter orderByCreationDateDESC() {
+        sort(new Transaction.TransactionOrderByCreationDateDESC());
+        return this;
+    }
+    public TransactionAdapter orderByCreationDateASC() {
+        sort(new Transaction.TransactionOrderByCreationDateASC());
         return this;
     }
 

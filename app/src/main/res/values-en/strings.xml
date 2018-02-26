@@ -63,4 +63,15 @@
     <string name="downloading">Downloading...</string>
     <string name="titlePiggyBankNotEmpty">WATCH OUT! </string>
     <string name="messagePiggyBankDeleteAll">This piggy bank still contains transactions. Do you want to delete ALL transactions associated with the piggybank </string>
+    <string name="menuTittleDeletePiggyBank">Delete piggybank</string>
+    <string name="optionsLongClickPiggyBank">Piggybank options</string>
+    <string name="PiggyBankDeleted">Piggybank deleted</string>
+    <string name="titleDeletePiggyBank">Delete piggybank</string>
+    <string name="messageDeletePiggyBank">Do you want to delete the piggybank:</string>
+    <string name="onSuccess">Done with success!</string>
+    <string name="onError">An error occurred.</string>
+    <string name="menuPiggyBankOrderTotalAmountDESC">Order by amount desc</string>
+    <string name="menuPiggyBankOrderTotalAmountASC">Order by amount asc</string>
+    <string name="menuPiggyBankOrderCreationDateDESC">Order by date desc</string>
+    <string name="menuPiggyBankOrderCreationDateASC">Order by date asc</string>
 </resources>

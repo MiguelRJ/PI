@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public interface TransactionDaoBase {
-    ArrayList<Transaction> loadAll(String orderBy);
+    ArrayList<Transaction> loadAll(String orderBy, int limit, boolean orderDESC);
     long add(Transaction transaction);
     int update(Transaction transaction);
     int delete(Transaction transaction);

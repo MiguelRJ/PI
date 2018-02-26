@@ -59,15 +59,19 @@
     <string name="action_list_delete">Borrar</string>
     <string name="btnOk">Aceptar</string>
     <string name="btnCancel">Cancelar</string>
-    <string name="menuTittleDeletePiggyBank">Borrar PiggyBank</string>
-    <string name="optionsLongClickPiggyBank">Opciones PiggiBank</string>
-    <string name="PiggyBankDeleted">PiggyBank borrada</string>
-    <string name="titleDeletePiggyBank">Eliminar PiggyBank</string>
+    <string name="menuTittleDeletePiggyBank">Borrar Hucha</string>
+    <string name="optionsLongClickPiggyBank">Opciones hucha</string>
+    <string name="PiggyBankDeleted">Hucha borrada</string>
+    <string name="titleDeletePiggyBank">Eliminar hucha</string>
     <string name="messageDeletePiggyBank">Desea eliminar la hucha:</string>
     <string name="downloading">Descargando...</string>
     <string name="titlePiggyBankNotEmpty">¡CUIDADO! </string>
     <string name="messagePiggyBankDeleteAll">Esta hucha aun contiene transacciones. ¿Desea borrar TODAS las transacciones asociadas a la hucha</string>
     <string name="onSuccess">Realizado con exito!</string>
     <string name="onError">Ocurrio un error.</string>
+    <string name="menuPiggyBankOrderTotalAmountDESC">Ordenar cantidad desc</string>
+    <string name="menuPiggyBankOrderTotalAmountASC">Ordenar cantidad asc</string>
+    <string name="menuPiggyBankOrderCreationDateDESC">Ordenar fecha desc</string>
+    <string name="menuPiggyBankOrderCreationDateASC">Ordenar fecha asc</string>
 
 </resources>

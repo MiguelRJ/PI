@@ -1,9 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="@string/menuPiggyBankOrderCreationDate"
+
+    <item android:title="@string/menuPiggyBankOrderTotalAmountDESC"
         app:showAsAction="never"
-        android:id="@+id/action_order_by_creationDate"/>
-    <item android:title="@string/menuPiggyBankOrderTotalAmount"
+        android:id="@+id/action_order_by_totalAmountDESC"/>
+
+    <item android:title="@string/menuPiggyBankOrderTotalAmountASC"
         app:showAsAction="never"
-        android:id="@+id/action_order_by_totalAmount"/>
+        android:id="@+id/action_order_by_totalAmountASC"/>
+
+    <item android:title="@string/menuPiggyBankOrderCreationDateDESC"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_creationDateDESC"/>
+
+    <item android:title="@string/menuPiggyBankOrderCreationDateASC"
+        app:showAsAction="never"
+        android:id="@+id/action_order_by_creationDateASC"/>
+
 </menu>

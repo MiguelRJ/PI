@@ -104,15 +104,25 @@ public class TransactionRepository {
 
     /* GET TRANSACTIONS ORDER BY */
     public ArrayList<Transaction> getTransactions(){
-        return dao.loadAll(PIContract.TransactionEntry.DEFAULT_SORT);
+        return dao.loadAll(PIContract.TransactionEntry.DEFAULT_SORT,0,true);
     }
 
-    public ArrayList<Transaction> getTransactionsOrderByCreationDate(){
-        return dao.loadAll(PIContract.TransactionEntry.COL_DATE);
+    /**
+     *
+     * @param limit obtiene las x primeras
+     * @return
+     */
+    public ArrayList<Transaction> getTransactionsOrderByCreationDate(int limit){
+        return dao.loadAll(PIContract.TransactionEntry.COL_DATE,limit, true);
     }
 
-    public ArrayList<Transaction> getTransactionsOrderByAmount(){
-        return dao.loadAll(PIContract.TransactionEntry.COL_AMOUNT);
+    /**
+     *
+     * @param limit obtiene las x primeras
+     * @return
+     */
+    public ArrayList<Transaction> getTransactionsOrderByAmount(int limit){
+        return dao.loadAll(PIContract.TransactionEntry.COL_AMOUNT,limit, true);
     }
 
 }

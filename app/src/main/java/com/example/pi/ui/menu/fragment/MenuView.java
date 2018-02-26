@@ -2,7 +2,6 @@ package com.example.pi.ui.menu.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,19 +20,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.pi.R;
-import com.example.pi.adapter.ListPiggyBankAdapter;
-import com.example.pi.adapter.PiggyBankAdapter;
+import com.example.pi.adapter.PiggyBankAdapterCardView;
 import com.example.pi.adapter.TransactionAdapter;
+import com.example.pi.adapter.TransactionAdapterCardView;
 import com.example.pi.data.model.PiggyBank;
 import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.menu.contract.MenuContract;
 import com.example.pi.ui.menu.presenter.MenuPresenter;
-import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
 import com.example.pi.ui.utils.ComonDialog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Miguel on 25/02/2018.
@@ -50,13 +46,13 @@ public class MenuView extends BaseFragment implements MenuContract.View {
     }
 
     private MenuListener callback;
-    private ListPiggyBankAdapter adapterPB;
-    private TransactionAdapter adapterT;
+    private PiggyBankAdapterCardView adapterPB;
+    private TransactionAdapterCardView adapterT;
     private MenuPresenter presenter;
-    private ListPiggyBankAdapter.OnItemClickListener listener;
+    private PiggyBankAdapterCardView.OnItemClickListener listener;
 
     private RecyclerView rwPiggyBank, rwTransaction;
-    private Button btnAddPiggyBank,btnMorePiggyBank, btnMoreTransaction;
+    private Button btnAddPiggyBank, btnMorePiggyBank, btnMoreTransaction;
     private FloatingActionButton fabAddTransaction;
     private Toolbar toolbar;
 
@@ -82,7 +78,7 @@ public class MenuView extends BaseFragment implements MenuContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        listener = new ListPiggyBankAdapter.OnItemClickListener() {
+        listener = new PiggyBankAdapterCardView.OnItemClickListener() {
             @Override
             public void OnItemClick(PiggyBank piggyBank) {
                 Bundle bundle = new Bundle();
@@ -111,7 +107,8 @@ public class MenuView extends BaseFragment implements MenuContract.View {
                 }
             }
         };
-        this.adapterPB = new ListPiggyBankAdapter(getActivity(),listener);
+        this.adapterPB = new PiggyBankAdapterCardView(getActivity(),listener);
+        this.adapterT = new TransactionAdapterCardView(getActivity());
     }
 
     @Nullable
@@ -136,9 +133,6 @@ public class MenuView extends BaseFragment implements MenuContract.View {
                 callback.loadAllPiggyBank();
             }
         });
-        rwPiggyBank = view.findViewById(R.id.rwPiggyBanks);
-        rwPiggyBank.setHasFixedSize(true);
-        rwPiggyBank.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         btnMoreTransaction = view.findViewById(R.id.btnMoreTransaction);
         btnMoreTransaction.setOnClickListener(new View.OnClickListener() {
@@ -155,28 +149,39 @@ public class MenuView extends BaseFragment implements MenuContract.View {
             }
         });
 
-        adapterPB = new ListPiggyBankAdapter(getActivity(), listener);
+        rwPiggyBank = view.findViewById(R.id.rwPiggyBanks);
+        rwPiggyBank.setHasFixedSize(true);
+        rwPiggyBank.setLayoutManager(new GridLayoutManager(getActivity(),3));
+
+        rwTransaction = view.findViewById(R.id.rwTransactions);
+        rwTransaction.setHasFixedSize(true);
+        rwTransaction.setLayoutManager(new GridLayoutManager(getActivity(),1));
+
+        adapterPB = new PiggyBankAdapterCardView(getActivity(), listener);
+        adapterT = new TransactionAdapterCardView(getActivity());
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         rwPiggyBank.setAdapter(adapterPB);
+        rwTransaction.setAdapter(adapterT);
     }
 
     @Override
     public void onDeletedPiggyBank() {
         showMessage(getString(R.string.PiggyBankDeleted));
-        adapterPB = new ListPiggyBankAdapter(getActivity(), listener);
+        adapterPB = new PiggyBankAdapterCardView(getActivity(), listener);
+        adapterT = new TransactionAdapterCardView(getActivity());
         rwPiggyBank.setAdapter(adapterPB);
     }
 
     @Override
     public void onSuccess() {
         showMessage(getString(R.string.onSuccess));
-        adapterPB = new ListPiggyBankAdapter(getActivity(), listener);
+        adapterPB = new PiggyBankAdapterCardView(getActivity(), listener);
+        adapterT = new TransactionAdapterCardView(getActivity());
         rwPiggyBank.setAdapter(adapterPB);
     }
 

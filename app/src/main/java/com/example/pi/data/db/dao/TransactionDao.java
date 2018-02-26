@@ -21,8 +21,27 @@ import java.util.Calendar;
 
 public class TransactionDao implements TransactionDaoBase {
 
+    /**
+     *
+     * @param orderBy
+     * @param limit
+     * @param orderDESC true = DESC false = ASC
+     * @return
+     */
     @Override
-    public ArrayList<Transaction> loadAll(String orderBy) {
+    public ArrayList<Transaction> loadAll(String orderBy, int limit, boolean orderDESC) {
+        String strLimit;
+        String strOrder;
+        if (limit== 0){
+            strLimit = null;
+        } else {
+            strLimit = String.valueOf(limit);
+        }
+        if (orderDESC){
+            strOrder=" DESC";
+        } else {
+            strOrder=" ASC";
+        }
         ArrayList<Transaction> transactions = new ArrayList<>();
         SQLiteDatabase db = PIOpenHelper.getInstance().openDataBase();
         String selection = PIContract.TransactionEntry.COL_ID_USER+"=?";
@@ -34,8 +53,8 @@ public class TransactionDao implements TransactionDaoBase {
                 selectionArgs,
                 null,
                 null,
-                orderBy,
-                null
+                orderBy+ strOrder,
+                strLimit
         );
         transactions.clear();
 

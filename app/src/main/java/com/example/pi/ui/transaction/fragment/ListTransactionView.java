@@ -148,8 +148,17 @@ public class ListTransactionView extends ListFragment implements ListTransaction
                 adapter = new TransactionAdapter(getActivity());
                 listView.setAdapter(adapter);
                 return true;
-            case R.id.action_order_by_totalAmount:
-                listView.setAdapter(adapter.orderByAmount());
+            case R.id.action_order_by_totalAmountDESC:
+                listView.setAdapter(adapter.orderByAmountDESC());
+                return true;
+            case R.id.action_order_by_totalAmountASC:
+                listView.setAdapter(adapter.orderByAmountASC());
+                return true;
+            case R.id.action_order_by_creationDateDESC:
+                listView.setAdapter(adapter.orderByCreationDateDESC());
+                return true;
+            case R.id.action_order_by_creationDateASC:
+                listView.setAdapter(adapter.orderByCreationDateASC());
                 return true;
             default:
                 break;

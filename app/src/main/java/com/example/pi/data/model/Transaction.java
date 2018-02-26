@@ -218,11 +218,35 @@ public class Transaction implements Comparable,Parcelable {
         dest.writeByteArray(image);
     }
 
-    public static class TransactionOrderByAmount implements Comparator<Transaction> {
+    public static class TransactionOrderByAmountDESC implements Comparator<Transaction> {
+
+        @Override
+        public int compare(Transaction t1, Transaction t2) {
+            return Double.compare(t2.getAmount(),t1.getAmount());
+        }
+    }
+
+    public static class TransactionOrderByAmountASC implements Comparator<Transaction> {
 
         @Override
         public int compare(Transaction t1, Transaction t2) {
             return Double.compare(t1.getAmount(),t2.getAmount());
+        }
+    }
+
+    public static class TransactionOrderByCreationDateDESC implements Comparator<Transaction> {
+
+        @Override
+        public int compare(Transaction t1, Transaction t2) {
+            return Long.compare(t2.getCreationDate().getTimeInMillis(),t1.getCreationDate().getTimeInMillis());
+        }
+    }
+
+    public static class TransactionOrderByCreationDateASC implements Comparator<Transaction> {
+
+        @Override
+        public int compare(Transaction t1, Transaction t2) {
+            return Long.compare(t1.getCreationDate().getTimeInMillis(),t2.getCreationDate().getTimeInMillis());
         }
     }
 }
