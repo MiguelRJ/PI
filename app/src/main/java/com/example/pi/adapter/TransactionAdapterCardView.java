@@ -39,12 +39,18 @@ import java.util.List;
 
 public class TransactionAdapterCardView extends RecyclerView.Adapter<TransactionAdapterCardView.TransactionViewHolder> {
 
+    public interface OnItemClickListener{
+        void OnItemClick(Transaction transaction);
+        void OnItemLongClick(Transaction transaction);
+    }
+    private OnItemClickListener listener;
     private static Context context;
     private ArrayList<Transaction> transactions;
 
-    public TransactionAdapterCardView(Context context) {
+    public TransactionAdapterCardView(Context context, OnItemClickListener listener) {
         this.transactions = TransactionRepository.getInstance().getTransactionsOrderByCreationDate(10);
         this.context = context;
+        this.listener = listener;
     }
 
     @Override
@@ -75,6 +81,7 @@ public class TransactionAdapterCardView extends RecyclerView.Adapter<Transaction
                         transactions.get(position).getIdPiggyBank()
                 ).getName()
         );
+        transactionHolder.bind(transactions.get(position), listener);
     }
 
     @Override
@@ -98,6 +105,22 @@ public class TransactionAdapterCardView extends RecyclerView.Adapter<Transaction
             txvCreationDate = view.findViewById(R.id.txvCreationDate);
             txvComment = view.findViewById(R.id.txvComment);
             txvPiggyBank = view.findViewById(R.id.txvPiggyBank);
+        }
+
+        public void bind (final Transaction transaction, final TransactionAdapterCardView.OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.OnItemClick(transaction);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.OnItemLongClick(transaction);
+                    return true;
+                }
+            });
         }
 
     }

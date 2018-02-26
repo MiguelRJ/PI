@@ -13,12 +13,11 @@ import java.util.List;
 
 public interface MenuContract {
     interface View extends BaseView {
-        void onDeletedPiggyBank();
+        void onDeleted();
         void onSuccess();
         void onError();
     }
     interface Presenter extends BasePresenter {
-        void onDeletedPiggyBank();
         boolean existsAnyTransactionWithPiggyBankID(int id);
     }
 }

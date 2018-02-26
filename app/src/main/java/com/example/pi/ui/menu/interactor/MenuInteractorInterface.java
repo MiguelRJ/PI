@@ -1,6 +1,7 @@
 package com.example.pi.ui.menu.interactor;
 
 import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,11 @@ public interface MenuInteractorInterface {
     interface OnLoadFinishedListener{
         void onSucces();
         void onError();
-        void onDeletedPiggyBank();
+        void onDeleted();
     }
 
     void deletePiggyBank(PiggyBank piggyBank);
+    void deleteTransaction(Transaction transaction);
     boolean existsAnyTransactionWithPiggyBankID(int id);
     void deleteAllTransactionsWithPiggyBankID(int id);
 }

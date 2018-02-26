@@ -73,5 +73,8 @@
     <string name="menuPiggyBankOrderTotalAmountASC">Ordenar cantidad asc</string>
     <string name="menuPiggyBankOrderCreationDateDESC">Ordenar fecha desc</string>
     <string name="menuPiggyBankOrderCreationDateASC">Ordenar fecha asc</string>
+    <string name="titleDeleteTransaction">Eliminar transaccion</string>
+    <string name="messageDeleteTransaction">Quiere borrar la transacion:</string>
+    <string name="Deleted">Borrado</string>
 
 </resources>

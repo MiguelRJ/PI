@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.Menu;
 
 import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.model.Transaction;
 import com.example.pi.ui.menu.contract.MenuContract;
 import com.example.pi.ui.menu.interactor.MenuInteractor;
 import com.example.pi.ui.menu.interactor.MenuInteractorInterface;
@@ -19,6 +20,7 @@ public class MenuPresenter implements MenuContract.Presenter, MenuInteractorInte
 
     public static final int DELETE = 1;
     public static final int DELETE_ALL = 2;
+    public static final int DELETE_TRANSACTION=3;
 
     private MenuContract.View view;
     private MenuInteractorInterface interactor;
@@ -29,8 +31,8 @@ public class MenuPresenter implements MenuContract.Presenter, MenuInteractorInte
     }
 
     @Override
-    public void onDeletedPiggyBank() {
-        view.onDeletedPiggyBank();
+    public void onDeleted() {
+        view.onDeleted();
     }
 
     @Override
@@ -58,10 +60,13 @@ public class MenuPresenter implements MenuContract.Presenter, MenuInteractorInte
     public void options(int i, Object o) {
         switch (i) {
             case DELETE:
-                interactor.deletePiggyBank((PiggyBank) o);
+                interactor.deletePiggyBank( (PiggyBank)o );
                 break;
             case DELETE_ALL:
                 interactor.deleteAllTransactionsWithPiggyBankID( ((PiggyBank)o).getId() );
+                break;
+            case DELETE_TRANSACTION:
+                interactor.deleteTransaction( (Transaction)o );
                 break;
             default:
                 Log.e("Error option","Option "+i+" not found");

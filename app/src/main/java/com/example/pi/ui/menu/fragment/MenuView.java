@@ -24,6 +24,7 @@ import com.example.pi.adapter.PiggyBankAdapterCardView;
 import com.example.pi.adapter.TransactionAdapter;
 import com.example.pi.adapter.TransactionAdapterCardView;
 import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.model.Transaction;
 import com.example.pi.ui.base.BaseFragment;
 import com.example.pi.ui.base.BasePresenter;
 import com.example.pi.ui.menu.contract.MenuContract;
@@ -51,7 +52,8 @@ public class MenuView extends BaseFragment implements MenuContract.View {
     private PiggyBankAdapterCardView adapterPB;
     private TransactionAdapterCardView adapterT;
     private MenuPresenter presenter;
-    private PiggyBankAdapterCardView.OnItemClickListener listener;
+    private PiggyBankAdapterCardView.OnItemClickListener listenerPB;
+    private TransactionAdapterCardView.OnItemClickListener listenerT;
 
     private RecyclerView rwPiggyBank, rwTransaction;
     private Button btnAddPiggyBank, btnMorePiggyBank, btnMoreTransaction;
@@ -80,7 +82,7 @@ public class MenuView extends BaseFragment implements MenuContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        listener = new PiggyBankAdapterCardView.OnItemClickListener() {
+        listenerPB = new PiggyBankAdapterCardView.OnItemClickListener() {
             @Override
             public void OnItemClick(PiggyBank piggyBank) {
                 Bundle bundle = new Bundle();
@@ -109,8 +111,27 @@ public class MenuView extends BaseFragment implements MenuContract.View {
                 }
             }
         };
-        this.adapterPB = new PiggyBankAdapterCardView(getActivity(),listener);
-        this.adapterT = new TransactionAdapterCardView(getActivity());
+        listenerT = new TransactionAdapterCardView.OnItemClickListener() {
+            @Override
+            public void OnItemClick(Transaction transaction) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Transaction.TAG,transaction);
+                callback.addNewTransaction(bundle);
+            }
+
+            @Override
+            public void OnItemLongClick(Transaction transaction) {
+                Bundle bundle = new Bundle();
+                bundle.putString(ComonDialog.TITTLE, getActivity().getResources().getString(R.string.titleDeleteTransaction));
+                bundle.putString(ComonDialog.MESSAGE, getActivity().getResources().getString(R.string.messageDeleteTransaction) + "\n " + String.valueOf(transaction.getAmount()));
+                bundle.putString(ComonDialog.TAG, Transaction.TAG);
+                bundle.putParcelable(Transaction.TAG, transaction);
+                Dialog dialog = ComonDialog.showConfirmDialog(bundle, getActivity(), presenter, MenuPresenter.DELETE_TRANSACTION);
+                dialog.show();
+            }
+        };
+        this.adapterPB = new PiggyBankAdapterCardView(getActivity(),listenerPB);
+        this.adapterT = new TransactionAdapterCardView(getActivity(),listenerT);
     }
 
     @Nullable
@@ -159,8 +180,8 @@ public class MenuView extends BaseFragment implements MenuContract.View {
         rwTransaction.setHasFixedSize(true);
         rwTransaction.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
-        adapterPB = new PiggyBankAdapterCardView(getActivity(), listener);
-        adapterT = new TransactionAdapterCardView(getActivity());
+        adapterPB = new PiggyBankAdapterCardView(getActivity(), listenerPB);
+        adapterT = new TransactionAdapterCardView(getActivity(),listenerT);
         return view;
     }
 
@@ -172,19 +193,21 @@ public class MenuView extends BaseFragment implements MenuContract.View {
     }
 
     @Override
-    public void onDeletedPiggyBank() {
-        showMessage(getString(R.string.PiggyBankDeleted));
-        adapterPB = new PiggyBankAdapterCardView(getActivity(), listener);
-        adapterT = new TransactionAdapterCardView(getActivity());
+    public void onDeleted() {
+        showMessage(getString(R.string.Deleted));
+        adapterPB = new PiggyBankAdapterCardView(getActivity(), listenerPB);
+        adapterT = new TransactionAdapterCardView(getActivity(),listenerT);
         rwPiggyBank.setAdapter(adapterPB);
+        rwTransaction.setAdapter(adapterT);
     }
 
     @Override
     public void onSuccess() {
         showMessage(getString(R.string.onSuccess));
-        adapterPB = new PiggyBankAdapterCardView(getActivity(), listener);
-        adapterT = new TransactionAdapterCardView(getActivity());
+        adapterPB = new PiggyBankAdapterCardView(getActivity(), listenerPB);
+        adapterT = new TransactionAdapterCardView(getActivity(), listenerT);
         rwPiggyBank.setAdapter(adapterPB);
+        rwTransaction.setAdapter(adapterT);
     }
 
     @Override

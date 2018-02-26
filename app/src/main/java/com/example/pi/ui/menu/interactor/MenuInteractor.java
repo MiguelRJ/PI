@@ -1,6 +1,7 @@
 package com.example.pi.ui.menu.interactor;
 
 import com.example.pi.data.model.PiggyBank;
+import com.example.pi.data.model.Transaction;
 import com.example.pi.data.repository.PiggyBankRepository;
 import com.example.pi.data.repository.TransactionRepository;
 
@@ -19,7 +20,13 @@ public class MenuInteractor implements MenuInteractorInterface {
     @Override
     public void deletePiggyBank(PiggyBank piggyBank) {
         PiggyBankRepository.getInstance().delete(piggyBank);
-        listener.onDeletedPiggyBank();
+        listener.onDeleted();
+    }
+
+    @Override
+    public void deleteTransaction(Transaction transaction) {
+        TransactionRepository.getInstance().delete(transaction);
+        listener.onDeleted();
     }
 
     @Override
