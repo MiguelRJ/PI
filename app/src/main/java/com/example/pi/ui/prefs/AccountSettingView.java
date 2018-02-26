@@ -1,15 +1,13 @@
 package com.example.pi.ui.prefs;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.widget.Toast;
+import android.support.v7.preference.Preference;
 
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.widget.Toast;
 import com.example.pi.R;
-import com.example.pi.data.prefs.AccountPreferencesHelper;
 import com.example.pi.data.prefs.AppPreferencesHelper;
 
 import java.lang.reflect.Field;
@@ -18,11 +16,22 @@ import java.lang.reflect.Field;
  * Created by Miguel on 19/11/2017.
  */
 
-public class AccountSettingActivity extends PreferenceActivity {
+public class AccountSettingView extends PreferenceFragmentCompat {
+
+    public static final String TAG = "AccountSettingView";
+
+    private AccountSettingView accountSettingView;
+
+    public static Fragment newInstance(Bundle bundle){
+        AccountSettingView accountSettingView = new AccountSettingView();
+        if (bundle != null) {
+            accountSettingView.setArguments(bundle);
+        }
+        return accountSettingView;
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.settings);
 
         Preference remember = findPreference(AppPreferencesHelper.PREF_KEY_CURRENT_REMEMBER);
@@ -31,7 +40,7 @@ public class AccountSettingActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 AppPreferencesHelper.getInstance().setCurrentRemember((boolean)newValue);
-                Toast.makeText(getApplicationContext(),String.valueOf(AppPreferencesHelper.getInstance().getCurrentRemember()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),String.valueOf(AppPreferencesHelper.getInstance().getCurrentRemember()),Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -40,7 +49,7 @@ public class AccountSettingActivity extends PreferenceActivity {
         user.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Toast.makeText(getApplicationContext(),AppPreferencesHelper.getInstance().getCurrentUserName(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),AppPreferencesHelper.getInstance().getCurrentUserName(),Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -49,7 +58,7 @@ public class AccountSettingActivity extends PreferenceActivity {
         password.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Toast.makeText(getApplicationContext(),AppPreferencesHelper.getInstance().getCurrentUserPassword(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),AppPreferencesHelper.getInstance().getCurrentUserPassword(),Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -73,7 +82,7 @@ public class AccountSettingActivity extends PreferenceActivity {
                 }
                 //Toast.makeText(getApplicationContext(),String.valueOf(drawableId),Toast.LENGTH_SHORT).show();
                 AppPreferencesHelper.getInstance().setIcon(drawableId);
-                Toast.makeText(getApplicationContext(),String.valueOf(AppPreferencesHelper.getInstance().getIcon()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),String.valueOf(AppPreferencesHelper.getInstance().getIcon()),Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -84,11 +93,10 @@ public class AccountSettingActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 AppPreferencesHelper.getInstance().setIconShow((boolean)newValue);
-                Toast.makeText(getApplicationContext(),String.valueOf(AppPreferencesHelper.getInstance().getIconShow()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),String.valueOf(AppPreferencesHelper.getInstance().getIconShow()),Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
-
     }
 
 }

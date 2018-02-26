@@ -7,6 +7,7 @@
         <!-- para que la action Mode se situe sobre la toolber y no la desplace -->
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeStyle">@style/Widget.ActionMode</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="Widget.ActionMode" parent="Widget.AppCompat.ActionMode">

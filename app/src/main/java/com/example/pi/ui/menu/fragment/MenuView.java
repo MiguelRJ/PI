@@ -44,6 +44,7 @@ public class MenuView extends BaseFragment implements MenuContract.View {
         void loadAllTransaction();
         void addNewTransaction(Bundle bundle);
         void aboutUs();
+        void preferences();
     }
 
     private MenuListener callback;
@@ -208,7 +209,7 @@ public class MenuView extends BaseFragment implements MenuContract.View {
                 callback.aboutUs();
                 break;
             case R.id.action_preferences:
-                //startActivity(new Intent(MenuActivity.this, AccountSettingActivity.class));
+                callback.preferences();
                 break;
             default:
                 break;

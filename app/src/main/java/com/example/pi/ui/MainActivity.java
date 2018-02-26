@@ -14,6 +14,7 @@ import com.example.pi.ui.piggybank.fragment.AddPiggyBankView;
 import com.example.pi.ui.piggybank.fragment.ListPiggyBankView;
 import com.example.pi.ui.piggybank.presenter.AddPiggyBankPresenter;
 import com.example.pi.ui.piggybank.presenter.ListPiggyBankPresenter;
+import com.example.pi.ui.prefs.AccountSettingView;
 import com.example.pi.ui.transaction.fragment.AddTransactionView;
 import com.example.pi.ui.transaction.fragment.ListTransactionView;
 import com.example.pi.ui.transaction.presenter.AddTransactionPresenter;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements MenuView.MenuList
     private AddTransactionView addViewTransaction;
     private AddTransactionPresenter addPresenterTransaction;
     private AboutUsView aboutUsView;
+    private AccountSettingView accountSettingView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,6 +136,18 @@ public class MainActivity extends AppCompatActivity implements MenuView.MenuList
             ft.addToBackStack(null);
             ft.commit();
         }
+    }
 
+    @Override
+    public void preferences() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        accountSettingView = (AccountSettingView) fm.findFragmentByTag(AccountSettingView.TAG);
+        if (accountSettingView == null){
+            accountSettingView = (AccountSettingView) AccountSettingView.newInstance(null);
+            ft.replace(android.R.id.content,accountSettingView,AccountSettingView.TAG);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
     }
 }

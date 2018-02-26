@@ -3,7 +3,7 @@
 
     <PreferenceCategory android:title="@string/pref_category_account">
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="PREF_KEY_CURRENT_REMEMBER"
             android:title="@string/pref_title_swtRemember"
@@ -29,7 +29,7 @@
 
     <PreferenceCategory android:title="@string/pref_category_general">
 
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="PREF_KEY_ICON_SHOW"
             android:title="@string/pref_title_showimage"
@@ -46,10 +46,4 @@
 
     </PreferenceCategory>
 
-    <Preference
-        android:key="aboutus"
-        android:title="@string/pref_title_aboutus">
-        <intent android:targetClass="com.example.pi.ui.about.AboutUsActivity"
-            android:targetPackage="com.example.pi"/>
-    </Preference>
 </PreferenceScreen>
