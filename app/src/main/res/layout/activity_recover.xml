@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
-    tools:context="com.example.pi.ui.recover.RecoverActivity">
+    tools:context="com.example.pi.com.mrj.pi.ui.recover.RecoverActivity">
 
     <ScrollView
         android:layout_width="0dp"
