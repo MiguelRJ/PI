@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.adapter.PiggyBankAdapterCardView;
 import com.mrj.morejmoney.adapter.TransactionAdapterCardView;
 import com.mrj.morejmoney.data.model.PiggyBank;

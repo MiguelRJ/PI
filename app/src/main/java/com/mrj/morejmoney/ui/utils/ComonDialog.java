@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.ui.base.BasePresenter;
 
 /**

@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.ui.base.BaseAppCompatActivity;
 import com.mrj.morejmoney.ui.login.LoginActivity;
 

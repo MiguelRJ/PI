@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.adapter.PiggyBankAdapterSpinner;
 import com.mrj.morejmoney.data.model.PiggyBank;
 import com.mrj.morejmoney.data.model.Transaction;

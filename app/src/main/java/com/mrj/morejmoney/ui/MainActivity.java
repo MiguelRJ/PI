@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.ui.about.AboutUsView;
 import com.mrj.morejmoney.ui.menu.fragment.MenuView;
 import com.mrj.morejmoney.ui.menu.presenter.MenuPresenter;

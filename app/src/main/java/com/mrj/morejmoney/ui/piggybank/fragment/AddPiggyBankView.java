@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.data.model.PiggyBank;
 import com.mrj.morejmoney.data.prefs.AppPreferencesHelper;
 import com.mrj.morejmoney.ui.base.BaseFragment;

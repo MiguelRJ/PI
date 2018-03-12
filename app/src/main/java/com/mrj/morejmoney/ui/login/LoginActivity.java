@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.data.prefs.AppPreferencesHelper;
 import com.mrj.morejmoney.ui.MainActivity;
 import com.mrj.morejmoney.ui.base.BaseAppCompatActivity;

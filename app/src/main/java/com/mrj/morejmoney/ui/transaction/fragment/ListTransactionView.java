@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.adapter.TransactionAdapter;
 import com.mrj.morejmoney.data.model.Transaction;
 import com.mrj.morejmoney.ui.base.BasePresenter;

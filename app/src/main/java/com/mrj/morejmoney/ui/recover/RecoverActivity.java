@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 import com.mrj.morejmoney.data.prefs.AppPreferencesHelper;
 import com.mrj.morejmoney.ui.base.BaseAppCompatActivity;
 import com.mrj.morejmoney.ui.login.LoginActivity;

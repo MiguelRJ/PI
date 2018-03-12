@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import com.example.pi.R;
+import com.mrj.morejmoney.R;
 
 /**
  * Created by Miguel on 26/02/2018.
