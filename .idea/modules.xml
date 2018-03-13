@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MorejMoney.iml" filepath="$PROJECT_DIR$/MorejMoney.iml" />
+      <module fileurl="file://G:\Proyecto Integrado\MoreyMoney\MorejMoney.iml" filepath="G:\Proyecto Integrado\MoreyMoney\MorejMoney.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MoreyMoney.iml" filepath="$PROJECT_DIR$/MoreyMoney.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
